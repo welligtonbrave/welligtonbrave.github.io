@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://votobrasil2026.com.br/sitemap.xml

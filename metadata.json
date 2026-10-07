@@ -1,0 +1,6 @@
+{
+  "name": "Brazil Presidential Election 2026 — First Round Map",
+  "description": "Interactive data visualization of Brazil's 2026 presidential election (first round) by state and Federal District with official TSE metrics, candidate breakdowns, and state-by-state geographic analysis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

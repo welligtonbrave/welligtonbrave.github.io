@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: "Manrope", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #0f172a;
+    background-color: #f8fafc;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Brazil SVG Map Styling */
+.brazil-state-path {
+  transition: transform 0.15s ease-out, fill 0.25s ease-out, stroke 0.15s ease-out, filter 0.15s ease-out;
+  cursor: pointer;
+  outline: none;
+}
+
+.brazil-state-path:hover {
+  filter: brightness(1.1) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.28));
+}
+
+.brazil-state-path.is-selected {
+  stroke: #ffffff !important;
+  stroke-width: 2.4px !important;
+  filter: brightness(1.18) drop-shadow(0 6px 16px rgba(0, 0, 0, 0.38));
+}
+
+/* Custom smooth scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
