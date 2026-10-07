@@ -4,13 +4,11 @@ import { ArrowUp, ShieldCheck } from "lucide-react";
 interface FooterProps {
   onOpenMethodology: () => void;
   onOpenDataInspector: () => void;
-  onOpenGitHubPages?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onOpenMethodology,
   onOpenDataInspector,
-  onOpenGitHubPages,
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -43,17 +41,6 @@ export const Footer: React.FC<FooterProps> = ({
             >
               Dados Oficiais (JSON)
             </button>
-            {onOpenGitHubPages && (
-              <>
-                <span className="text-slate-300" aria-hidden="true">·</span>
-                <button
-                  onClick={onOpenGitHubPages}
-                  className="text-blue-600 hover:text-blue-800 transition-colors cursor-pointer font-black"
-                >
-                  Baixar Projeto ZIP (GitHub Pages)
-                </button>
-              </>
-            )}
             <span className="text-slate-300" aria-hidden="true">·</span>
             <button
               onClick={scrollToTop}

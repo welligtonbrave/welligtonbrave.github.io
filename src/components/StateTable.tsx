@@ -178,10 +178,10 @@ export const StateTable: React.FC<StateTableProps> = ({
           {/* Filtros por Vencedor e Região */}
           <div className="flex flex-wrap items-center gap-2 text-xs">
             {/* Filtro por Vencedor */}
-            <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 shadow-2xs">
+            <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 shadow-2xs overflow-x-auto max-w-full">
               <button
                 onClick={() => setSelectedWinnerFilter("all")}
-                className={`px-2.5 py-1 rounded-lg transition-colors cursor-pointer text-xs font-bold whitespace-nowrap ${
+                className={`min-h-[38px] px-3 py-1.5 rounded-lg transition-colors cursor-pointer text-xs font-bold whitespace-nowrap active:bg-slate-200 ${
                   selectedWinnerFilter === "all"
                     ? "bg-slate-900 text-white"
                     : "text-slate-600 hover:text-slate-950"
@@ -191,7 +191,7 @@ export const StateTable: React.FC<StateTableProps> = ({
               </button>
               <button
                 onClick={() => setSelectedWinnerFilter("flavio")}
-                className={`px-2.5 py-1 rounded-lg transition-colors cursor-pointer text-xs font-bold whitespace-nowrap ${
+                className={`min-h-[38px] px-3 py-1.5 rounded-lg transition-colors cursor-pointer text-xs font-bold whitespace-nowrap active:bg-blue-100 ${
                   selectedWinnerFilter === "flavio"
                     ? "bg-blue-700 text-white"
                     : "text-blue-700 hover:bg-blue-50"
@@ -201,7 +201,7 @@ export const StateTable: React.FC<StateTableProps> = ({
               </button>
               <button
                 onClick={() => setSelectedWinnerFilter("lula")}
-                className={`px-2.5 py-1 rounded-lg transition-colors cursor-pointer text-xs font-bold whitespace-nowrap ${
+                className={`min-h-[38px] px-3 py-1.5 rounded-lg transition-colors cursor-pointer text-xs font-bold whitespace-nowrap active:bg-red-100 ${
                   selectedWinnerFilter === "lula"
                     ? "bg-red-600 text-white"
                     : "text-red-700 hover:bg-red-50"
@@ -212,7 +212,7 @@ export const StateTable: React.FC<StateTableProps> = ({
             </div>
 
             {/* Filtro por Região */}
-            <div className="flex items-center gap-1 overflow-x-auto text-xs">
+            <div className="flex items-center gap-1 overflow-x-auto text-xs py-0.5">
               {["all", "Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map(
                 (reg) => {
                   const isActive = selectedRegion === reg;
@@ -220,7 +220,7 @@ export const StateTable: React.FC<StateTableProps> = ({
                     <button
                       key={reg}
                       onClick={() => setSelectedRegion(reg)}
-                      className={`px-3 py-1.5 rounded-xl transition-colors cursor-pointer whitespace-nowrap text-xs font-bold ${
+                      className={`min-h-[38px] px-3 py-1.5 rounded-xl transition-colors cursor-pointer whitespace-nowrap text-xs font-bold active:bg-slate-200 ${
                         isActive
                           ? "bg-slate-900 text-white shadow-xs"
                           : "bg-white text-slate-600 hover:text-slate-950 border border-slate-200"

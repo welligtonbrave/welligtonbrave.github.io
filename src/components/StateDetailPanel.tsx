@@ -51,44 +51,52 @@ export const StateDetailPanel: React.FC<StateDetailPanelProps> = ({
   const nextUf = currentIndex < allUfs.length - 1 ? allUfs[currentIndex + 1] : allUfs[0];
 
   return (
-    <div className="fixed inset-y-0 right-0 z-50 w-full sm:w-[480px] lg:w-[520px] bg-white shadow-2xl border-l border-slate-200 flex flex-col transform transition-transform duration-300 ease-in-out">
-      {/* Cabeçalho do Painel Lateral */}
-      <div className="p-5 sm:p-6 border-b border-slate-200 bg-slate-50/80">
-        <div className="flex items-center justify-between gap-3 mb-3">
-          <div className="flex items-center gap-2">
-            <span className="font-mono font-black text-base text-white bg-slate-950 px-2.5 py-0.5 rounded-lg shadow-xs">
-              {stateData.uf}
-            </span>
-            <span className="text-xs uppercase tracking-wider text-slate-500 font-bold">
-              Região {stateData.region} · Capital: {stateData.capital}
-            </span>
-          </div>
+    <>
+      {/* Backdrop para fechar ao tocar fora no mobile */}
+      <div
+        onClick={onClose}
+        className="fixed inset-0 z-40 bg-slate-950/40 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
+        aria-hidden="true"
+      />
 
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => onSelectState(prevUf)}
-              className="p-1.5 rounded-lg hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
-              title={`Estado anterior (${prevUf})`}
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => onSelectState(nextUf)}
-              className="p-1.5 rounded-lg hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
-              title={`Próximo estado (${nextUf})`}
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-            <div className="h-4 w-px bg-slate-300 mx-1" />
-            <button
-              onClick={onClose}
-              className="p-1.5 rounded-lg hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
-              title="Fechar painel"
-            >
-              <X className="w-5 h-5" />
-            </button>
+      <div className="fixed inset-y-0 right-0 z-50 w-full sm:w-[480px] lg:w-[520px] bg-white shadow-2xl border-l border-slate-200 flex flex-col transform transition-transform duration-300 ease-in-out">
+        {/* Cabeçalho do Painel Lateral */}
+        <div className="p-5 sm:p-6 border-b border-slate-200 bg-slate-50/80">
+          <div className="flex items-center justify-between gap-3 mb-3">
+            <div className="flex items-center gap-2">
+              <span className="font-mono font-black text-base text-white bg-slate-950 px-2.5 py-0.5 rounded-lg shadow-xs">
+                {stateData.uf}
+              </span>
+              <span className="text-xs uppercase tracking-wider text-slate-500 font-bold">
+                Região {stateData.region} · Capital: {stateData.capital}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => onSelectState(prevUf)}
+                className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl hover:bg-slate-200 active:bg-slate-300 text-slate-700 transition-colors cursor-pointer"
+                title={`Estado anterior (${prevUf})`}
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => onSelectState(nextUf)}
+                className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl hover:bg-slate-200 active:bg-slate-300 text-slate-700 transition-colors cursor-pointer"
+                title={`Próximo estado (${nextUf})`}
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+              <div className="h-5 w-px bg-slate-300 mx-0.5" />
+              <button
+                onClick={onClose}
+                className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl hover:bg-slate-200 active:bg-slate-300 text-slate-700 transition-colors cursor-pointer"
+                title="Fechar painel"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
-        </div>
 
         <h2 className="font-heading text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
           {stateData.name}
@@ -318,5 +326,6 @@ export const StateDetailPanel: React.FC<StateDetailPanelProps> = ({
         </div>
       </div>
     </div>
+    </>
   );
 };

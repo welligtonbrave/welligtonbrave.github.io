@@ -20,7 +20,7 @@ export const MethodologyModal: React.FC<MethodologyModalProps> = ({
       <div className="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-stone-200 relative my-8 animate-in fade-in zoom-in-95 duration-150">
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-1.5 text-stone-400 hover:text-stone-900 rounded-lg hover:bg-stone-100 transition-colors cursor-pointer"
+          className="absolute top-4 right-4 min-h-[44px] min-w-[44px] flex items-center justify-center text-stone-500 hover:text-stone-900 rounded-xl hover:bg-stone-100 active:bg-stone-200 transition-colors cursor-pointer"
           title="Fechar"
         >
           <X className="w-5 h-5" />

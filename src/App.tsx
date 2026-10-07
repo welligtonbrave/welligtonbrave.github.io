@@ -13,7 +13,6 @@ import { StateDetailPanel } from "./components/StateDetailPanel";
 import { StateTable } from "./components/StateTable";
 import { MethodologyModal } from "./components/MethodologyModal";
 import { DataInspectorModal } from "./components/DataInspectorModal";
-import { GitHubPagesModal } from "./components/GitHubPagesModal";
 import { AdBanner } from "./components/AdBanner";
 import { Footer } from "./components/Footer";
 
@@ -23,7 +22,6 @@ export default function App() {
   const [candidateFilter, setCandidateFilter] = useState<string | null>(null);
   const [isMethodologyOpen, setIsMethodologyOpen] = useState(false);
   const [isDataInspectorOpen, setIsDataInspectorOpen] = useState(false);
-  const [isGitHubPagesOpen, setIsGitHubPagesOpen] = useState(false);
 
   // Atualização customizada via JSON do TSE
   const handleUpdateDataset = (customDataset: ElectionDataSet) => {
@@ -48,7 +46,6 @@ export default function App() {
         dataset={currentDataset}
         onOpenMethodology={() => setIsMethodologyOpen(true)}
         onOpenDataInspector={() => setIsDataInspectorOpen(true)}
-        onOpenGitHubPages={() => setIsGitHubPagesOpen(true)}
       />
 
       <main className="flex-1">
@@ -148,17 +145,10 @@ export default function App() {
         onResetToDefault={handleResetToDefault}
       />
 
-      {/* 12. Modal de Exportação do Projeto Estático para GitHub Pages */}
-      <GitHubPagesModal
-        isOpen={isGitHubPagesOpen}
-        onClose={() => setIsGitHubPagesOpen(false)}
-      />
-
-      {/* 13. Rodapé Editorial do Portal em Português */}
+      {/* 12. Rodapé Editorial do Portal em Português */}
       <Footer
         onOpenMethodology={() => setIsMethodologyOpen(true)}
         onOpenDataInspector={() => setIsDataInspectorOpen(true)}
-        onOpenGitHubPages={() => setIsGitHubPagesOpen(true)}
       />
     </div>
   );

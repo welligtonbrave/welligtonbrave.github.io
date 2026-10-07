@@ -146,7 +146,7 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
     }
   };
 
-  // Arraste do mouse
+  // Arraste do mouse e toque (touch)
   const handleMouseDown = (e: React.MouseEvent) => {
     if (e.button !== 0) return;
     setIsDragging(true);
@@ -163,6 +163,29 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
   };
 
   const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  // Suporte a toque mobile (pan com o dedo)
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      setIsDragging(true);
+      setDragStart({ x: touch.clientX - pan.x, y: touch.clientY - pan.y });
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (isDragging && e.touches.length === 1) {
+      const touch = e.touches[0];
+      setPan({
+        x: touch.clientX - dragStart.x,
+        y: touch.clientY - dragStart.y,
+      });
+    }
+  };
+
+  const handleTouchEnd = () => {
     setIsDragging(false);
   };
 
@@ -262,7 +285,7 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
       ref={containerRef}
       id="mapa-interativo"
       className={`relative w-full bg-slate-100 rounded-3xl border border-slate-200 overflow-hidden select-none transition-all ${
-        isFullscreen ? "h-screen rounded-none z-50 fixed inset-0" : "h-[650px] sm:h-[720px] lg:h-[790px]"
+        isFullscreen ? "h-screen rounded-none z-50 fixed inset-0" : "h-[540px] sm:h-[680px] lg:h-[780px]"
       }`}
     >
       {/* Barra Superior do Mapa: Busca, Regiões e Botões de Ação */}
@@ -388,11 +411,14 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
 
       {/* Tela de Desenho SVG Interativa */}
       <div
-        className="w-full h-full cursor-grab active:cursor-grabbing overflow-hidden flex items-center justify-center relative"
+        className="w-full h-full cursor-grab active:cursor-grabbing overflow-hidden flex items-center justify-center relative touch-pan-x touch-pan-y"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <svg
           ref={svgRef}
