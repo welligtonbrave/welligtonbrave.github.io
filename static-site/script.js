@@ -39,21 +39,46 @@
 
   // Carregamento resiliente dos dados locais
   try {
+    const fetchJson = async (url) => {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+      } catch (e) {
+        console.warn(`Aviso: falha ao carregar ${url}`, e);
+        return null;
+      }
+    };
+
     const [resElection, resGeo, resNews] = await Promise.all([
-      fetch('./data/electionData.json').then((r) => r.json()),
-      fetch('./data/brazilGeo.json').then((r) => r.json()),
-      fetch('./data/newsData.json').then((r) => r.json()),
+      fetchJson('./data/electionData.json'),
+      fetchJson('./data/brazilGeo.json'),
+      fetchJson('./data/newsData.json'),
     ]);
+
     electionData = resElection;
     brazilGeo = resGeo;
     newsData = resNews;
   } catch (err) {
-    console.warn("Carregamento via fetch local restrito pelo navegador. Usando contingência embutida.", err);
+    console.warn("Falha no carregamento dos dados externos:", err);
   }
 
-  // Se os dados foram carregados, inicializa
+  // Se os dados essenciais foram carregados, inicializa
   if (electionData && brazilGeo) {
     initApp();
+  } else {
+    console.error("Erro crítico: Dados do mapa ou apuração não puderam ser carregados.");
+    const container = document.querySelector('main') || document.body;
+    const errBox = document.createElement('div');
+    errBox.className = 'error-fallback-box';
+    errBox.innerHTML = `
+      <div style="max-width:600px;margin:40px auto;padding:24px;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);text-align:center;font-family:sans-serif;border:1px solid #e2e8f0;">
+        <h2 style="color:#0f172a;font-size:20px;font-weight:800;margin-bottom:8px;">Aguardando Carregamento dos Dados Eleitorais</h2>
+        <p style="color:#475569;font-size:14px;line-height:1.6;margin-bottom:16px;">Os dados locais do mapa e da apuração estão sendo preparados. Se você estiver abrindo o arquivo diretamente via protocolo file://, use um servidor HTTP local ou o GitHub Pages oficial.</p>
+        <button onclick="window.location.reload()" style="background:#0f172a;color:#fff;border:none;padding:10px 20px;border-radius:10px;font-weight:700;cursor:pointer;">Recarregar Página</button>
+      </div>
+    `;
+    container.prepend(errBox);
   }
 
   function formatVotesBR(num) {

@@ -13,24 +13,25 @@ import {
 } from "lucide-react";
 
 interface NewsSectionProps {
-  articles: NewsArticle[];
+  articles?: NewsArticle[];
 }
 
-export const NewsSection: React.FC<NewsSectionProps> = ({ articles }) => {
+export const NewsSection: React.FC<NewsSectionProps> = ({ articles = [] }) => {
+  const safeArticles = useMemo(() => Array.isArray(articles) ? articles : [], [articles]);
   const [selectedCategory, setSelectedCategory] = useState<string>("Todas");
   const [activeArticle, setActiveArticle] = useState<NewsArticle | null>(null);
   const [copied, setCopied] = useState(false);
 
   // Categorias extraídas dinamicamente
   const categories = useMemo(() => {
-    const list = Array.from(new Set(articles.map((a) => a.category)));
+    const list = Array.from(new Set(safeArticles.map((a) => a.category).filter(Boolean)));
     return ["Todas", ...list];
-  }, [articles]);
+  }, [safeArticles]);
 
   const filteredArticles = useMemo(() => {
-    if (selectedCategory === "Todas") return articles;
-    return articles.filter((a) => a.category === selectedCategory);
-  }, [articles, selectedCategory]);
+    if (selectedCategory === "Todas") return safeArticles;
+    return safeArticles.filter((a) => a.category === selectedCategory);
+  }, [safeArticles, selectedCategory]);
 
   const handleShare = () => {
     if (navigator.share && activeArticle) {
