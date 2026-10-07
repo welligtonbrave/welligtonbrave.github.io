@@ -31,10 +31,22 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci || npm install
+        run: npm ci
 
       - name: Build Application for GitHub Pages
         run: npm run build
+
+      - name: Validate Production Build
+        run: |
+          if [ ! -f "dist/index.html" ]; then
+            echo "ERROR: dist/index.html was not generated!"
+            exit 1
+          fi
+          if grep -qE "/src/|main\.tsx" dist/index.html; then
+            echo "ERROR: dist/index.html contains development references (/src/ or main.tsx)!"
+            exit 1
+          fi
+          echo "SUCCESS: Production build validated. dist/index.html contains no /src/ or main.tsx references."
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
