@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eleições 2026 — 1º Turno | Apuração Oficial e Mapa Interativo</title>
+  <meta name="description" content="Acompanhe o mapa interativo e a apuração oficial do 1º turno das Eleições Presidenciais de 2026 no Brasil. Resultados apurados pelo TSE por estado e Distrito Federal com Flávio Bolsonaro (PL) e Lula (PT)." />
+  <meta name="keywords" content="eleições 2026, apuração 2026, mapa eleitoral brasil, flavio bolsonaro, lula, tse apuração primeiro turno, presidencia da republica" />
+  <meta name="author" content="VotoBrasil 2026 / Cobertura Especial" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://welligtonbrave.github.io/" />
+
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://welligtonbrave.github.io/" />
+  <meta property="og:title" content="Eleições 2026 — 1º Turno | Mapa Interativo e Resultados Oficiais TSE" />
+  <meta property="og:description" content="Confira o mapa interativo completo da apuração oficial do 1º turno das Eleições 2026 para Presidente da República por estado e DF." />
+  <meta property="og:image" content="./assets/og-share.svg" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Eleições 2026 — 1º Turno | Resultados Oficiais TSE" />
+  <meta name="twitter:description" content="Mapa interativo da apuração presidencial 2026 por estado. Votação oficial do Tribunal Superior Eleitoral." />
+  <meta name="twitter:image" content="./assets/og-share.svg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="apple-touch-icon" href="./favicon.svg" />
+
+  <!-- Tipografia Google Fonts (Manrope, Plus Jakarta Sans, JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Manrope:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Folha de Estilos Estática Oficial (Relativa para GitHub Pages) -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Schema.org Dados Estruturados (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://welligtonbrave.github.io/#website",
+        "url": "https://welligtonbrave.github.io/",
+        "name": "VotoBrasil 2026",
+        "description": "Portal independente de dados e mapas interativos das Eleições Presidenciais de 2026 no Brasil.",
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "NewsArticle",
+        "@id": "https://welligtonbrave.github.io/#article-1",
+        "headline": "TSE conclui 100% da totalização: Flávio Bolsonaro e Lula disputarão o 2º turno",
+        "datePublished": "2026-10-05T08:30:00-03:00",
+        "dateModified": "2026-10-05T12:00:00-03:00",
+        "inLanguage": "pt-BR",
+        "author": {
+          "@type": "Organization",
+          "name": "Redação VotoBrasil 2026"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "VotoBrasil 2026",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://welligtonbrave.github.io/favicon.svg"
+          }
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- 1. Barra de Navegação Superior Oficial -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#dashboard-nacional" class="brand-lockup">
+        <div class="brand-badge">VB</div>
+        <div>
+          <span class="brand-name">VotoBrasil 2026</span>
+          <span class="brand-subtitle block">Dados Oficiais TSE</span>
+        </div>
+      </a>
+
+      <nav class="site-nav">
+        <a href="#dashboard-nacional" class="nav-link">Dashboard</a>
+        <a href="#mapa-interativo" class="nav-link">Mapa Interativo</a>
+        <a href="#tabela-estados" class="nav-link">Estados</a>
+        <a href="#noticias" class="nav-link">Notícias</a>
+        <a href="#metodologia" class="nav-link">Metodologia TSE</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="./static-site.zip" download="static-site.zip" class="btn-zip" title="Baixar pacote ZIP completo para GitHub Pages">
+          <span>📦</span>
+          <span>Baixar ZIP do Projeto</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Painel Nacional e Dashboard Principal -->
+  <main>
+    <section class="dashboard-hero" id="dashboard-nacional">
+      <div class="container">
+        <!-- Metadados da Eleição e Homologação -->
+        <div class="hero-meta">
+          <span class="badge-official">
+            <span>✓</span> Totalização 100% Homologada
+          </span>
+          <span>·</span>
+          <span>1º Turno — 4 de outubro de 2026</span>
+          <span>·</span>
+          <span>Fonte: Tribunal Superior Eleitoral (TSE)</span>
+        </div>
+
+        <h1 class="hero-title">Eleições 2026 — 1º Turno</h1>
+        <h2 class="hero-subtitle">Presidência da República | Resultados, mapas, notícias e análises</h2>
+        <p class="hero-lead">
+          Dados oficiais apurados pelo Tribunal Superior Eleitoral (TSE). Votação nacional confirmou a realização de segundo turno entre os dois candidatos mais votados.
+        </p>
+
+        <!-- Alerta de 2º Turno Constitucional -->
+        <div class="runoff-alert">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="runoff-badge-large">2º</div>
+            <div class="runoff-content">
+              <h4>Segundo Turno Proclamado pelo TSE</h4>
+              <p>
+                Nenhum candidato atingiu a maioria absoluta (50% + 1 voto válido) no 1º turno. Conforme o Artigo 77 da Constituição Federal, disputarão o 2º turno: <strong>Flávio Bolsonaro (PL)</strong> e <strong>Lula (PT)</strong>.
+              </p>
+            </div>
+          </div>
+          <div style="text-align: right; font-size: 0.75rem; color: #1e3a8a; font-weight: 700;">
+            Votação definitiva: 25 de outubro de 2026
+          </div>
+        </div>
+
+        <!-- Comparativo Direto Nacional (Flávio Bolsonaro vs Lula) -->
+        <div class="comparison-card">
+          <div class="comp-header">
+            <div>
+              <span style="font-size: 0.6875rem; font-weight: 800; text-transform: uppercase; color: var(--color-text-muted); letter-spacing: 0.05em;">Placar Nacional dos Votos Válidos</span>
+              <h3>Comparativo Flávio Bolsonaro vs. Lula</h3>
+            </div>
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-text-muted);">125.272.513 votos válidos</span>
+          </div>
+
+          <!-- Barra Flávio Bolsonaro -->
+          <div class="comp-row">
+            <div class="comp-row-header">
+              <div class="candidate-tag">
+                <span class="num-pill flavio">22</span>
+                <span>Flávio Bolsonaro (PL)</span>
+                <span style="font-size: 0.6875rem; color: #059669; font-weight: 800; background: #ecfdf5; padding: 0.125rem 0.375rem; border-radius: 0.25rem;">1º Colocado</span>
+              </div>
+              <div>
+                <strong class="font-mono" style="font-size: 1.125rem; color: var(--color-flavio);">47,03%</strong>
+                <span class="font-mono" style="font-size: 0.8125rem; color: var(--color-text-muted); margin-left: 0.375rem;">(56.104.268 votos)</span>
+              </div>
+            </div>
+            <div class="bar-wrapper">
+              <div class="bar-fill flavio" style="width: 47.03%;"></div>
+            </div>
+          </div>
+
+          <!-- Barra Lula -->
+          <div class="comp-row">
+            <div class="comp-row-header">
+              <div class="candidate-tag">
+                <span class="num-pill lula">13</span>
+                <span>Lula (PT)</span>
+                <span style="font-size: 0.6875rem; color: #2563eb; font-weight: 800; background: #eff6ff; padding: 0.125rem 0.375rem; border-radius: 0.25rem;">2º Colocado</span>
+              </div>
+              <div>
+                <strong class="font-mono" style="font-size: 1.125rem; color: var(--color-lula);">45,16%</strong>
+                <span class="font-mono" style="font-size: 0.8125rem; color: var(--color-text-muted); margin-left: 0.375rem;">(53.876.617 votos)</span>
+              </div>
+            </div>
+            <div class="bar-wrapper">
+              <div class="bar-fill lula" style="width: 45.16%;"></div>
+            </div>
+          </div>
+
+          <!-- Linha de Maioria Absoluta (50%) -->
+          <div class="threshold-container">
+            <div class="threshold-track">
+              <div class="threshold-line">
+                <span class="threshold-pin">Corte 50% Maioria Absoluta</span>
+              </div>
+              <div style="width: 47.03%; background-color: var(--color-flavio); height: 100%; opacity: 0.9;"></div>
+              <div style="width: 45.16%; background-color: var(--color-lula); height: 100%; opacity: 0.9;"></div>
+              <div style="width: 7.81%; background-color: #94a3b8; height: 100%; opacity: 0.9;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.6875rem; color: var(--color-text-muted); margin-top: 0.5rem;">
+              <span>0%</span>
+              <span style="font-weight: 800; color: #0f172a;">Linha Constitucional de 1º Turno (50% + 1 voto)</span>
+              <span>100%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grade de Indicadores Principais (KPIs) -->
+        <div class="kpi-grid">
+          <div class="kpi-card flavio">
+            <span class="kpi-label">Flávio Bolsonaro (PL)</span>
+            <div class="kpi-value">56.104.268</div>
+            <div class="kpi-sub">
+              <strong style="color: var(--color-flavio); font-size: 0.875rem;">47,03% dos válidos</strong>
+              <span>15 UFs (14 estados + DF)</span>
+            </div>
+          </div>
+
+          <div class="kpi-card lula">
+            <span class="kpi-label">Lula (PT)</span>
+            <div class="kpi-value">53.876.617</div>
+            <div class="kpi-sub">
+              <strong style="color: var(--color-lula); font-size: 0.875rem;">45,16% dos válidos</strong>
+              <span>12 estados vencidos</span>
+            </div>
+          </div>
+
+          <div class="kpi-card outros">
+            <span class="kpi-label">Outros Candidatos</span>
+            <div class="kpi-value">9.291.628</div>
+            <div class="kpi-sub">
+              <strong style="color: #475569; font-size: 0.875rem;">7,81% dos válidos</strong>
+              <span>Demais concorrentes</span>
+            </div>
+          </div>
+
+          <div class="kpi-card" style="border-top: 4px solid #0f172a;">
+            <span class="kpi-label">Total de Votos Válidos</span>
+            <div class="kpi-value">125.272.513</div>
+            <div class="kpi-sub">
+              <strong style="color: #0f172a; font-size: 0.875rem;">100,00% da apuração</strong>
+              <span>Base oficial de cálculo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grade Secundária (Comparecimento, Brancos, Nulos, Abstenção) -->
+        <div class="kpi-secondary-grid">
+          <div class="kpi-sec-card">
+            <span class="kpi-label">Comparecimento Eleitoral</span>
+            <div class="font-mono" style="font-size: 1.375rem; font-weight: 800; color: #0f172a; margin: 0.25rem 0;">
+              131.247.443 <span style="font-size: 0.8125rem; color: #059669; font-weight: 700;">(83,89%)</span>
+            </div>
+            <div style="font-size: 0.6875rem; color: var(--color-text-muted);">
+              Total de eleitores que compareceram às urnas
+            </div>
+          </div>
+
+          <div class="kpi-sec-card">
+            <span class="kpi-label">Abstenção</span>
+            <div class="font-mono" style="font-size: 1.375rem; font-weight: 800; color: #0f172a; margin: 0.25rem 0;">
+              25.206.568 <span style="font-size: 0.8125rem; color: #d97706; font-weight: 700;">(16,11%)</span>
+            </div>
+            <div style="font-size: 0.6875rem; color: var(--color-text-muted);">
+              Eleitores aptos ausentes da votação
+            </div>
+          </div>
+
+          <div class="kpi-sec-card">
+            <span class="kpi-label">Votos Brancos e Nulos</span>
+            <div class="font-mono" style="font-size: 1.375rem; font-weight: 800; color: #0f172a; margin: 0.25rem 0;">
+              5.974.930 <span style="font-size: 0.8125rem; color: #64748b; font-weight: 700;">(4,55%)</span>
+            </div>
+            <div style="font-size: 0.6875rem; color: var(--color-text-muted);">
+              Brancos: 2.300.781 (1,84%) · Nulos: 3.674.149 (2,93%)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Espaço de Monetização Superior (Google AdSense 728x90) -->
+    <div class="container ad-slot">
+      <div class="ad-box">
+        <span class="ad-tag">Publicidade · Google AdSense Leaderboard (728x90)</span>
+        <div style="font-size: 0.75rem; color: #94a3b8; font-family: var(--font-mono);">
+          Espaço reservado não invasivo para monetização programática
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Seção do Mapa Interativo do Brasil -->
+    <section class="map-section" id="mapa-interativo">
+      <div class="container">
+        <div style="display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 1.25rem;">
+          <span style="font-size: 0.6875rem; font-weight: 800; text-transform: uppercase; color: var(--color-text-muted); letter-spacing: 0.05em;">
+            Distribuição Territorial dos Votos
+          </span>
+          <h2 style="font-size: 1.75rem; font-weight: 900; color: #0f172a;">
+            Mapa de Votação por Estado e Distrito Federal
+          </h2>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted);">
+            Passe o mouse para conferir o placar por estado ou clique para abrir a apuração detalhada com o comparecimento eleitoral.
+          </p>
+        </div>
+
+        <!-- Container do Mapa com Barra de Ferramentas e SVG -->
+        <div class="map-wrapper" id="map-wrapper">
+          <!-- Barra de Controles e Busca -->
+          <div class="map-toolbar">
+            <div class="map-tools-left" style="position: relative;">
+              <input
+                type="text"
+                id="state-search-input"
+                class="search-input"
+                placeholder="Buscar estado (ex: SP, Bahia)..."
+                autocomplete="off"
+              />
+              <div
+                id="search-results-box"
+                style="display: none; position: absolute; top: 2.75rem; left: 0; width: 14rem; background: #fff; border: 1px solid var(--color-border); border-radius: 0.75rem; box-shadow: var(--shadow-lg); z-index: 50; overflow: hidden;"
+              ></div>
+            </div>
+
+            <div class="map-tools-right">
+              <button id="btn-zoom-in" class="tool-btn" title="Aproximar visualização">+</button>
+              <button id="btn-zoom-out" class="tool-btn" title="Afastar visualização">-</button>
+              <button id="btn-reset-map" class="tool-btn" title="Restaurar visão geral">Restaurar Visão</button>
+              <button id="btn-fullscreen" class="tool-btn" title="Expandir mapa em tela cheia">⛶ Tela Cheia</button>
+            </div>
+          </div>
+
+          <!-- SVG do Brasil Renderizado Dinamicamente -->
+          <div class="svg-canvas-container" id="svg-container">
+            <svg
+              id="brazil-svg"
+              viewBox="0 0 1000 900"
+              style="width: 100%; height: 100%; max-height: 44rem; transition: transform 0.15s ease-out;"
+            >
+              <g id="states-svg-group"></g>
+              <g id="labels-svg-group"></g>
+            </svg>
+          </div>
+
+          <!-- Legenda Flutuante com Filtros Interativos -->
+          <div class="map-legend">
+            <span style="font-size: 0.6875rem; font-weight: 800; text-transform: uppercase; color: var(--color-text-muted); display: block;">
+              Vencedor no 1º Turno por UF:
+            </span>
+            <div class="legend-items">
+              <button class="legend-chip legend-chip-btn" data-candidate="flavio" style="background: none; border: none; cursor: pointer; padding: 0;">
+                <span class="color-dot" style="background-color: var(--color-flavio);"></span>
+                <span>Flávio Bolsonaro (PL) — <strong>15 UFs</strong></span>
+              </button>
+              <button class="legend-chip legend-chip-btn" data-candidate="lula" style="background: none; border: none; cursor: pointer; padding: 0;">
+                <span class="color-dot" style="background-color: var(--color-lula);"></span>
+                <span>Lula (PT) — <strong>12 estados</strong></span>
+              </button>
+            </div>
+            <div style="font-size: 0.625rem; color: var(--color-text-muted); margin-top: 0.375rem;">
+              Dica: clique em um candidato na legenda para filtrar estados no mapa.
+            </div>
+          </div>
+
+          <!-- Tooltip Flutuante -->
+          <div id="map-tooltip" class="map-tooltip"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Drawer Lateral de Detalhes do Estado Selecionado -->
+    <div id="drawer-backdrop" class="drawer-backdrop"></div>
+    <div id="state-drawer" class="drawer-panel">
+      <div class="drawer-header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h3 id="drawer-state-name" style="font-size: 1.5rem; font-weight: 900; color: #0f172a;">Estado</h3>
+            <p id="drawer-state-region" style="font-size: 0.75rem; color: var(--color-text-muted);">Região</p>
+          </div>
+          <button id="drawer-close-btn" class="btn-close" title="Fechar painel">✕</button>
+        </div>
+        <div style="margin-top: 0.75rem;">
+          <span id="drawer-winner-badge" style="background-color: var(--color-flavio); color: #fff; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.625rem; border-radius: 0.375rem;">
+            Vencedor no Estado
+          </span>
+        </div>
+      </div>
+
+      <div class="drawer-body">
+        <h4 style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.75rem;">
+          Votos Válidos por Candidato
+        </h4>
+
+        <!-- Flávio Bolsonaro -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8125rem; font-weight: 700; margin-bottom: 0.25rem;">
+            <span style="color: var(--color-flavio);">Flávio Bolsonaro (PL, 22)</span>
+            <span id="drawer-flavio-votes" class="font-mono">--</span>
+          </div>
+          <div style="height: 0.625rem; background: #e2e8f0; border-radius: 9999px; overflow: hidden;">
+            <div id="drawer-flavio-bar" style="height: 100%; background: var(--color-flavio); width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Lula -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8125rem; font-weight: 700; margin-bottom: 0.25rem;">
+            <span style="color: var(--color-lula);">Lula (PT, 13)</span>
+            <span id="drawer-lula-votes" class="font-mono">--</span>
+          </div>
+          <div style="height: 0.625rem; background: #e2e8f0; border-radius: 9999px; overflow: hidden;">
+            <div id="drawer-lula-bar" style="height: 100%; background: var(--color-lula); width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Outros -->
+        <div style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8125rem; font-weight: 700; margin-bottom: 0.25rem; color: #64748b;">
+            <span>Demais Candidatos</span>
+            <span id="drawer-outros-votes" class="font-mono">--</span>
+          </div>
+          <div style="height: 0.625rem; background: #e2e8f0; border-radius: 9999px; overflow: hidden;">
+            <div id="drawer-outros-bar" style="height: 100%; background: #64748b; width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Estatísticas Eleitorais do Estado -->
+        <h4 style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.75rem; border-top: 1px solid var(--color-border); padding-top: 1rem;">
+          Totalização e Comparecimento
+        </h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; font-size: 0.8125rem;">
+          <div style="background: #f8fafc; padding: 0.75rem; border-radius: 0.625rem;">
+            <span style="color: var(--color-text-muted); font-size: 0.6875rem; display: block;">Votos Válidos</span>
+            <strong id="drawer-valid-votes" class="font-mono" style="color: #0f172a; font-size: 0.9375rem;">--</strong>
+          </div>
+          <div style="background: #f8fafc; padding: 0.75rem; border-radius: 0.625rem;">
+            <span style="color: var(--color-text-muted); font-size: 0.6875rem; display: block;">Votos Brancos</span>
+            <strong id="drawer-blank-votes" class="font-mono" style="color: #0f172a; font-size: 0.9375rem;">--</strong>
+          </div>
+          <div style="background: #f8fafc; padding: 0.75rem; border-radius: 0.625rem;">
+            <span style="color: var(--color-text-muted); font-size: 0.6875rem; display: block;">Votos Nulos</span>
+            <strong id="drawer-null-votes" class="font-mono" style="color: #0f172a; font-size: 0.9375rem;">--</strong>
+          </div>
+          <div style="background: #f8fafc; padding: 0.75rem; border-radius: 0.625rem;">
+            <span style="color: var(--color-text-muted); font-size: 0.6875rem; display: block;">Comparecimento</span>
+            <strong id="drawer-turnout" class="font-mono" style="color: #059669; font-size: 0.9375rem;">--</strong>
+          </div>
+          <div style="background: #f8fafc; padding: 0.75rem; border-radius: 0.625rem;">
+            <span style="color: var(--color-text-muted); font-size: 0.6875rem; display: block;">Abstenção</span>
+            <strong id="drawer-abstention" class="font-mono" style="color: #d97706; font-size: 0.9375rem;">--</strong>
+          </div>
+          <div style="background: #f8fafc; padding: 0.75rem; border-radius: 0.625rem;">
+            <span style="color: var(--color-text-muted); font-size: 0.6875rem; display: block;">Eleitorado Apto</span>
+            <strong id="drawer-electorate" class="font-mono" style="color: #0f172a; font-size: 0.9375rem;">--</strong>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; padding: 0.875rem; background: #eff6ff; border-radius: 0.75rem; border: 1px solid #bfdbfe; font-size: 0.75rem; color: #1e3a8a;">
+          <strong>Fonte Oficial:</strong> Totalização do Tribunal Superior Eleitoral (TSE). Percentuais calculados estritamente sobre os votos válidos nominais.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Tabela de Classificação dos 27 Estados -->
+    <section class="table-section" id="tabela-estados">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.25rem;">
+          <div>
+            <span style="font-size: 0.6875rem; font-weight: 800; text-transform: uppercase; color: var(--color-text-muted); letter-spacing: 0.05em;">
+              Totalização Estadual Completa
+            </span>
+            <h2 style="font-size: 1.75rem; font-weight: 900; color: #0f172a;">
+              Resultados das 27 Unidades da Federação
+            </h2>
+            <p style="font-size: 0.875rem; color: var(--color-text-muted);">
+              Clique em qualquer estado na tabela para abrir o resumo completo com total de válidos, brancos, nulos e abstenção.
+            </p>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Estado</th>
+                <th>Região</th>
+                <th>Vencedor</th>
+                <th style="text-align: right;">Flávio (PL)</th>
+                <th style="text-align: right;">Lula (PT)</th>
+                <th style="text-align: right;">Margem</th>
+                <th style="text-align: right;">Votos Válidos</th>
+                <th style="text-align: right;">Comparecimento</th>
+                <th style="text-align: center;">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="table-results-tbody">
+              <!-- Renderizado via script.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Seção de Notícias Jornalísticas e Análises -->
+    <section class="news-section" id="noticias">
+      <div class="container">
+        <div>
+          <span style="font-size: 0.6875rem; font-weight: 800; text-transform: uppercase; color: var(--color-text-muted); letter-spacing: 0.05em;">
+            Cobertura Especial
+          </span>
+          <h2 style="font-size: 1.75rem; font-weight: 900; color: #0f172a;">
+            Últimas Notícias e Análises Eleitorais
+          </h2>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted);">
+            Reportagens jornalísticas baseadas nos dados consolidados do Tribunal Superior Eleitoral.
+          </p>
+        </div>
+
+        <div class="news-grid" id="news-articles-grid">
+          <!-- Renderizado via script.js a partir de newsData.json -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal de Leitura de Artigo -->
+    <div id="news-modal" class="news-modal-overlay">
+      <div class="news-modal-content">
+        <div class="news-modal-header">
+          <div>
+            <span id="modal-art-category" style="font-size: 0.6875rem; font-weight: 800; text-transform: uppercase; color: var(--color-flavio); letter-spacing: 0.05em; display: block; margin-bottom: 0.25rem;">Categoria</span>
+            <h3 id="modal-art-title" style="font-size: 1.375rem; font-weight: 900; color: #0f172a; line-height: 1.25;">Título da Reportagem</h3>
+            <div style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 0.375rem;">
+              <span id="modal-art-author">Autor</span> · <span id="modal-art-date">Data</span> · <span id="modal-art-time">Tempo</span>
+            </div>
+          </div>
+          <button id="news-modal-close" class="btn-close" title="Fechar reportagem">✕</button>
+        </div>
+        <div class="news-modal-body">
+          <p id="modal-art-lead" style="font-weight: 700; color: #1e293b; font-size: 1rem; margin-bottom: 1.25rem; line-height: 1.6;"></p>
+          <div id="modal-art-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Seção de Metodologia e Transparência Eleitoral -->
+    <section class="container" id="metodologia">
+      <div class="methodology-box">
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+          <span style="color: #059669; font-weight: 900; font-size: 1.125rem;">✓</span>
+          <h3 style="font-size: 1.25rem; font-weight: 900; color: #0f172a;">Metodologia e Transparência Eleitoral</h3>
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-text-muted); max-width: 50rem;">
+          O VotoBrasil 2026 adota como fonte primária os boletins de urna eletrônica e dados oficiais consolidados pelo Tribunal Superior Eleitoral (TSE).
+        </p>
+
+        <div class="methodology-grid">
+          <div class="methodology-item">
+            <h4>1. Regra Constitucional de Votos Válidos</h4>
+            <p>
+              Conforme o Artigo 77, § 2º da Constituição Federal de 1988, são computados para fins de eleição majoritária exclusivamente os votos válidos nominais. Votos em branco e votos nulos não são incluídos no cálculo dos percentuais dos concorrentes.
+            </p>
+          </div>
+
+          <div class="methodology-item">
+            <h4>2. Totalização das Urnas Eletrônicas</h4>
+            <p>
+              Os resultados refletem a apuração de 100,00% das seções eleitorais do território nacional e do exterior, processadas pelo Sistema de Totalização e Divulgação de Resultados (DivulgaCandContas) do TSE em 4 de outubro de 2026.
+            </p>
+          </div>
+
+          <div class="methodology-item">
+            <h4>3. Arquitetura Estática para GitHub Pages</h4>
+            <p>
+              Este portal foi projetado para execução 100% estática sem requisições a servidores dinâmicos ou bancos de dados locais. Compatível com publicação instantânea no GitHub Pages, Vercel ou Netlify.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 7. Rodapé Institucional -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+          <div class="brand-badge" style="width: 1.75rem; height: 1.75rem; font-size: 0.75rem;">VB</div>
+          <strong style="font-size: 1rem; color: #0f172a;">VotoBrasil 2026</strong>
+        </div>
+        <p style="font-size: 0.75rem; color: var(--color-text-muted); max-width: 32rem;">
+          Portal informativo com resultados do 1º Turno das Eleições Presidenciais de 2026. Dados oficiais fornecidos pelo Tribunal Superior Eleitoral (TSE).
+        </p>
+        <p style="font-size: 0.6875rem; color: #94a3b8; margin-top: 0.5rem;">
+          © 2026 VotoBrasil. Todos os direitos reservados. Projeto pronto para publicação no GitHub Pages.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#dashboard-nacional" class="footer-link">Dashboard</a>
+        <a href="#mapa-interativo" class="footer-link">Mapa do Brasil</a>
+        <a href="#tabela-estados" class="footer-link">Tabela por Estado</a>
+        <a href="#noticias" class="footer-link">Notícias</a>
+        <a href="#metodologia" class="footer-link">Metodologia TSE</a>
+        <a href="./static-site.zip" download="static-site.zip" class="footer-link" style="color: var(--color-flavio); font-weight: 800;">Baixar Pacote ZIP</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Oficial de Interatividade 100% Estático no Navegador -->
+  <script src="./script.js"></script>
+</body>
+</html>
