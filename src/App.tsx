@@ -9,6 +9,7 @@ import { NationalBanner } from "./components/NationalBanner";
 import { BrazilMap } from "./components/BrazilMap";
 import { RegionalCharts } from "./components/RegionalCharts";
 import { NewsSection } from "./components/NewsSection";
+import { EconomySection } from "./components/EconomySection";
 import { StateDetailPanel } from "./components/StateDetailPanel";
 import { StateTable } from "./components/StateTable";
 import { MethodologyModal } from "./components/MethodologyModal";
@@ -110,10 +111,13 @@ export default function App() {
         {/* 6. Seção de Jornalismo: Últimas Notícias e Análises */}
         <NewsSection articles={OFFICIAL_NEWS_ARTICLES} />
 
-        {/* 7. Espaço Publicitário In-Feed */}
+        {/* 7. Seção de Economia: Indicadores Oficiais do Brasil (IBGE e BCB) */}
+        <EconomySection />
+
+        {/* 8. Espaço Publicitário In-Feed */}
         <AdBanner format="in-feed" />
 
-        {/* 8. Tabela Geral de Resultados por Estado (26 Estados + DF) */}
+        {/* 9. Tabela Geral de Resultados por Estado (26 Estados + DF) */}
         <StateTable
           dataset={currentDataset}
           selectedStateUf={selectedStateUf}

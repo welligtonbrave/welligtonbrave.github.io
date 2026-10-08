@@ -104,6 +104,9 @@ export const MethodologyModal: React.FC<MethodologyModalProps> = ({
               <strong>Fonte Oficial:</strong> Tribunal Superior Eleitoral (TSE) — Totalização de Resultados Eleitorais de 2026.
               Eleição realizada em <strong>04 de outubro de 2026</strong>.
             </p>
+            <p className="text-xs mt-2 text-stone-500">
+              <strong>Publicação:</strong> Sociedade Ativa · Portal de Jornalismo de Dados e Informações Públicas do Brasil.
+            </p>
           </div>
         </div>
 

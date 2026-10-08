@@ -10,13 +10,16 @@
   <rect x="0" y="0" width="1200" height="8" fill="#1d4ed8" />
   <rect x="0" y="622" width="1200" height="8" fill="#dc2626" />
   
-  <!-- Badge -->
-  <rect x="80" y="70" width="340" height="42" rx="10" fill="#1e3a8a" />
-  <text x="100" y="97" font-family="sans-serif" font-size="16" font-weight="bold" fill="#93c5fd" letter-spacing="1">✓ OFICIAL · TRIBUNAL SUPERIOR ELEITORAL</text>
+  <!-- Brand & TSE Badges -->
+  <rect x="80" y="70" width="210" height="42" rx="10" fill="#ffffff" />
+  <text x="96" y="97" font-family="sans-serif" font-size="15" font-weight="900" fill="#0f172a" letter-spacing="1">SOCIEDADE ATIVA</text>
+
+  <rect x="305" y="70" width="340" height="42" rx="10" fill="#1e3a8a" />
+  <text x="325" y="97" font-family="sans-serif" font-size="15" font-weight="bold" fill="#93c5fd" letter-spacing="1">✓ OFICIAL · TRIBUNAL SUPERIOR ELEITORAL</text>
 
   <!-- Title -->
   <text x="80" y="180" font-family="sans-serif" font-size="64" font-weight="900" fill="#ffffff">Eleições 2026 — 1º Turno</text>
-  <text x="80" y="235" font-family="sans-serif" font-size="30" font-weight="600" fill="#94a3b8">Presidência da República | Mapa por Estado e DF</text>
+  <text x="80" y="235" font-family="sans-serif" font-size="28" font-weight="600" fill="#94a3b8">Sociedade Ativa · Política, Eleições e Dados do Brasil</text>
 
   <!-- Candidates boxes -->
   <!-- Flavio -->
@@ -39,5 +42,5 @@
 
   <!-- Footer info -->
   <text x="80" y="530" font-family="sans-serif" font-size="18" fill="#cbd5e1">Total de Votos Válidos: 125.272.513 · Comparecimento: 83,89% · 2º Turno Convocado</text>
-  <text x="80" y="565" font-family="monospace" font-size="16" fill="#64748b">https://welligtonbrave.github.io/ · Fonte: TSE 04/10/2026</text>
+  <text x="80" y="565" font-family="monospace" font-size="16" fill="#64748b">https://welligtonbrave.github.io/ · Sociedade Ativa · Fonte: TSE 04/10/2026</text>
 </svg>

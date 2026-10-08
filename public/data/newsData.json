@@ -1,104 +1,158 @@
 [
   {
-    "id": "tse-homologa-apuracao-primeiro-turno",
-    "headline": "TSE conclui 100% da totalização: Flávio Bolsonaro e Lula disputarão o 2º turno",
-    "lead": "Com 125,2 milhões de votos válidos nominais, Tribunal Superior Eleitoral confirma votação histórica e convoca eleitores para a votação definitiva em 25 de outubro de 2026.",
-    "content": [
-      "O Tribunal Superior Eleitoral (TSE) homologou, na noite de 4 de outubro de 2026, o encerramento oficial da totalização do primeiro turno das Eleições Presidenciais. Com 100% das urnas eletrônicas apuradas, o senador Flávio Bolsonaro (PL) obteve 56.104.268 votos nominais (47,03% dos votos válidos), enquanto o presidente Luiz Inácio Lula da Silva (PT) alcançou 53.876.617 votos (45,16%).",
-      "Como nenhum dos concorrentes ultrapassou a linha de corte constitucional de 50% mais um voto válido, o presidente do TSE proclamou oficialmente a realização do segundo turno entre os dois primeiros colocados, em estrito cumprimento ao Artigo 77 da Constituição Federal de 1988.",
-      "O comparecimento às urnas atingiu a marca de 131.247.443 eleitores, representando 83,89% do eleitorado apto de 156,4 milhões de brasileiros. A taxa de abstenção foi de 16,11%, patamar considerado equilibrado para eleições gerais ordinárias."
-    ],
-    "category": "Apuração Oficial",
-    "publishedAt": "05 de outubro de 2026 às 08:30",
-    "readTime": "4 min de leitura",
-    "author": "Redação VotoBrasil / Cobertura Especial",
-    "tags": [
-      "TSE",
-      "Apuração",
-      "Flávio Bolsonaro",
-      "Lula",
-      "Presidência"
-    ]
+    "id": "eleicoes-2026-tse-apuracao-primeiro-turno",
+    "title": "TSE conclui 100% da totalização: Flávio Bolsonaro e Lula disputarão o 2º turno",
+    "summary": "Com 125,2 milhões de votos válidos nominais, Tribunal Superior Eleitoral confirma votação e convoca eleitores para o segundo turno no último domingo de outubro.",
+    "source": "Redação Sociedade Ativa",
+    "sourceUrl": "https://welligtonbrave.github.io/",
+    "articleUrl": "https://welligtonbrave.github.io/",
+    "publishedAt": "05/10/2026 às 08:30",
+    "updatedAt": "05/10/2026 às 10:15",
+    "category": "Eleições",
+    "author": "Redação Sociedade Ativa / Cobertura Especial",
+    "tags": ["TSE", "Eleições 2026", "Segundo Turno", "Apuração", "Presidência"]
   },
   {
-    "id": "raio-x-geografico-estados-2026",
-    "headline": "Raio-X dos estados: Flávio lidera Sul, Sudeste e Centro-Oeste; Lula vence no Nordeste",
-    "lead": "Mapa de votação demonstra polarização regional consolidada: candidato do PL conquista 14 estados mais o Distrito Federal, enquanto o PT vence em 13 estados.",
-    "content": [
-      "A distribuição geográfica dos votos no primeiro turno de 2026 delineou com precisão as forças políticas no território nacional. Flávio Bolsonaro consolidou vitórias nos três maiores colégios eleitorais do Sul e Sudeste, com destaque para São Paulo (48,77% a 38,64%), Rio de Janeiro (51,55% a 37,20%), Paraná (55,73%) e Santa Catarina (62,70%).",
-      "No Centro-Oeste e no eixo do agronegócio, o candidato do PL venceu com folga em Mato Grosso (58,22%), Goiás (53,24%), Mato Grosso do Sul (54,24%) e no Distrito Federal (52,75%).",
-      "Por outro lado, o presidente Lula manteve hegemonia indiscutível na Região Nordeste, vencendo em todos os 9 estados da região, com índices expressivos no Piauí (62,75%), Maranhão (59,14%), Bahia (57,33%), Ceará (55,53%) e Pernambuco (56,43%), além de assegurar vitórias estratégicas na Região Norte em estados como Pará e Amazonas."
-    ],
-    "category": "Geopolítica dos Estados",
-    "publishedAt": "05 de outubro de 2026 às 11:15",
-    "readTime": "5 min de leitura",
-    "author": "Análise Política / Equipe de Dados",
-    "tags": [
-      "Mapa Eleitoral",
-      "São Paulo",
-      "Nordeste",
-      "Geopolítica",
-      "Regiões"
-    ]
+    "id": "eleicoes-2026-mapa-regional-votacao",
+    "title": "Raio-X dos estados: Flávio lidera Sul, Sudeste e Centro-Oeste; Lula vence no Nordeste",
+    "summary": "Mapa eleitoral aponta consolidação regional: candidato do PL vence em 14 estados mais o Distrito Federal, enquanto o PT lidera em 13 unidades da federação.",
+    "source": "Redação Sociedade Ativa",
+    "sourceUrl": "https://welligtonbrave.github.io/",
+    "articleUrl": "https://welligtonbrave.github.io/",
+    "publishedAt": "05/10/2026 às 11:15",
+    "updatedAt": "05/10/2026 às 11:15",
+    "category": "Eleições",
+    "author": "Análise de Dados / Sociedade Ativa",
+    "tags": ["Mapa Eleitoral", "São Paulo", "Nordeste", "Geopolítica", "Regiões"]
   },
   {
-    "id": "calendario-oficial-tse-segundo-turno",
-    "headline": "Calendário do 2º turno: propaganda eleitoral e regras anunciadas pelo TSE",
-    "lead": "Candidatos terão prazo para reinício da propaganda em rádio e televisão; votação acontecerá no último domingo de outubro.",
-    "content": [
-      "A Secretaria Judiciária do TSE publicou a resolução operacional que rege o período de campanha eleitoral para o segundo turno das Eleições Gerais de 2026. A propaganda eleitoral gratuita em rede nacional de rádio e televisão foi autorizada a recomeçar a partir de 9 de outubro.",
-      "Cada coligação terá tempo rigorosamente igual de exposição diária nas emissoras concessionárias, dividido em blocos de 10 minutos ao longo da programação matutina e noturna.",
-      "O TSE reforçou que os sistemas de combate à desinformação e fiscalização do impulsionamento pago em plataformas digitais permanecerão em regime de plantão ininterrupto até o término da votação."
-    ],
-    "category": "Segundo Turno",
-    "publishedAt": "05 de outubro de 2026 às 14:40",
-    "readTime": "3 min de leitura",
-    "author": "Assessoria Judiciária & Eleitoral",
-    "tags": [
-      "Calendário TSE",
-      "Segundo Turno",
-      "Propaganda",
-      "Regras"
-    ]
+    "id": "tse-regras-propaganda-segundo-turno",
+    "title": "TSE divulga regras e cronograma da propaganda eleitoral para o 2º turno",
+    "summary": "Resolução do Tribunal Superior Eleitoral estabelece divisão igualitária do horário gratuito no rádio e na televisão e disciplina diretrizes sobre impulsionamento digital.",
+    "source": "TSE Notícias",
+    "sourceUrl": "https://www.tse.jus.br",
+    "articleUrl": "https://www.tse.jus.br/comunicacao/noticias",
+    "publishedAt": "06/10/2026 às 09:40",
+    "updatedAt": "06/10/2026 às 10:00",
+    "category": "Justiça",
+    "author": "Assessoria de Comunicação TSE",
+    "tags": ["TSE", "Segundo Turno", "Horário Eleitoral", "Justiça Eleitoral"]
   },
   {
-    "id": "estatisticas-brancos-nulos-abstencao",
-    "headline": "Votos brancos e nulos somam 4,77%: comparecimento chega a 83,89% dos aptos",
-    "lead": "Dados do TSE indicam índice de votos válidos de 95,23% sobre o total de eleitores presentes nas seções de votação em todo o Brasil.",
-    "content": [
-      "A análise estatística da totalização eleitoral demonstrou alta mobilização dos eleitores brasileiros no 1º turno de 2026. Dos 131,2 milhões de cidadãos que compareceram às 497 mil seções eleitorais, 125.272.513 registraram votos nominais válidos.",
-      "Os votos em branco somaram 2.300.781 (1,84% dos votantes), enquanto os votos nulos totalizaram 3.674.149 (2,93%). A soma de brancos e nulos (4,77%) repete o patamar de estabilidade observado nas últimas eleições presidenciais brasileiras.",
-      "A abstenção registrada de 25.206.568 eleitores (16,11%) foi a menor proporção registrada em eleições gerais dos últimos oito anos, evidenciando o engajamento democrático da população."
-    ],
-    "category": "Estatísticas & Urnas",
-    "publishedAt": "05 de outubro de 2026 às 17:00",
-    "readTime": "3 min de leitura",
-    "author": "Núcleo de Estatística Eleitoral",
-    "tags": [
-      "Estatísticas",
-      "Brancos e Nulos",
-      "Comparecimento",
-      "Abstenção"
-    ]
+    "id": "congresso-bancadas-eleitas-camara-senado",
+    "title": "Congresso Nacional renova quadros e define correlação de forças partidárias",
+    "summary": "Eleições para a Câmara dos Deputados e um terço do Senado Federal desenham perfil das bancadas parlamentares que tomarão posse na próxima legislatura.",
+    "source": "Agência Câmara de Notícias",
+    "sourceUrl": "https://www.camara.leg.br/noticias",
+    "articleUrl": "https://www.camara.leg.br/noticias",
+    "publishedAt": "06/10/2026 às 14:20",
+    "updatedAt": "06/10/2026 às 15:30",
+    "category": "Congresso",
+    "author": "Agência Câmara",
+    "tags": ["Câmara dos Deputados", "Senado", "Bancadas", "Legislativo"]
   },
   {
-    "id": "seguranca-urnas-auditoria-tse",
-    "headline": "Auditoria do TSE e entidades fiscalizadoras confirmam 100% de integridade das urnas",
-    "lead": "Testes de integridade com biometria e checagem de Boletins de Urna (BU) atestam correspondência absoluta entre voto digitado e totalizado.",
-    "content": [
-      "As 33 entidades fiscalizadoras credenciadas junto ao Tribunal Superior Eleitoral — incluindo a Ordem dos Advogados do Brasil (OAB), o Tribunal de Contas da União (TCU) e universidades públicas federais — apresentaram seus relatórios preliminares atestando a total conformidade do processo de votação eletrônica.",
-      "Em todas as seções selecionadas para o Teste de Integridade com biometria no dia da eleição, houve 100% de coincidência entre os votos assinalados em cédulas de auditoria e os dados registrados nas urnas eletrônicas.",
-      "Os mais de 497 mil Boletins de Urna (BUs) foram impressos ao término da votação às 17h e disponibilizados de forma pública e descentralizada para conferência por fiscais de todos os partidos políticos."
-    ],
-    "category": "TSE",
-    "publishedAt": "06 de outubro de 2026 às 09:20",
-    "readTime": "4 min de leitura",
-    "author": "Tecnologia & Transparência",
-    "tags": [
-      "Auditoria",
-      "Urnas Eletrônicas",
-      "Boletim de Urna",
-      "Segurança"
-    ]
+    "id": "politica-articulacao-partidos-apoios",
+    "title": "Partidos de centro iniciam reuniões para definir posicionamentos no segundo turno",
+    "summary": "Executivas nacionais de legendas avaliam alianças, liberação de diretórios estaduais e plataformas programáticas para a reta decisiva da eleição presidencial.",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica",
+    "publishedAt": "06/10/2026 às 16:50",
+    "updatedAt": "06/10/2026 às 17:10",
+    "category": "Política",
+    "author": "Agência Brasil / EBC",
+    "tags": ["Política", "Alianças", "Partidos", "Eleições 2026"]
+  },
+  {
+    "id": "governo-orcamento-execucao-meta-fiscal",
+    "title": "Governo Federal publica relatório de avaliação orçamentária do último bimestre",
+    "summary": "Ministérios do Planejamento e da Fazenda divulgam parâmetros macroeconômicos e acompanhamento das despesas públicas frente às metas da Lei de Diretrizes Orçamentárias.",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/economia",
+    "publishedAt": "07/10/2026 às 10:15",
+    "updatedAt": "07/10/2026 às 11:00",
+    "category": "Governo",
+    "author": "Agência Brasil / Economia",
+    "tags": ["Governo Federal", "Orçamento", "Meta Fiscal", "Fazenda"]
+  },
+  {
+    "id": "economia-mercado-reacao-eleicoes-bolsa",
+    "title": "Mercado financeiro e taxa de câmbio operam com cautela após primeiro turno",
+    "summary": "Índice Ibovespa e cotação do dólar comercial refletem expectativas de agentes econômicos em relação às diretrizes fiscais e monetárias dos planos de governo.",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/economia",
+    "publishedAt": "07/10/2026 às 13:05",
+    "updatedAt": "07/10/2026 às 13:45",
+    "category": "Economia",
+    "author": "Agência Brasil / Finanças",
+    "tags": ["Economia", "Ibovespa", "Dólar", "Mercados"]
+  },
+  {
+    "id": "justica-stf-pauta-julgamentos-eleitoral",
+    "title": "STF mantém segurança jurídica de resoluções de combate à desinformação eleitoral",
+    "summary": "Plenário da Suprema Corte reafirma precedentes sobre a competência da Justiça Eleitoral na moderação célere de conteúdos falsos e uso irregular de inteligência artificial.",
+    "source": "STF Notícias",
+    "sourceUrl": "https://portal.stf.jus.br",
+    "articleUrl": "https://portal.stf.jus.br/noticias",
+    "publishedAt": "07/10/2026 às 15:30",
+    "updatedAt": "07/10/2026 às 16:00",
+    "category": "Justiça",
+    "author": "Secretaria de Comunicação Social do STF",
+    "tags": ["STF", "Justiça", "Desinformação", "Inteligência Artificial"]
+  },
+  {
+    "id": "brasil-ibge-censo-demografia-eleitorado",
+    "title": "Perfil do eleitorado: dados do IBGE e TSE mostram expansão de eleitores 60+",
+    "summary": "Cruzamento estatístico entre o Censo Demográfico e o Cadastro Eleitoral evidencia envelhecimento populacional e relevância crescente das faixas etárias seniores nas urnas.",
+    "source": "IBGE Notícias",
+    "sourceUrl": "https://agenciadenoticias.ibge.gov.br",
+    "articleUrl": "https://agenciadenoticias.ibge.gov.br",
+    "publishedAt": "08/10/2026 às 09:10",
+    "updatedAt": "08/10/2026 às 09:30",
+    "category": "Brasil",
+    "author": "Agência IBGE Notícias",
+    "tags": ["Brasil", "IBGE", "Demografia", "Eleitorado"]
+  },
+  {
+    "id": "mundo-observadores-internacionais-eleicoes",
+    "title": "Missões de observação internacional destacam transparência das eleições no Brasil",
+    "summary": "Representantes da OEA e de redes globais de autoridades eleitorais elogiam agilidade da apuração brasileira e eficiência das urnas eletrônicas auditáveis.",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/internacional",
+    "publishedAt": "08/10/2026 às 11:45",
+    "updatedAt": "08/10/2026 às 12:00",
+    "category": "Mundo",
+    "author": "Agência Brasil / Internacional",
+    "tags": ["Mundo", "Observadores", "OEA", "Transparência"]
+  },
+  {
+    "id": "congresso-senado-comissoes-trabalhos",
+    "title": "Senado retoma deliberações em comissões temáticas após primeiro turno",
+    "summary": "Comissão de Assuntos Econômicos (CAE) e Comissão de Constituição e Justiça (CCJ) pautam projetos pendentes e sabatinas de autoridades reguladoras.",
+    "source": "Agência Senado",
+    "sourceUrl": "https://www12.senado.leg.br/noticias",
+    "articleUrl": "https://www12.senado.leg.br/noticias",
+    "publishedAt": "08/10/2026 às 14:00",
+    "updatedAt": "08/10/2026 às 14:30",
+    "category": "Congresso",
+    "author": "Agência Senado",
+    "tags": ["Senado", "CAE", "CCJ", "Projetos de Lei"]
+  },
+  {
+    "id": "tse-auditoria-boletins-urna-transparencia",
+    "title": "Auditoria pública dos Boletins de Urna confirma integridade em todas as seções",
+    "summary": "Relatórios de 33 entidades fiscalizadoras confirmam coincidência exata entre registros impressos nas seções e dados totalizados nos sistemas centrais.",
+    "source": "TSE Notícias",
+    "sourceUrl": "https://www.tse.jus.br",
+    "articleUrl": "https://www.tse.jus.br/comunicacao/noticias",
+    "publishedAt": "08/10/2026 às 16:30",
+    "updatedAt": "08/10/2026 às 17:00",
+    "category": "Justiça",
+    "author": "Secretaria de Tecnologia da Informação TSE",
+    "tags": ["TSE", "Auditoria", "Urnas Eletrônicas", "Boletim de Urna"]
   }
 ]

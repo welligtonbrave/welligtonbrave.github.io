@@ -1,0 +1,50 @@
+export type NewsCategory =
+  | "Política"
+  | "Eleições"
+  | "Governo"
+  | "Congresso"
+  | "Justiça"
+  | "Economia"
+  | "Brasil"
+  | "Mundo";
+
+export const NEWS_CATEGORIES: NewsCategory[] = [
+  "Política",
+  "Eleições",
+  "Governo",
+  "Congresso",
+  "Justiça",
+  "Economia",
+  "Brasil",
+  "Mundo",
+];
+
+export interface NewsItem {
+  id: string;
+  title: string;
+  summary: string;
+  source: string;
+  sourceUrl: string;
+  articleUrl: string;
+  publishedAt: string;
+  updatedAt?: string;
+  category: NewsCategory;
+  imageUrl?: string;
+  author?: string;
+  tags?: string[];
+
+  // Campos de compatibilidade editorial
+  headline?: string;
+  lead?: string;
+  readTime?: string;
+  content?: string[];
+}
+
+export type NewsArticle = NewsItem;
+
+export interface NewsFilterOptions {
+  category?: string;
+  searchQuery?: string;
+  source?: string;
+  tag?: string;
+}

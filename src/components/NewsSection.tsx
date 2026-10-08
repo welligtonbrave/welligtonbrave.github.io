@@ -1,202 +1,284 @@
-import React, { useState, useMemo } from "react";
-import { NewsArticle } from "../data/newsData";
+import React, { useState } from "react";
+import { NewsItem, NewsCategory, NEWS_CATEGORIES } from "../types/news";
+import { NewsCard } from "./NewsCard";
+import { useNews } from "../hooks/useNews";
 import { AdBanner } from "./AdBanner";
 import {
   Calendar,
   Clock,
-  ArrowRight,
   X,
   Share2,
-  BookOpen,
   Tag,
   Check,
+  Search,
+  ExternalLink,
+  ShieldCheck,
+  Filter,
 } from "lucide-react";
 
 interface NewsSectionProps {
-  articles?: NewsArticle[];
+  articles?: NewsItem[];
 }
 
-export const NewsSection: React.FC<NewsSectionProps> = ({ articles = [] }) => {
-  const safeArticles = useMemo(() => Array.isArray(articles) ? articles : [], [articles]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("Todas");
-  const [activeArticle, setActiveArticle] = useState<NewsArticle | null>(null);
+export const NewsSection: React.FC<NewsSectionProps> = ({ articles }) => {
+  const {
+    filteredArticles,
+    selectedCategory,
+    setSelectedCategory,
+    searchQuery,
+    setSearchQuery,
+    activeArticle,
+    setActiveArticle,
+  } = useNews({ initialArticles: articles });
+
   const [copied, setCopied] = useState(false);
 
-  // Categorias extraídas dinamicamente
-  const categories = useMemo(() => {
-    const list = Array.from(new Set(safeArticles.map((a) => a.category).filter(Boolean)));
-    return ["Todas", ...list];
-  }, [safeArticles]);
-
-  const filteredArticles = useMemo(() => {
-    if (selectedCategory === "Todas") return safeArticles;
-    return safeArticles.filter((a) => a.category === selectedCategory);
-  }, [safeArticles, selectedCategory]);
+  const categories = ["Todas", ...NEWS_CATEGORIES];
 
   const handleShare = () => {
-    if (navigator.share && activeArticle) {
-      navigator.share({
-        title: activeArticle.headline,
-        text: activeArticle.lead,
-        url: window.location.href,
-      }).catch(() => {});
+    if (!activeArticle) return;
+    const shareUrl = activeArticle.articleUrl || window.location.href;
+    if (navigator.share) {
+      navigator
+        .share({
+          title: activeArticle.title,
+          text: activeArticle.summary,
+          url: shareUrl,
+        })
+        .catch(() => {});
     } else {
-      navigator.clipboard.writeText(window.location.href);
+      navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
   };
 
+  const isSociedadeAtivaAuthor =
+    activeArticle?.source?.includes("Sociedade Ativa") ||
+    activeArticle?.author?.includes("Sociedade Ativa");
+
   return (
     <section id="ultimas-noticias" className="py-14 bg-white border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Cabeçalho Editorial da Seção */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-800 mb-1.5">
               <span className="w-2 h-2 rounded-full bg-blue-700 animate-pulse" />
-              <span>Cobertura Especial Eleitoral</span>
+              <span>Curadoria & Jornalismo Público</span>
             </div>
             <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900">
               Últimas Notícias e Análises
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
-              Reportagens e apurações sobre os resultados do 1º turno, os desdobramentos nos estados e as regras do TSE para a decisão presidencial.
+            <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
+              Política, eleições, notícias e dados do Brasil. Acompanhe a cobertura das instituições, apurações oficiais e atos dos Três Poderes.
             </p>
           </div>
 
-          {/* Filtro de Categorias */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 text-xs min-w-0 max-w-full">
-            {categories.map((cat) => {
-              const isActive = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-xl font-bold transition-all cursor-pointer whitespace-nowrap text-xs ${
-                    isActive
-                      ? "bg-slate-900 text-white shadow-xs"
-                      : "bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200"
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
+          {/* Barra de Busca Rápida de Notícias */}
+          <div className="relative w-full sm:w-72 lg:w-80">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Buscar por assunto, órgão ou palavra-chave..."
+              className="w-full pl-9 pr-8 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 focus:bg-white focus:border-slate-400 focus:ring-2 focus:ring-slate-900/10 outline-none text-slate-800 transition-all placeholder:text-slate-400"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-0.5"
+                title="Limpar busca"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Grade de Cartões de Notícias */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredArticles.map((article, idx) => {
-            const isFeatured = idx === 0 && selectedCategory === "Todas";
+        {/* Barra de Navegação por Categorias Oficiais */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-6 text-xs scrollbar-thin scrollbar-thumb-slate-200">
+          <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold uppercase text-slate-400 mr-1 shrink-0">
+            <Filter className="w-3 h-3" />
+            Filtro:
+          </span>
 
+          {categories.map((cat) => {
+            const isActive = selectedCategory === cat;
             return (
-              <article
-                key={article.id}
-                onClick={() => setActiveArticle(article)}
-                className={`bg-slate-50/70 border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between hover:border-slate-400 hover:shadow-md transition-all duration-200 cursor-pointer group relative overflow-hidden ${
-                  isFeatured ? "md:col-span-2 lg:col-span-2 bg-gradient-to-br from-blue-50/40 via-white to-slate-50" : ""
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-3 py-1.5 rounded-xl font-bold transition-all cursor-pointer whitespace-nowrap text-xs shrink-0 ${
+                  isActive
+                    ? "bg-slate-900 text-white shadow-xs"
+                    : "bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200/80"
                 }`}
               >
-                <div>
-                  {/* Categoria e Tempo de Leitura */}
-                  <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
-                    <span className="font-bold text-blue-800 bg-blue-100/70 px-2.5 py-0.5 rounded-md text-[11px]">
-                      {article.category}
-                    </span>
-                    <span className="flex items-center gap-1 text-[11px] font-medium text-slate-400">
-                      <Clock className="w-3.5 h-3.5" />
-                      {article.readTime}
-                    </span>
-                  </div>
-
-                  {/* Título da Notícia */}
-                  <h3
-                    className={`font-heading font-black text-slate-900 leading-snug group-hover:text-blue-900 transition-colors ${
-                      isFeatured ? "text-xl sm:text-2xl mb-3" : "text-base sm:text-lg mb-2"
-                    }`}
-                  >
-                    {article.headline}
-                  </h3>
-
-                  {/* Resumo da Notícia */}
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3 mb-4">
-                    {article.lead}
-                  </p>
-                </div>
-
-                {/* Rodapé do Cartão */}
-                <div className="pt-4 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
-                  <div className="flex items-center gap-1.5 font-medium text-[11px]">
-                    <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                    <span>{article.publishedAt.split(" às ")[0]}</span>
-                  </div>
-
-                  <span className="flex items-center gap-1 font-bold text-blue-700 group-hover:translate-x-1 transition-transform text-xs">
-                    Ler reportagem
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-              </article>
+                {cat}
+              </button>
             );
           })}
         </div>
 
-        {/* Modal de Leitura Completa da Notícia */}
+        {/* Mensagem quando não houver resultados */}
+        {filteredArticles.length === 0 ? (
+          <div className="text-center py-12 px-4 bg-slate-50 rounded-2xl border border-slate-200">
+            <p className="text-sm font-bold text-slate-700">
+              Nenhuma notícia encontrada para os critérios selecionados.
+            </p>
+            <p className="text-xs text-slate-500 mt-1">
+              Tente redefinir o termo de pesquisa ou escolher outra categoria.
+            </p>
+            <button
+              onClick={() => {
+                setSelectedCategory("Todas");
+                setSearchQuery("");
+              }}
+              className="mt-3 px-4 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 cursor-pointer transition-colors"
+            >
+              Ver todas as notícias
+            </button>
+          </div>
+        ) : (
+          /* Grade Responsiva de Cartões de Notícias */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredArticles.map((article, idx) => {
+              const isFeatured = idx === 0 && selectedCategory === "Todas" && !searchQuery;
+
+              return (
+                <NewsCard
+                  key={article.id}
+                  article={article}
+                  isFeatured={isFeatured}
+                  onOpenDetails={(item) => setActiveArticle(item)}
+                />
+              );
+            })}
+          </div>
+        )}
+
+        {/* Nota Editorial sobre Agregação e Atribuição de Fontes */}
+        <div className="mt-10 p-4 rounded-xl bg-slate-50/80 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-500">
+          <div className="flex items-start gap-2.5">
+            <ShieldCheck className="w-4 h-4 text-slate-600 shrink-0 mt-0.5" />
+            <p className="leading-relaxed">
+              <strong className="text-slate-700 font-bold">Transparência e Integridade Editorial:</strong>{" "}
+              O portal Sociedade Ativa atua na curadoria e agregação de informações públicas de interesse republicano. Cada notícia externa exibe seu resumo informativo e credita a fonte original com link direto de acesso. A chancela <em>Redação Sociedade Ativa</em> é reservada exclusivamente a estudos, análises e coberturas de dados produzidas internamente.
+            </p>
+          </div>
+        </div>
+
+        {/* Modal de Detalhes e Atribuição do Artigo */}
         {activeArticle && (
-          <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative my-8 animate-in fade-in zoom-in-95 duration-150">
+          <div
+            className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4"
+            onClick={() => setActiveArticle(null)}
+          >
+            <div
+              className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative my-8 animate-in fade-in zoom-in-95 duration-150"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 onClick={() => setActiveArticle(null)}
                 className="absolute top-4 right-4 min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-500 hover:text-slate-900 rounded-xl hover:bg-slate-100 active:bg-slate-200 transition-colors cursor-pointer"
-                title="Fechar notícia"
+                title="Fechar resumo"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2 mb-3 flex-wrap">
                 <span className="text-xs font-bold uppercase tracking-wider text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded-md border border-blue-200/60">
                   {activeArticle.category}
                 </span>
                 <span className="text-slate-300">·</span>
                 <span className="text-xs text-slate-500 font-medium">
-                  {activeArticle.readTime}
+                  {activeArticle.readTime || "Leitura rápida"}
                 </span>
               </div>
 
-              <h2 className="font-heading text-2xl sm:text-3xl font-black text-slate-900 mb-3 leading-tight">
-                {activeArticle.headline}
+              <h2 className="font-heading text-xl sm:text-2xl font-black text-slate-900 mb-3 leading-tight">
+                {activeArticle.title}
               </h2>
 
-              <p className="text-sm sm:text-base font-semibold text-slate-700 mb-5 leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-200/80">
-                {activeArticle.lead}
+              <p className="text-sm sm:text-base font-semibold text-slate-700 mb-5 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+                {activeArticle.summary}
               </p>
 
-              <div className="flex items-center justify-between text-xs text-slate-500 pb-4 mb-5 border-b border-slate-200">
+              {/* Informações de Autoria e Publicação */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-500 pb-4 mb-5 border-b border-slate-200">
                 <div>
-                  <span className="font-bold text-slate-800 block">{activeArticle.author}</span>
-                  <span className="text-[11px] text-slate-400">{activeArticle.publishedAt}</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-bold text-slate-800">
+                      Fonte: {activeArticle.source}
+                    </span>
+                    {isSociedadeAtivaAuthor && (
+                      <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-slate-900 text-white">
+                        Oficial
+                      </span>
+                    )}
+                  </div>
+                  {activeArticle.author && activeArticle.author !== activeArticle.source && (
+                    <span className="text-[11px] text-slate-500 block">
+                      Autor / Reportagem: {activeArticle.author}
+                    </span>
+                  )}
+                  <span className="text-[11px] text-slate-400 block mt-0.5">
+                    Publicado: {activeArticle.publishedAt}
+                  </span>
                 </div>
 
-                <button
-                  onClick={handleShare}
-                  className="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 flex items-center gap-1.5 text-xs font-bold transition-colors cursor-pointer"
-                >
-                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5 text-slate-500" />}
-                  <span>{copied ? "Link Copiado!" : "Compartilhar"}</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={handleShare}
+                    className="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 flex items-center gap-1.5 text-xs font-bold transition-colors cursor-pointer"
+                  >
+                    {copied ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    ) : (
+                      <Share2 className="w-3.5 h-3.5 text-slate-500" />
+                    )}
+                    <span>{copied ? "Link Copiado!" : "Compartilhar"}</span>
+                  </button>
+                </div>
               </div>
 
-              {/* Corpo da Notícia */}
-              <div className="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                {activeArticle.content.map((p, idx) => (
-                  <p key={idx}>{p}</p>
-                ))}
+              {/* Parágrafos do Conteúdo ou Resumo Detalhado */}
+              {activeArticle.content && activeArticle.content.length > 0 && (
+                <div className="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed mb-6">
+                  {activeArticle.content.map((p, idx) => (
+                    <p key={idx}>{p}</p>
+                  ))}
+                </div>
+              )}
+
+              {/* Botão de Acesso à Fonte Original Externa */}
+              <div className="my-5 p-4 rounded-2xl bg-blue-50/60 border border-blue-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <span className="text-xs font-bold text-blue-950 block">
+                    {isSociedadeAtivaAuthor
+                      ? "Conteúdo original produzido por Sociedade Ativa"
+                      : `Reportagem completa disponível em ${activeArticle.source}`}
+                  </span>
+                  <span className="text-[11px] text-blue-800/80 block mt-0.5">
+                    Acesse o texto na íntegra no portal oficial da instituição.
+                  </span>
+                </div>
+
+                <a
+                  href={activeArticle.articleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-900 text-white font-bold text-xs transition-colors shrink-0 cursor-pointer shadow-xs"
+                >
+                  <span>Leia a notícia original</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
 
               {/* Espaço Publicitário Interno do Artigo */}
-              <div className="my-6 p-4 bg-slate-50 border border-dashed border-slate-300 rounded-2xl text-center">
+              <div className="my-5 p-4 bg-slate-50 border border-dashed border-slate-300 rounded-2xl text-center">
                 <span className="text-[10px] text-slate-400 font-mono uppercase tracking-wider block mb-1">
                   Publicidade · Google AdSense (Formato Artigo Nativo)
                 </span>
@@ -206,17 +288,19 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ articles = [] }) => {
               </div>
 
               {/* Tags */}
-              <div className="pt-4 border-t border-slate-200 flex flex-wrap items-center gap-1.5">
-                <Tag className="w-3.5 h-3.5 text-slate-400 mr-1" />
-                {activeArticle.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md"
-                  >
-                    #{t}
-                  </span>
-                ))}
-              </div>
+              {activeArticle.tags && activeArticle.tags.length > 0 && (
+                <div className="pt-4 border-t border-slate-200 flex flex-wrap items-center gap-1.5">
+                  <Tag className="w-3.5 h-3.5 text-slate-400 mr-1" />
+                  {activeArticle.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md"
+                    >
+                      #{t}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}
