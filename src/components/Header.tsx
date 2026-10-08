@@ -24,7 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-heading text-lg sm:text-xl font-extrabold tracking-tight text-slate-900 block leading-tight whitespace-nowrap">
+                <span className="font-heading text-base sm:text-xl font-extrabold tracking-tight text-slate-900 block leading-tight truncate max-w-[150px] xs:max-w-none">
                   {dataset.title}
                 </span>
                 <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/60 whitespace-nowrap">

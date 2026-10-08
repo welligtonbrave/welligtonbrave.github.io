@@ -20,6 +20,8 @@ import {
   Search,
   Layers,
   ChevronRight,
+  ChevronUp,
+  ChevronDown,
   Award,
 } from "lucide-react";
 
@@ -83,6 +85,13 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [activeRegion, setActiveRegion] = useState("all");
+  const [isMobileLegendOpen, setIsMobileLegendOpen] = useState(false);
+
+  // Rastreamento avançado de toque (diferenciar toque/pan e pinch zoom)
+  const touchStartPos = useRef({ x: 0, y: 0 });
+  const hasTouchDragged = useRef(false);
+  const pinchDistRef = useRef<number | null>(null);
+  const pinchZoomStartRef = useRef<number>(1);
 
   // Busca de estados
   const [searchQuery, setSearchQuery] = useState("");
@@ -166,27 +175,61 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
     setIsDragging(false);
   };
 
-  // Suporte a toque mobile (pan com o dedo)
+  // Suporte a toque mobile (pan com o dedo e pinça para zoom)
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length === 1) {
       const touch = e.touches[0];
-      setIsDragging(true);
+      touchStartPos.current = { x: touch.clientX, y: touch.clientY };
+      hasTouchDragged.current = false;
       setDragStart({ x: touch.clientX - pan.x, y: touch.clientY - pan.y });
+    } else if (e.touches.length === 2) {
+      setIsDragging(false);
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      pinchDistRef.current = dist;
+      pinchZoomStartRef.current = zoom;
     }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (isDragging && e.touches.length === 1) {
+    // Zoom via gesto de pinça com 2 dedos
+    if (e.touches.length === 2 && pinchDistRef.current !== null) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      const scale = dist / pinchDistRef.current;
+      const newZoom = Math.min(Math.max(pinchZoomStartRef.current * scale, 0.85), 3.8);
+      setZoom(Number(newZoom.toFixed(2)));
+      return;
+    }
+
+    // Pan com 1 dedo (com margem de 6px para não cancelar toques acidentais em estados)
+    if (e.touches.length === 1) {
       const touch = e.touches[0];
-      setPan({
-        x: touch.clientX - dragStart.x,
-        y: touch.clientY - dragStart.y,
-      });
+      const dx = Math.abs(touch.clientX - touchStartPos.current.x);
+      const dy = Math.abs(touch.clientY - touchStartPos.current.y);
+
+      if (dx > 6 || dy > 6) {
+        hasTouchDragged.current = true;
+        setIsDragging(true);
+        setPan({
+          x: touch.clientX - dragStart.x,
+          y: touch.clientY - dragStart.y,
+        });
+      }
     }
   };
 
-  const handleTouchEnd = () => {
-    setIsDragging(false);
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (e.touches.length === 0) {
+      setIsDragging(false);
+      pinchDistRef.current = null;
+    } else if (e.touches.length === 1) {
+      pinchDistRef.current = null;
+    }
   };
 
   // Hover sobre estados
@@ -289,23 +332,23 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
       }`}
     >
       {/* Barra Superior do Mapa: Busca, Regiões e Botões de Ação */}
-      <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex flex-wrap items-center justify-between gap-2.5 pointer-events-none">
+      <div className="absolute top-3 left-3 right-3 sm:top-3.5 sm:left-3.5 sm:right-3.5 z-20 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
         {/* Esquerda: Caixa de Busca e Seletor de Região */}
-        <div className="flex items-center gap-2 pointer-events-auto">
+        <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto max-w-[calc(100%-170px)] sm:max-w-none">
           {/* Caixa de Busca com Autocomplete */}
           <div className="relative">
-            <div className="flex items-center bg-white/95 backdrop-blur-md rounded-xl border border-slate-200 shadow-xs px-3 py-2 w-48 sm:w-64 focus-within:ring-2 focus-within:ring-slate-900/10 focus-within:border-slate-500 transition-all">
-              <Search className="w-4 h-4 text-slate-400 shrink-0 mr-2" />
+            <div className="flex items-center bg-white/95 backdrop-blur-md rounded-xl border border-slate-200 shadow-xs px-2.5 sm:px-3 py-2 w-32 xs:w-44 sm:w-64 focus-within:ring-2 focus-within:ring-slate-900/10 focus-within:border-slate-500 transition-all">
+              <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 shrink-0 mr-1.5 sm:mr-2" />
               <input
                 type="text"
-                placeholder="Buscar estado ou sigla..."
+                placeholder="Buscar estado..."
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
                   setIsSearchOpen(true);
                 }}
                 onFocus={() => setIsSearchOpen(true)}
-                className="w-full text-xs bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none font-medium"
+                className="w-full text-xs bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none font-medium truncate"
               />
             </div>
 
@@ -349,7 +392,24 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
             )}
           </div>
 
-          {/* Abas de Regiões Brasileiras */}
+          {/* Seletor Rápido de Região no Mobile */}
+          <div className="flex lg:hidden items-center bg-white/95 backdrop-blur-md rounded-xl px-2 py-1.5 border border-slate-200 shadow-xs">
+            <select
+              value={activeRegion}
+              onChange={(e) => handleRegionSelect(e.target.value)}
+              aria-label="Filtrar por região do Brasil"
+              className="text-xs font-bold text-slate-800 bg-transparent focus:outline-none cursor-pointer"
+            >
+              <option value="all">Brasil</option>
+              <option value="Norte">Norte</option>
+              <option value="Nordeste">Nordeste</option>
+              <option value="Centro-Oeste">Centro-Oeste</option>
+              <option value="Sudeste">Sudeste</option>
+              <option value="Sul">Sul</option>
+            </select>
+          </div>
+
+          {/* Abas de Regiões Brasileiras (Telas Médias e Grandes) */}
           <div className="hidden lg:flex items-center bg-white/95 backdrop-blur-md rounded-xl p-1 border border-slate-200 shadow-xs text-xs">
             {Object.entries(REGION_PRESETS).map(([key, item]) => {
               const isActive = activeRegion === key;
@@ -370,34 +430,42 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
           </div>
         </div>
 
-        {/* Direita: Botões de Zoom e Tela Cheia */}
-        <div className="flex items-center gap-1.5 pointer-events-auto">
+        {/* Direita: Botões de Zoom e Tela Cheia (Mínimo 40px para conforto de toque no mobile) */}
+        <div className="flex items-center gap-1.5 pointer-events-auto shrink-0">
           <div className="flex items-center bg-white/95 backdrop-blur-md rounded-xl border border-slate-200 shadow-xs p-1 text-slate-700">
             <button
               onClick={handleZoomIn}
-              className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer text-slate-700 hover:text-slate-950"
+              className="min-h-[40px] min-w-[40px] flex items-center justify-center hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-colors cursor-pointer text-slate-700 hover:text-slate-950"
               title="Aproximar visualização (+)"
+              aria-label="Aproximar mapa"
             >
               <ZoomIn className="w-4 h-4" />
             </button>
             <button
               onClick={handleZoomOut}
-              className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer text-slate-700 hover:text-slate-950"
+              className="min-h-[40px] min-w-[40px] flex items-center justify-center hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-colors cursor-pointer text-slate-700 hover:text-slate-950"
               title="Afastar visualização (-)"
+              aria-label="Afastar mapa"
             >
               <ZoomOut className="w-4 h-4" />
             </button>
             <button
               onClick={handleReset}
-              className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer text-slate-700 hover:text-slate-950"
+              className={`min-h-[40px] min-w-[40px] flex items-center justify-center hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-colors cursor-pointer ${
+                zoom !== 1 || pan.x !== 0 || pan.y !== 0
+                  ? "text-blue-700 font-bold bg-blue-50/80"
+                  : "text-slate-700 hover:text-slate-950"
+              }`}
               title="Redefinir visualização original"
+              aria-label="Redefinir zoom do mapa"
             >
               <RotateCcw className="w-4 h-4" />
             </button>
             <button
               onClick={toggleFullscreen}
-              className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer text-slate-700 hover:text-slate-950"
+              className="min-h-[40px] min-w-[40px] flex items-center justify-center hover:bg-slate-100 active:bg-slate-200 rounded-lg transition-colors cursor-pointer text-slate-700 hover:text-slate-950"
               title={isFullscreen ? "Sair da tela cheia" : "Modo tela cheia"}
+              aria-label="Alternar tela cheia"
             >
               {isFullscreen ? (
                 <Minimize2 className="w-4 h-4" />
@@ -472,7 +540,9 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
                   }`}
                   onClick={(e) => {
                     e.stopPropagation();
-                    onSelectState(geo.uf);
+                    if (!hasTouchDragged.current) {
+                      onSelectState(geo.uf);
+                    }
                   }}
                   onMouseEnter={(e) => handleStateMouseEnter(e, geo)}
                   onMouseMove={handleStateMouseMove}
@@ -483,7 +553,7 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
           </g>
 
           {/* Rótulos de Siglas das UFs e Conectores Costeiros */}
-          <g id="camada-rotulos-estados" className="pointer-events-none">
+          <g id="camada-rotulos-estados">
             {BRAZIL_STATES_GEO.map((geo) => {
               const callout = CALLOUT_CONFIGS[geo.uf];
               const isSelected = selectedStateUf === geo.uf;
@@ -491,7 +561,17 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
 
               if (callout) {
                 return (
-                  <g key={`conector-${geo.uf}`} opacity={opacity}>
+                  <g
+                    key={`conector-${geo.uf}`}
+                    opacity={opacity}
+                    className="cursor-pointer pointer-events-auto transition-transform hover:scale-110 active:scale-95"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!hasTouchDragged.current) {
+                        onSelectState(geo.uf);
+                      }
+                    }}
+                  >
                     <line
                       x1={geo.centroid[0]}
                       y1={geo.centroid[1]}
@@ -507,19 +587,27 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
                       r="2.6"
                       fill="#0F172A"
                     />
+                    {/* Área de toque expandida invisível para mobile */}
+                    <rect
+                      x={callout.labelPos[0] - 6}
+                      y={callout.labelPos[1] - 12}
+                      width="36"
+                      height="28"
+                      fill="transparent"
+                    />
                     <rect
                       x={callout.labelPos[0] - 2}
                       y={callout.labelPos[1] - 8}
-                      width="21"
-                      height="15"
+                      width="22"
+                      height="16"
                       rx="3.5"
                       fill={isSelected ? "#0F172A" : "#FFFFFF"}
-                      stroke="#64748B"
-                      strokeWidth="0.9"
+                      stroke={isSelected ? "#0F172A" : "#64748B"}
+                      strokeWidth={isSelected ? "1.5" : "0.9"}
                     />
                     <text
-                      x={callout.labelPos[0] + 8.5}
-                      y={callout.labelPos[1] + 2.5}
+                      x={callout.labelPos[0] + 9}
+                      y={callout.labelPos[1] + 3.5}
                       textAnchor="middle"
                       fontSize="9.5"
                       fontWeight="bold"
@@ -537,6 +625,7 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
                   key={`sigla-${geo.uf}`}
                   x={geo.centroid[0]}
                   y={geo.centroid[1]}
+                  className="pointer-events-none"
                   textAnchor="middle"
                   dominantBaseline="central"
                   fontSize={
@@ -563,10 +652,10 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
       {/* Tooltip Flutuante Completo em Português */}
       {tooltip.visible && tooltipData && tooltipWinner && (
         <div
-          className="absolute z-30 pointer-events-none bg-slate-950/95 backdrop-blur-md text-white rounded-2xl p-4 shadow-2xl border border-slate-700/80 w-76 text-xs animate-in fade-in zoom-in-95 duration-100"
+          className="absolute z-30 pointer-events-none bg-slate-950/95 backdrop-blur-md text-white rounded-2xl p-4 shadow-2xl border border-slate-700/80 w-76 max-w-[calc(100%-24px)] text-xs animate-in fade-in zoom-in-95 duration-100"
           style={{
-            left: `${Math.min(tooltip.x + 16, (containerRef.current?.clientWidth || 300) - 315)}px`,
-            top: `${Math.min(tooltip.y + 16, (containerRef.current?.clientHeight || 300) - 360)}px`,
+            left: `${Math.max(12, Math.min(tooltip.x + 16, (containerRef.current?.clientWidth || 300) - 315))}px`,
+            top: `${Math.max(12, Math.min(tooltip.y + 16, (containerRef.current?.clientHeight || 300) - 360))}px`,
           }}
         >
           {/* Cabeçalho do Tooltip */}
@@ -724,21 +813,48 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
         </div>
       )}
 
-      {/* Legenda Dinâmica na Parte Inferior do Mapa */}
-      <div className="absolute bottom-3.5 left-3.5 right-3.5 sm:right-auto z-20 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200 shadow-md">
+      {/* Botão compacto de alternância da legenda no Mobile quando recolhida */}
+      {!isMobileLegendOpen && (
+        <button
+          onClick={() => setIsMobileLegendOpen(true)}
+          className="sm:hidden absolute bottom-3 left-3 z-20 flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-3 py-2 rounded-xl border border-slate-200 shadow-md text-xs font-bold text-slate-800 cursor-pointer active:bg-slate-100"
+          aria-label="Abrir legenda e filtros por candidato"
+        >
+          <Layers className="w-3.5 h-3.5 text-slate-600" />
+          <span>Legenda & Filtros</span>
+          <ChevronUp className="w-3.5 h-3.5 text-slate-400" />
+        </button>
+      )}
+
+      {/* Legenda Dinâmica na Parte Inferior do Mapa (Sempre visível no desktop, expansível no mobile) */}
+      <div
+        className={`absolute bottom-3 left-3 right-3 sm:bottom-3.5 sm:left-3.5 sm:right-auto z-20 bg-white/95 backdrop-blur-md p-3 sm:p-3.5 rounded-2xl border border-slate-200 shadow-md transition-all ${
+          isMobileLegendOpen ? "block" : "hidden sm:block"
+        }`}
+      >
         <div className="flex items-center justify-between gap-3 mb-2">
           <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
             <Layers className="w-3.5 h-3.5 text-slate-500" />
             Vencedor no 1º Turno por Estado
           </span>
-          {candidateFilter && (
+          <div className="flex items-center gap-2">
+            {candidateFilter && (
+              <button
+                onClick={() => onSelectCandidateFilter(null)}
+                className="text-[10px] text-blue-700 underline hover:text-blue-900 cursor-pointer font-bold"
+              >
+                Limpar filtro
+              </button>
+            )}
             <button
-              onClick={() => onSelectCandidateFilter(null)}
-              className="text-[10px] text-blue-700 underline hover:text-blue-900 cursor-pointer font-bold"
+              onClick={() => setIsMobileLegendOpen(false)}
+              className="sm:hidden p-1 text-slate-400 hover:text-slate-700 active:bg-slate-100 rounded-lg cursor-pointer"
+              title="Recolher legenda"
+              aria-label="Recolher legenda"
             >
-              Limpar filtro
+              <ChevronDown className="w-4 h-4" />
             </button>
-          )}
+          </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">

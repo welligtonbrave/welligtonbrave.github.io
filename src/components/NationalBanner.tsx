@@ -194,8 +194,8 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
             </div>
 
             {/* Barra Combinada com Linha de Corte de 50% */}
-            <div className="pt-2">
-              <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+            <div className="pt-4 sm:pt-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-6 sm:mb-5">
                 <span>Distribuição dos 125.272.513 votos válidos</span>
                 <span className="text-blue-800">
                   Diferença: +{formatVotesBR(voteDiff)} votos (+1,87 p.p.)
