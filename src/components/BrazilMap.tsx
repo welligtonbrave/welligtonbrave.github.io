@@ -76,6 +76,7 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
   onSelectCandidateFilter,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const drawingAreaRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
   // Estados de navegação, zoom e tela cheia
@@ -87,11 +88,26 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
   const [activeRegion, setActiveRegion] = useState("all");
   const [isMobileLegendOpen, setIsMobileLegendOpen] = useState(false);
 
-  // Rastreamento avançado de toque (diferenciar toque/pan e pinch zoom)
-  const touchStartPos = useRef({ x: 0, y: 0 });
-  const hasTouchDragged = useRef(false);
-  const pinchDistRef = useRef<number | null>(null);
-  const pinchZoomStartRef = useRef<number>(1);
+  // Sincronização de refs para acesso síncrono dentro dos listeners nativos
+  const zoomRef = useRef(zoom);
+  const panRef = useRef(pan);
+  useEffect(() => {
+    zoomRef.current = zoom;
+    panRef.current = pan;
+  }, [zoom, pan]);
+
+  // Rastreamento avançado de toque e pinch-to-zoom nativo em dispositivos físicos
+  const isPinchingRef = useRef(false);
+  const pinchEndedAtRef = useRef(0);
+  const touchStartPosRef = useRef({ x: 0, y: 0 });
+  const touchMovedDistRef = useRef(0);
+  const touchDragStartRef = useRef({ x: 0, y: 0 });
+  const pinchStartRef = useRef<{
+    dist: number;
+    zoom: number;
+    pan: { x: number; y: number };
+    midpoint: { x: number; y: number };
+  } | null>(null);
 
   // Busca de estados
   const [searchQuery, setSearchQuery] = useState("");
@@ -108,6 +124,148 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
   const candidatesMap = useMemo(() => {
     return Object.fromEntries(dataset.candidates.map((c) => [c.id, c]));
   }, [dataset.candidates]);
+
+  // Listener nativo com { passive: false } para garantir pinch-to-zoom real no Android e iOS
+  useEffect(() => {
+    const el = drawingAreaRef.current;
+    if (!el) return;
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        touchStartPosRef.current = { x: touch.clientX, y: touch.clientY };
+        touchMovedDistRef.current = 0;
+        touchDragStartRef.current = {
+          x: touch.clientX - panRef.current.x,
+          y: touch.clientY - panRef.current.y,
+        };
+      } else if (e.touches.length === 2) {
+        isPinchingRef.current = true;
+        touchMovedDistRef.current = 999;
+
+        const t1 = e.touches[0];
+        const t2 = e.touches[1];
+        const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+        const midX = (t1.clientX + t2.clientX) / 2;
+        const midY = (t1.clientY + t2.clientY) / 2;
+
+        const rect = el.getBoundingClientRect();
+        const centerOffsetX = midX - (rect.left + rect.width / 2);
+        const centerOffsetY = midY - (rect.top + rect.height / 2);
+
+        pinchStartRef.current = {
+          dist: dist > 0 ? dist : 1,
+          zoom: zoomRef.current,
+          pan: { ...panRef.current },
+          midpoint: { x: centerOffsetX, y: centerOffsetY },
+        };
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      // 2 DEDOS: PINCH-TO-ZOOM PROPORCIONAL AO REDOR DO CENTRO DO GESTO
+      if (e.touches.length === 2 && pinchStartRef.current) {
+        e.preventDefault(); // Impede o zoom de página do navegador em telas touch reais!
+        isPinchingRef.current = true;
+        touchMovedDistRef.current = 999;
+
+        const t1 = e.touches[0];
+        const t2 = e.touches[1];
+        const currentDist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+        if (currentDist <= 0) return;
+
+        const midX = (t1.clientX + t2.clientX) / 2;
+        const midY = (t1.clientY + t2.clientY) / 2;
+        const rect = el.getBoundingClientRect();
+        const centerOffsetX = midX - (rect.left + rect.width / 2);
+        const centerOffsetY = midY - (rect.top + rect.height / 2);
+
+        const {
+          dist: startDist,
+          zoom: startZoom,
+          pan: startPan,
+          midpoint: startMid,
+        } = pinchStartRef.current;
+        const scaleFactor = currentDist / startDist;
+        const targetZoom = Math.min(Math.max(startZoom * scaleFactor, 0.85), 4.0);
+
+        // Ajuste proporcional do pan ao redor do centro do gesto dos 2 dedos
+        const newPanX =
+          centerOffsetX - (startMid.x - startPan.x) * (targetZoom / startZoom);
+        const newPanY =
+          centerOffsetY - (startMid.y - startPan.y) * (targetZoom / startZoom);
+
+        setZoom(Number(targetZoom.toFixed(3)));
+        setPan({ x: Math.round(newPanX), y: Math.round(newPanY) });
+        return;
+      }
+
+      // 1 DEDO: PAN / ARRASTE DO MAPA
+      if (e.touches.length === 1 && !isPinchingRef.current) {
+        const touch = e.touches[0];
+        const dx = touch.clientX - touchStartPosRef.current.x;
+        const dy = touch.clientY - touchStartPosRef.current.y;
+        const dist = Math.hypot(dx, dy);
+        touchMovedDistRef.current = dist;
+
+        if (dist > 8) {
+          e.preventDefault(); // Pan suave no mapa
+          setIsDragging(true);
+          setPan({
+            x: Math.round(touch.clientX - touchDragStartRef.current.x),
+            y: Math.round(touch.clientY - touchDragStartRef.current.y),
+          });
+        }
+      }
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (isPinchingRef.current) {
+        pinchEndedAtRef.current = Date.now();
+      }
+
+      if (e.touches.length === 0) {
+        isPinchingRef.current = false;
+        pinchStartRef.current = null;
+        setIsDragging(false);
+      } else if (e.touches.length === 1) {
+        // Transição suave ao levantar o 1º dedo sem saltos
+        isPinchingRef.current = false;
+        pinchStartRef.current = null;
+        const touch = e.touches[0];
+        touchStartPosRef.current = { x: touch.clientX, y: touch.clientY };
+        touchMovedDistRef.current = 999;
+        touchDragStartRef.current = {
+          x: touch.clientX - panRef.current.x,
+          y: touch.clientY - panRef.current.y,
+        };
+      }
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: false });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: false });
+    el.addEventListener("touchcancel", onTouchEnd, { passive: false });
+
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+      el.removeEventListener("touchcancel", onTouchEnd);
+    };
+  }, []);
+
+  // Seleção segura de estados (impede disparo acidental durante pinch ou arraste)
+  const handleStateClick = (uf: string) => {
+    if (
+      isPinchingRef.current ||
+      Date.now() - pinchEndedAtRef.current < 450 ||
+      touchMovedDistRef.current > 8
+    ) {
+      return;
+    }
+    onSelectState(uf);
+  };
 
   // Controle de Tela Cheia
   const toggleFullscreen = () => {
@@ -173,63 +331,6 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
 
   const handleMouseUp = () => {
     setIsDragging(false);
-  };
-
-  // Suporte a toque mobile (pan com o dedo e pinça para zoom)
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      const touch = e.touches[0];
-      touchStartPos.current = { x: touch.clientX, y: touch.clientY };
-      hasTouchDragged.current = false;
-      setDragStart({ x: touch.clientX - pan.x, y: touch.clientY - pan.y });
-    } else if (e.touches.length === 2) {
-      setIsDragging(false);
-      const dist = Math.hypot(
-        e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
-      );
-      pinchDistRef.current = dist;
-      pinchZoomStartRef.current = zoom;
-    }
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    // Zoom via gesto de pinça com 2 dedos
-    if (e.touches.length === 2 && pinchDistRef.current !== null) {
-      const dist = Math.hypot(
-        e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
-      );
-      const scale = dist / pinchDistRef.current;
-      const newZoom = Math.min(Math.max(pinchZoomStartRef.current * scale, 0.85), 3.8);
-      setZoom(Number(newZoom.toFixed(2)));
-      return;
-    }
-
-    // Pan com 1 dedo (com margem de 6px para não cancelar toques acidentais em estados)
-    if (e.touches.length === 1) {
-      const touch = e.touches[0];
-      const dx = Math.abs(touch.clientX - touchStartPos.current.x);
-      const dy = Math.abs(touch.clientY - touchStartPos.current.y);
-
-      if (dx > 6 || dy > 6) {
-        hasTouchDragged.current = true;
-        setIsDragging(true);
-        setPan({
-          x: touch.clientX - dragStart.x,
-          y: touch.clientY - dragStart.y,
-        });
-      }
-    }
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (e.touches.length === 0) {
-      setIsDragging(false);
-      pinchDistRef.current = null;
-    } else if (e.touches.length === 1) {
-      pinchDistRef.current = null;
-    }
   };
 
   // Hover sobre estados
@@ -328,7 +429,9 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
       ref={containerRef}
       id="mapa-interativo"
       className={`relative w-full bg-slate-100 rounded-3xl border border-slate-200 overflow-hidden select-none transition-all ${
-        isFullscreen ? "h-screen rounded-none z-50 fixed inset-0" : "h-[540px] sm:h-[680px] lg:h-[780px]"
+        isFullscreen
+          ? "h-screen rounded-none z-50 fixed inset-0"
+          : "h-[520px] sm:h-[680px] lg:h-[780px] [@media(orientation:landscape)_and_(max-height:500px)]:h-[86vh] [@media(orientation:landscape)_and_(max-height:500px)]:min-h-[290px] [@media(orientation:landscape)_and_(max-height:500px)]:max-h-[440px]"
       }`}
     >
       {/* Barra Superior do Mapa: Busca, Regiões e Botões de Ação */}
@@ -479,19 +582,19 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
 
       {/* Tela de Desenho SVG Interativa */}
       <div
-        className="w-full h-full cursor-grab active:cursor-grabbing overflow-hidden flex items-center justify-center relative touch-pan-x touch-pan-y"
+        ref={drawingAreaRef}
+        className="w-full h-full cursor-grab active:cursor-grabbing overflow-hidden flex items-center justify-center relative touch-none select-none"
+        style={{ touchAction: "none" }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
       >
         <svg
           ref={svgRef}
           viewBox={`0 0 ${MAP_VIEWBOX.width} ${MAP_VIEWBOX.height}`}
-          className="w-full h-full max-h-full transition-transform duration-75 ease-out"
+          preserveAspectRatio="xMidYMid meet"
+          className="w-full h-full max-h-full mx-auto transition-transform duration-75 ease-out select-none"
           style={{
             transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
             transformOrigin: "center center",
@@ -540,9 +643,7 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
                   }`}
                   onClick={(e) => {
                     e.stopPropagation();
-                    if (!hasTouchDragged.current) {
-                      onSelectState(geo.uf);
-                    }
+                    handleStateClick(geo.uf);
                   }}
                   onMouseEnter={(e) => handleStateMouseEnter(e, geo)}
                   onMouseMove={handleStateMouseMove}
@@ -567,9 +668,7 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
                     className="cursor-pointer pointer-events-auto transition-transform hover:scale-110 active:scale-95"
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (!hasTouchDragged.current) {
-                        onSelectState(geo.uf);
-                      }
+                      handleStateClick(geo.uf);
                     }}
                   >
                     <line

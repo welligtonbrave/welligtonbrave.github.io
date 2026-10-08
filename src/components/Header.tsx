@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Navegação entre seções da página */}
-          <nav className="hidden md:flex items-center gap-6 text-xs font-bold uppercase tracking-wider text-slate-600">
+          <nav className="hidden lg:flex items-center gap-6 text-xs font-bold uppercase tracking-wider text-slate-600">
             <a href="#dashboard-nacional" className="hover:text-slate-950 transition-colors py-1 whitespace-nowrap">
               Painel Nacional
             </a>
@@ -61,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={onOpenMethodology}
-              className="md:hidden min-h-[40px] px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 transition-colors text-xs font-semibold cursor-pointer whitespace-nowrap active:bg-slate-200"
+              className="lg:hidden min-h-[40px] px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 transition-colors text-xs font-semibold cursor-pointer whitespace-nowrap active:bg-slate-200"
             >
               Metodologia
             </button>

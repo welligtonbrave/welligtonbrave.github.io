@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <footer className="border-t border-slate-200 bg-slate-100/70 py-12 text-slate-600 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-slate-200">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-slate-200">
           <div>
             <span className="font-heading text-base font-extrabold text-slate-900 block mb-1">
               Eleições 2026 — 1º Turno (4 de outubro de 2026)

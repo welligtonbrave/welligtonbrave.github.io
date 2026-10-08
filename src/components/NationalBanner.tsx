@@ -48,7 +48,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
     <section id="dashboard-nacional" className="border-b border-slate-200 bg-white pt-8 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Cabeçalho Editorial com Fonte e Data Oficiais */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
           <div>
             <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
               <span className="flex items-center gap-1.5 text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/80">
@@ -74,7 +74,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
           </div>
 
           {/* Cartão de Identificação da Fonte Oficial */}
-          <div className="flex flex-col items-start md:items-end text-xs text-slate-600 shrink-0 bg-slate-50 p-4 rounded-xl border border-slate-200/90 shadow-2xs">
+          <div className="flex flex-col items-start lg:items-end text-xs text-slate-600 shrink-0 bg-slate-50 p-4 rounded-xl border border-slate-200/90 shadow-2xs">
             <div className="flex items-center gap-1.5 font-extrabold text-slate-900 text-sm">
               <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
               <span>Fonte: Tribunal Superior Eleitoral (TSE)</span>
@@ -92,7 +92,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
         </div>
 
         {/* Alerta de Segundo Turno Confirmado */}
-        <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-blue-50/80 border border-blue-200/90 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-2xs">
+        <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-blue-50/80 border border-blue-200/90 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 shadow-2xs">
           <div className="flex items-start gap-3.5">
             <div className="w-10 h-10 rounded-xl bg-blue-700 text-white flex items-center justify-center font-heading font-black text-lg shrink-0 mt-0.5 shadow-xs">
               2º
@@ -106,7 +106,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
               </p>
             </div>
           </div>
-          <div className="self-end md:self-center shrink-0">
+          <div className="self-start lg:self-center shrink-0">
             <span className="text-xs uppercase tracking-wider font-extrabold text-blue-900 bg-blue-100/90 px-3 py-1.5 rounded-lg border border-blue-200 whitespace-nowrap">
               Resultado Homologado
             </span>

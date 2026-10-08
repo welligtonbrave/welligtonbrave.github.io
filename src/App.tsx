@@ -40,7 +40,7 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-sans selection:bg-slate-900 selection:text-white">
+    <div className="min-h-screen w-full overflow-x-hidden bg-[#F8FAFC] text-slate-900 flex flex-col font-sans selection:bg-slate-900 selection:text-white">
       {/* 1. Barra Superior Editorial e Navegação */}
       <Header
         dataset={currentDataset}
@@ -48,7 +48,7 @@ export default function App() {
         onOpenDataInspector={() => setIsDataInspectorOpen(true)}
       />
 
-      <main className="flex-1">
+      <main className="flex-1 w-full overflow-x-hidden">
         {/* 2. Painel Nacional de Votação (KPIs, Ranking e Comparativo Flávio vs. Lula) */}
         <NationalBanner
           dataset={currentDataset}
@@ -61,8 +61,8 @@ export default function App() {
         <AdBanner format="leaderboard" />
 
         {/* 4. Seção do Mapa Interativo do Brasil */}
-        <section className="py-6 sm:py-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-6 sm:py-8 w-full overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">

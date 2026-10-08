@@ -51,7 +51,7 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ articles = [] }) => {
     <section id="ultimas-noticias" className="py-14 bg-white border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Cabeçalho Editorial da Seção */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-800 mb-1.5">
               <span className="w-2 h-2 rounded-full bg-blue-700 animate-pulse" />
@@ -66,7 +66,7 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ articles = [] }) => {
           </div>
 
           {/* Filtro de Categorias */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 text-xs">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 text-xs min-w-0 max-w-full">
             {categories.map((cat) => {
               const isActive = selectedCategory === cat;
               return (
