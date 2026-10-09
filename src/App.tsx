@@ -1,21 +1,31 @@
 import React, { useState } from "react";
-import {
-  DATASET_2026,
-  ElectionDataSet,
-} from "./data/electionData";
+import { DATASET_2026, ElectionDataSet } from "./data/electionData";
 import { OFFICIAL_NEWS_ARTICLES } from "./data/newsData";
+import { useNews } from "./hooks/useNews";
+import { useEconomy } from "./hooks/useEconomy";
+import { usePortalRoute } from "./hooks/usePortalRoute";
+import { NewsItem } from "./types/news";
+
+// Componentes Globais de Layout
 import { Header } from "./components/Header";
-import { NationalBanner } from "./components/NationalBanner";
-import { BrazilMap } from "./components/BrazilMap";
-import { RegionalCharts } from "./components/RegionalCharts";
-import { NewsSection } from "./components/NewsSection";
-import { EconomySection } from "./components/EconomySection";
+import { Footer } from "./components/Footer";
+
+// Páginas Dedicadas do Portal
+import { HomePage } from "./pages/HomePage";
+import { PoliticaPage } from "./pages/PoliticaPage";
+import { EleicoesPage } from "./pages/EleicoesPage";
+import { EconomiaPage } from "./pages/EconomiaPage";
+import { EstadosPage } from "./pages/EstadosPage";
+import { DadosPublicosPage } from "./pages/DadosPublicosPage";
+import { NoticiasPage } from "./pages/NoticiasPage";
+import { SobrePage } from "./pages/SobrePage";
+
+// Modais e Painéis
 import { StateDetailPanel } from "./components/StateDetailPanel";
-import { StateTable } from "./components/StateTable";
 import { MethodologyModal } from "./components/MethodologyModal";
 import { DataInspectorModal } from "./components/DataInspectorModal";
-import { AdBanner } from "./components/AdBanner";
-import { Footer } from "./components/Footer";
+import { SearchModal } from "./components/SearchModal";
+import { ArticleModal } from "./components/ArticleModal";
 
 export default function App() {
   const [currentDataset, setCurrentDataset] = useState<ElectionDataSet>(DATASET_2026);
@@ -23,6 +33,15 @@ export default function App() {
   const [candidateFilter, setCandidateFilter] = useState<string | null>(null);
   const [isMethodologyOpen, setIsMethodologyOpen] = useState(false);
   const [isDataInspectorOpen, setIsDataInspectorOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [activeArticle, setActiveArticle] = useState<NewsItem | null>(null);
+
+  // Hook de Rota do Portal (Início, Política, Eleições, Economia, Estados, Dados Públicos, Notícias, Sobre)
+  const { currentRoute, goTo } = usePortalRoute();
+
+  // Hooks de Dados (Notícias e Indicadores Econômicos Oficiais)
+  const { articles } = useNews({ initialArticles: OFFICIAL_NEWS_ARTICLES });
+  const { indicators } = useEconomy();
 
   // Atualização customizada via JSON do TSE
   const handleUpdateDataset = (customDataset: ElectionDataSet) => {
@@ -36,96 +55,91 @@ export default function App() {
     setCandidateFilter(null);
   };
 
-  const activeFilteredCandidate = currentDataset.candidates.find(
-    (c) => c.id === candidateFilter
-  );
-
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-[#F8FAFC] text-slate-900 flex flex-col font-sans selection:bg-slate-900 selection:text-white">
-      {/* 1. Barra Superior Editorial e Navegação */}
+      {/* 1. Barra Superior Editorial e Navegação Thematic Menu */}
       <Header
         dataset={currentDataset}
+        currentRoute={currentRoute}
         onOpenMethodology={() => setIsMethodologyOpen(true)}
         onOpenDataInspector={() => setIsDataInspectorOpen(true)}
+        onOpenSearch={() => setIsSearchOpen(true)}
       />
 
+      {/* 2. Conteúdo Principal Orientado a Rota */}
       <main className="flex-1 w-full overflow-x-hidden">
-        {/* 2. Painel Nacional de Votação (KPIs, Ranking e Comparativo Flávio vs. Lula) */}
-        <NationalBanner
-          dataset={currentDataset}
-          onOpenMethodology={() => setIsMethodologyOpen(true)}
-          selectedCandidateFilter={candidateFilter}
-          onSelectCandidateFilter={setCandidateFilter}
-        />
+        {currentRoute === "home" && (
+          <HomePage
+            dataset={currentDataset}
+            articles={articles}
+            selectedStateUf={selectedStateUf}
+            candidateFilter={candidateFilter}
+            onSelectState={(uf) => setSelectedStateUf(uf)}
+            onSelectCandidateFilter={(id) => setCandidateFilter(id)}
+            onOpenMethodology={() => setIsMethodologyOpen(true)}
+            onOpenArticleDetails={(art) => setActiveArticle(art)}
+          />
+        )}
 
-        {/* 3. Espaço Publicitário Superior (Google AdSense Leaderboard 728x90) */}
-        <AdBanner format="leaderboard" />
+        {currentRoute === "politica" && (
+          <PoliticaPage
+            articles={articles}
+            onOpenArticleDetails={(art) => setActiveArticle(art)}
+          />
+        )}
 
-        {/* 4. Seção do Mapa Interativo do Brasil */}
-        <section className="py-6 sm:py-8 w-full overflow-hidden">
-          <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">
-                  Distribuição Geográfica
-                </span>
-                <h2 className="font-heading text-2xl sm:text-3xl font-black tracking-tight text-slate-900">
-                  Mapa de Votação por Estado e Distrito Federal
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
-                  Passe o mouse para conferir o placar por estado ou clique para abrir a apuração detalhada com o comparecimento eleitoral.
-                </p>
-              </div>
+        {currentRoute === "eleicoes" && (
+          <EleicoesPage
+            dataset={currentDataset}
+            articles={articles}
+            selectedCandidateFilter={candidateFilter}
+            onSelectCandidateFilter={(id) => setCandidateFilter(id)}
+            onOpenMethodology={() => setIsMethodologyOpen(true)}
+            onOpenArticleDetails={(art) => setActiveArticle(art)}
+          />
+        )}
 
-              {activeFilteredCandidate && (
-                <div className="flex items-center gap-2 bg-slate-100 text-slate-800 px-3 py-1.5 rounded-xl border border-slate-200 text-xs self-start sm:self-auto shadow-2xs">
-                  <span>Filtro de visualização:</span>
-                  <strong className="font-extrabold text-slate-900">
-                    {activeFilteredCandidate.popularName}
-                  </strong>
-                  <button
-                    onClick={() => setCandidateFilter(null)}
-                    className="ml-1 text-slate-500 hover:text-slate-900 font-black cursor-pointer text-sm"
-                    title="Remover filtro"
-                  >
-                    ×
-                  </button>
-                </div>
-              )}
-            </div>
+        {currentRoute === "economia" && (
+          <EconomiaPage
+            articles={articles}
+            onOpenArticleDetails={(art) => setActiveArticle(art)}
+          />
+        )}
 
-            {/* Componente do Mapa SVG com Controles */}
-            <BrazilMap
-              dataset={currentDataset}
-              selectedStateUf={selectedStateUf}
-              onSelectState={(uf) => setSelectedStateUf(uf)}
-              candidateFilter={candidateFilter}
-              onSelectCandidateFilter={setCandidateFilter}
-            />
-          </div>
-        </section>
+        {currentRoute === "estados" && (
+          <EstadosPage
+            dataset={currentDataset}
+            selectedStateUf={selectedStateUf}
+            candidateFilter={candidateFilter}
+            onSelectState={(uf) => setSelectedStateUf(uf)}
+            onSelectCandidateFilter={(id) => setCandidateFilter(id)}
+          />
+        )}
 
-        {/* 5. Gráficos Comparativos Regionais e Estados Decisivos */}
-        <RegionalCharts dataset={currentDataset} />
+        {currentRoute === "dados-publicos" && (
+          <DadosPublicosPage
+            dataset={currentDataset}
+            onOpenDataInspector={() => setIsDataInspectorOpen(true)}
+            onOpenMethodology={() => setIsMethodologyOpen(true)}
+          />
+        )}
 
-        {/* 6. Seção de Jornalismo: Últimas Notícias e Análises */}
-        <NewsSection articles={OFFICIAL_NEWS_ARTICLES} />
+        {currentRoute === "noticias" && (
+          <NoticiasPage
+            initialArticles={articles}
+            onOpenArticleDetails={(art) => setActiveArticle(art)}
+          />
+        )}
 
-        {/* 7. Seção de Economia: Indicadores Oficiais do Brasil (IBGE e BCB) */}
-        <EconomySection />
-
-        {/* 8. Espaço Publicitário In-Feed */}
-        <AdBanner format="in-feed" />
-
-        {/* 9. Tabela Geral de Resultados por Estado (26 Estados + DF) */}
-        <StateTable
-          dataset={currentDataset}
-          selectedStateUf={selectedStateUf}
-          onSelectState={(uf) => setSelectedStateUf(uf)}
-        />
+        {currentRoute === "sobre" && (
+          <SobrePage
+            onOpenDataInspector={() => setIsDataInspectorOpen(true)}
+            onOpenMethodology={() => setIsMethodologyOpen(true)}
+          />
+        )}
       </main>
 
-      {/* 9. Painel Lateral com Detalhamento do Estado Selecionado */}
+      {/* 3. Painel Lateral com Detalhamento do Estado Selecionado */}
       <StateDetailPanel
         dataset={currentDataset}
         uf={selectedStateUf}
@@ -133,14 +147,14 @@ export default function App() {
         onSelectState={(uf) => setSelectedStateUf(uf)}
       />
 
-      {/* 10. Modal de Metodologia Oficial e Transparência Eleitoral */}
+      {/* 4. Modal de Metodologia Oficial e Transparência Eleitoral */}
       <MethodologyModal
         dataset={currentDataset}
         isOpen={isMethodologyOpen}
         onClose={() => setIsMethodologyOpen(false)}
       />
 
-      {/* 11. Modal de Inspeção e Ingestão de Dados JSON do TSE */}
+      {/* 5. Modal de Inspeção e Ingestão de Dados JSON do TSE */}
       <DataInspectorModal
         dataset={currentDataset}
         isOpen={isDataInspectorOpen}
@@ -149,7 +163,24 @@ export default function App() {
         onResetToDefault={handleResetToDefault}
       />
 
-      {/* 12. Rodapé Editorial do Portal em Português */}
+      {/* 6. Modal de Busca Rápida e Navegação */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        news={articles}
+        dataset={currentDataset}
+        indicators={indicators}
+        onSelectArticle={(art) => setActiveArticle(art)}
+        onSelectState={(uf) => setSelectedStateUf(uf)}
+      />
+
+      {/* 7. Modal de Leitura de Matéria e Compartilhamento */}
+      <ArticleModal
+        article={activeArticle}
+        onClose={() => setActiveArticle(null)}
+      />
+
+      {/* 8. Rodapé Editorial do Portal em Português */}
       <Footer
         onOpenMethodology={() => setIsMethodologyOpen(true)}
         onOpenDataInspector={() => setIsDataInspectorOpen(true)}

@@ -1,96 +1,278 @@
-import React from "react";
-import { Database, FileText } from "lucide-react";
+import React, { useState } from "react";
+import { Database, FileText, Search, Menu, X, TrendingUp, ChevronRight } from "lucide-react";
 import { ElectionDataSet } from "../data/electionData";
+import { PortalRoute, ROUTE_CONFIGS } from "../utils/router";
+import { PortalLink } from "./PortalLink";
 
 interface HeaderProps {
   dataset: ElectionDataSet;
+  currentRoute: PortalRoute;
   onOpenMethodology: () => void;
   onOpenDataInspector: () => void;
+  onOpenSearch?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  dataset,
+  currentRoute,
   onOpenMethodology,
   onOpenDataInspector,
+  onOpenSearch,
 }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navLinks: { route: PortalRoute; label: string; colorClass: string; activeClass: string }[] = [
+    {
+      route: "home",
+      label: "Início",
+      colorClass: "hover:text-slate-950",
+      activeClass: "text-slate-950 font-black border-b-2 border-slate-900",
+    },
+    {
+      route: "politica",
+      label: "Política",
+      colorClass: "hover:text-red-700",
+      activeClass: "text-red-700 font-black border-b-2 border-red-600",
+    },
+    {
+      route: "eleicoes",
+      label: "Eleições",
+      colorClass: "hover:text-blue-700",
+      activeClass: "text-blue-700 font-black border-b-2 border-blue-600",
+    },
+    {
+      route: "economia",
+      label: "Economia",
+      colorClass: "hover:text-emerald-700",
+      activeClass: "text-emerald-700 font-black border-b-2 border-emerald-600",
+    },
+    {
+      route: "estados",
+      label: "Estados",
+      colorClass: "hover:text-amber-700",
+      activeClass: "text-amber-700 font-black border-b-2 border-amber-600",
+    },
+    {
+      route: "dados-publicos",
+      label: "Dados Públicos",
+      colorClass: "hover:text-purple-700",
+      activeClass: "text-purple-700 font-black border-b-2 border-purple-600",
+    },
+    {
+      route: "noticias",
+      label: "Notícias",
+      colorClass: "hover:text-slate-950",
+      activeClass: "text-slate-950 font-black border-b-2 border-slate-700",
+    },
+  ];
+
   return (
-    <header className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo / Marca Oficial Sociedade Ativa */}
-          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-            <div
-              className="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-heading font-black text-xs sm:text-sm tracking-widest shadow-xs shrink-0 select-none border border-slate-800"
-              aria-label="Sociedade Ativa Logo"
-              title="Sociedade Ativa"
-            >
-              SA
-            </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="font-heading text-sm sm:text-lg font-black tracking-tight text-slate-900 uppercase leading-none truncate">
-                  Sociedade Ativa
-                </span>
-                <span className="hidden md:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200 whitespace-nowrap">
-                  Eleições 2026
-                </span>
-                <span className="hidden xl:inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/60 whitespace-nowrap">
-                  100% Apurado
-                </span>
-              </div>
-              <div className="text-[10px] sm:text-xs text-slate-500 font-medium leading-tight truncate mt-0.5">
-                <span className="hidden sm:inline">Política • Eleições • Brasil • Dados</span>
-                <span className="sm:hidden text-slate-400">Política &amp; Dados</span>
-              </div>
+    <header className="border-b border-slate-200 bg-white/98 backdrop-blur-md sticky top-0 z-40 transition-all">
+      {/* 1. Barra de Utilitários e Indicadores Rápidos (Civic Ticker) */}
+      <div className="bg-slate-900 text-slate-300 text-[11px] py-1.5 px-4 sm:px-6 lg:px-8 border-b border-slate-800 hidden sm:block">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-none py-0.5">
+            <span className="font-bold text-white uppercase tracking-wider text-[10px] shrink-0">
+              Radar Oficial:
+            </span>
+            <div className="flex items-center gap-4 text-xs font-mono tabular-nums whitespace-nowrap shrink-0">
+              <span className="text-slate-200">
+                <strong className="text-emerald-400 font-sans font-bold text-[11px] mr-1">IPCA:</strong>
+                +0,44%
+                <span className="text-[10px] text-slate-400 font-sans ml-1">(IBGE)</span>
+              </span>
+              <span className="text-slate-500" aria-hidden="true">·</span>
+              <span className="text-slate-200">
+                <strong className="text-emerald-400 font-sans font-bold text-[11px] mr-1">Selic:</strong>
+                10,75% a.a.
+                <span className="text-[10px] text-slate-400 font-sans ml-1">(BCB)</span>
+              </span>
+              <span className="text-slate-500" aria-hidden="true">·</span>
+              <span className="text-slate-200">
+                <strong className="text-emerald-400 font-sans font-bold text-[11px] mr-1">Câmbio:</strong>
+                R$ 5,45
+                <span className="text-[10px] text-slate-400 font-sans ml-1">(PTAX)</span>
+              </span>
+              <span className="text-slate-500" aria-hidden="true">·</span>
+              <span className="text-slate-200">
+                <strong className="text-blue-400 font-sans font-bold text-[11px] mr-1">Eleições 2026:</strong>
+                100% Apurado
+                <span className="text-[10px] text-slate-400 font-sans ml-1">(TSE)</span>
+              </span>
             </div>
           </div>
 
-          {/* Navegação entre seções da página */}
-          <nav className="hidden lg:flex items-center gap-5 text-xs font-bold uppercase tracking-wider text-slate-600">
-            <a href="#dashboard-nacional" className="hover:text-slate-950 transition-colors py-1 whitespace-nowrap">
-              Painel Nacional
-            </a>
-            <a href="#mapa-interativo" className="hover:text-slate-950 transition-colors py-1 whitespace-nowrap">
-              Mapa
-            </a>
-            <a href="#tabela-estados" className="hover:text-slate-950 transition-colors py-1 whitespace-nowrap">
-              Resultados
-            </a>
-            <a href="#noticias" className="hover:text-slate-950 transition-colors py-1 whitespace-nowrap">
-              Notícias
-            </a>
-            <a href="#economia" className="text-blue-700 hover:text-blue-900 transition-colors py-1 whitespace-nowrap font-black">
-              Economia
-            </a>
-            <button
-              onClick={onOpenMethodology}
-              className="hover:text-slate-950 transition-colors py-1 flex items-center gap-1 cursor-pointer whitespace-nowrap"
+          <div className="flex items-center gap-3 shrink-0 text-[11px] font-sans">
+            <PortalLink
+              route="sobre"
+              className="text-slate-300 hover:text-white transition-colors"
             >
-              <FileText className="w-3.5 h-3.5 text-slate-400" />
-              <span>Metodologia</span>
-            </button>
-          </nav>
-
-          {/* Ações Rápidas */}
-          <div className="flex items-center gap-2">
+              Transparência &amp; Fontes
+            </PortalLink>
+            <span className="text-slate-700" aria-hidden="true">|</span>
             <button
               onClick={onOpenMethodology}
-              className="lg:hidden min-h-[40px] px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 transition-colors text-xs font-semibold cursor-pointer whitespace-nowrap active:bg-slate-200"
+              className="text-slate-300 hover:text-white transition-colors cursor-pointer"
             >
               Metodologia
-            </button>
-
-            <button
-              onClick={onOpenDataInspector}
-              className="hidden sm:flex min-h-[40px] px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 hover:text-slate-950 transition-colors items-center gap-1.5 text-xs font-bold shadow-xs cursor-pointer whitespace-nowrap active:bg-slate-100"
-              title="Inspecionar dados oficiais do TSE em formato JSON"
-            >
-              <Database className="w-4 h-4 text-slate-500" />
-              <span>JSON (TSE)</span>
             </button>
           </div>
         </div>
       </div>
+
+      {/* 2. Barra Principal do Portal (Wordmark, Menu Editorial e Ações) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 gap-4">
+          {/* Marca / Identidade Editorial Sociedade Ativa */}
+          <div className="flex items-center gap-3 min-w-0">
+            <PortalLink
+              route="home"
+              className="flex items-center gap-2.5 sm:gap-3 group focus-visible:outline-2 focus-visible:outline-blue-700 rounded-lg p-0.5"
+              title="Sociedade Ativa — Página Inicial"
+            >
+              <div
+                className="w-9 h-9 rounded-xl bg-blue-900 text-white flex items-center justify-center font-heading font-black text-xs sm:text-sm tracking-widest shadow-xs shrink-0 select-none border border-blue-950 group-hover:bg-blue-800 transition-colors"
+                aria-label="Sociedade Ativa Logotipo"
+              >
+                SA
+              </div>
+              <div className="min-w-0">
+                <span className="font-heading text-base sm:text-xl font-black tracking-tight text-slate-950 uppercase leading-none block truncate">
+                  Sociedade Ativa
+                </span>
+                <span className="text-[10px] sm:text-xs text-slate-500 font-medium leading-tight block truncate mt-0.5">
+                  Política, eleições, notícias e dados do Brasil
+                </span>
+              </div>
+            </PortalLink>
+          </div>
+
+          {/* Navegação Temática Principal (Desktop) */}
+          <nav
+            aria-label="Navegação editorial principal"
+            className="hidden xl:flex items-center gap-6 text-xs font-bold uppercase tracking-wider text-slate-600"
+          >
+            {navLinks.map((link) => {
+              const isActive = currentRoute === link.route;
+              return (
+                <PortalLink
+                  key={link.route}
+                  route={link.route}
+                  className={`py-5 transition-colors whitespace-nowrap shrink-0 ${
+                    isActive ? link.activeClass : link.colorClass
+                  }`}
+                >
+                  {link.label}
+                </PortalLink>
+              );
+            })}
+          </nav>
+
+          {/* Navegação Compacta para Telas Médias (Tablet/Laptop) */}
+          <nav
+            aria-label="Navegação secundária"
+            className="hidden lg:flex xl:hidden items-center gap-4 text-xs font-bold uppercase tracking-wider text-slate-600"
+          >
+            {navLinks.slice(0, 5).map((link) => {
+              const isActive = currentRoute === link.route;
+              return (
+                <PortalLink
+                  key={link.route}
+                  route={link.route}
+                  className={`py-5 transition-colors whitespace-nowrap shrink-0 ${
+                    isActive ? link.activeClass : link.colorClass
+                  }`}
+                >
+                  {link.label}
+                </PortalLink>
+              );
+            })}
+          </nav>
+
+          {/* Ações Rápidas do Cabeçalho */}
+          <div className="flex items-center gap-2 shrink-0">
+            {onOpenSearch && (
+              <button
+                onClick={onOpenSearch}
+                className="min-h-[38px] px-2.5 sm:px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer active:bg-slate-200 focus-visible:ring-2 focus-visible:ring-blue-700"
+                title="Pesquisar notícias, indicadores ou estados"
+                aria-label="Pesquisar no portal"
+              >
+                <Search className="w-3.5 h-3.5 text-slate-500" />
+                <span className="hidden sm:inline">Buscar</span>
+              </button>
+            )}
+
+            <button
+              onClick={onOpenDataInspector}
+              className="hidden md:flex min-h-[38px] px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 hover:text-slate-950 transition-colors items-center gap-1.5 text-xs font-bold shadow-2xs cursor-pointer whitespace-nowrap active:bg-slate-100 focus-visible:ring-2 focus-visible:ring-blue-700"
+              title="Inspecionar dados oficiais em formato JSON"
+            >
+              <Database className="w-3.5 h-3.5 text-slate-500" />
+              <span>JSON TSE</span>
+            </button>
+
+            {/* Botão de Menu Mobile */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden min-h-[40px] min-w-[40px] p-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-colors flex items-center justify-center cursor-pointer active:bg-slate-100 focus-visible:ring-2 focus-visible:ring-blue-700"
+              aria-label={mobileMenuOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Gaveta Mobile de Navegação */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden border-t border-slate-200 bg-white px-4 py-5 shadow-xl transition-all">
+          <nav className="flex flex-col gap-1 text-sm font-bold text-slate-800">
+            {navLinks.map((link) => {
+              const isActive = currentRoute === link.route;
+              return (
+                <PortalLink
+                  key={link.route}
+                  route={link.route}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center justify-between px-3 py-2.5 rounded-xl transition-colors ${
+                    isActive
+                      ? "bg-slate-900 text-white"
+                      : "hover:bg-slate-100 text-slate-800"
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  <ChevronRight
+                    className={`w-4 h-4 ${isActive ? "text-slate-300" : "text-slate-400"}`}
+                  />
+                </PortalLink>
+              );
+            })}
+
+            <div className="pt-3 mt-2 border-t border-slate-100 flex flex-col gap-2">
+              <PortalLink
+                route="sobre"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50 rounded-lg"
+              >
+                <FileText className="w-4 h-4 text-slate-400" />
+                <span>Sobre &amp; Metodologia Editorial</span>
+              </PortalLink>
+
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenDataInspector();
+                }}
+                className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50 rounded-lg text-left cursor-pointer"
+              >
+                <Database className="w-4 h-4 text-slate-400" />
+                <span>Inspecionar Dados Oficiais (JSON)</span>
+              </button>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

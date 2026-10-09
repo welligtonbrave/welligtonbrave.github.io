@@ -1,6 +1,6 @@
 import React from "react";
 import { NewsItem, NewsCategory } from "../types/news";
-import { Calendar, ExternalLink, Bookmark, Sparkles } from "lucide-react";
+import { Calendar, ExternalLink, Sparkles } from "lucide-react";
 
 interface NewsCardProps {
   article: NewsItem;
@@ -8,15 +8,15 @@ interface NewsCardProps {
   onOpenDetails: (article: NewsItem) => void;
 }
 
-const CATEGORY_STYLES: Record<NewsCategory, { bg: string; text: string; border: string }> = {
-  Política: { bg: "bg-indigo-50", text: "text-indigo-800", border: "border-indigo-200/80" },
-  Eleições: { bg: "bg-blue-50", text: "text-blue-800", border: "border-blue-200/80" },
-  Governo: { bg: "bg-slate-100", text: "text-slate-800", border: "border-slate-300/80" },
-  Congresso: { bg: "bg-amber-50", text: "text-amber-900", border: "border-amber-200/80" },
-  Justiça: { bg: "bg-emerald-50", text: "text-emerald-800", border: "border-emerald-200/80" },
-  Economia: { bg: "bg-cyan-50", text: "text-cyan-900", border: "border-cyan-200/80" },
-  Brasil: { bg: "bg-teal-50", text: "text-teal-800", border: "border-teal-200/80" },
-  Mundo: { bg: "bg-rose-50", text: "text-rose-800", border: "border-rose-200/80" },
+const CATEGORY_STYLES: Record<NewsCategory, { kicker: string; bg: string; border: string }> = {
+  Política: { kicker: "text-red-700", bg: "bg-red-50", border: "border-red-200" },
+  Eleições: { kicker: "text-blue-700", bg: "bg-blue-50", border: "border-blue-200" },
+  Governo: { kicker: "text-slate-700", bg: "bg-slate-50", border: "border-slate-200" },
+  Congresso: { kicker: "text-amber-800", bg: "bg-amber-50", border: "border-amber-200" },
+  Justiça: { kicker: "text-purple-700", bg: "bg-purple-50", border: "border-purple-200" },
+  Economia: { kicker: "text-emerald-700", bg: "bg-emerald-50", border: "border-emerald-200" },
+  Brasil: { kicker: "text-cyan-800", bg: "bg-cyan-50", border: "border-cyan-200" },
+  Mundo: { kicker: "text-slate-700", bg: "bg-slate-50", border: "border-slate-200" },
 };
 
 export const NewsCard: React.FC<NewsCardProps> = ({
@@ -30,27 +30,28 @@ export const NewsCard: React.FC<NewsCardProps> = ({
   return (
     <article
       onClick={() => onOpenDetails(article)}
-      className={`group bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 flex flex-col justify-between hover:border-slate-400 hover:shadow-md transition-all duration-200 cursor-pointer relative overflow-hidden ${
+      className={`group bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 flex flex-col justify-between hover:border-slate-400 hover:shadow-md transition-all duration-200 cursor-pointer relative ${
         isFeatured
-          ? "md:col-span-2 lg:col-span-2 bg-gradient-to-br from-blue-50/30 via-white to-slate-50 border-blue-200"
+          ? "md:col-span-2 lg:col-span-2 bg-gradient-to-br from-slate-50/50 via-white to-slate-50/30 border-blue-200"
           : ""
       }`}
     >
       <div>
-        {/* Cabeçalho do Card: Categoria, Origem e Destaque */}
-        <div className="flex items-center justify-between gap-2 mb-3">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span
-              className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md border ${catStyle.bg} ${catStyle.text} ${catStyle.border}`}
-            >
+        {/* Cabeçalho do Card: Kicker Tipográfico Não-Enclausurado (Zero-Pill Discipline) */}
+        <div className="flex items-center justify-between gap-2 mb-2.5">
+          <div className="flex items-center gap-2 text-xs">
+            <span className={`font-bold uppercase tracking-wider text-[11px] ${catStyle.kicker}`}>
               {article.category}
             </span>
 
             {isSociedadeAtiva ? (
-              <span className="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md bg-slate-900 text-white shadow-2xs">
-                <Sparkles className="w-2.5 h-2.5" />
-                Exclusivo
-              </span>
+              <>
+                <span className="text-slate-300" aria-hidden="true">·</span>
+                <span className="text-blue-900 font-bold text-[11px] inline-flex items-center gap-1">
+                  <Sparkles className="w-2.5 h-2.5" />
+                  Especial
+                </span>
+              </>
             ) : null}
           </div>
 
@@ -86,8 +87,10 @@ export const NewsCard: React.FC<NewsCardProps> = ({
           >
             {article.source}
           </span>
-          <span className="text-slate-300">·</span>
-          <span className="text-slate-400">{article.publishedAt.includes(" às ") ? article.publishedAt.split(" às ")[1] : ""}</span>
+          <span className="text-slate-300" aria-hidden="true">·</span>
+          <span className="text-slate-400">
+            {article.publishedAt.includes(" às ") ? article.publishedAt.split(" às ")[1] : ""}
+          </span>
         </div>
 
         {/* Ação Direta para a Notícia Original */}
@@ -97,11 +100,11 @@ export const NewsCard: React.FC<NewsCardProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-800 font-bold text-[11px] border border-slate-200 hover:border-blue-200 transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-900 font-semibold text-[11px] border border-slate-200 hover:border-blue-200 transition-all cursor-pointer"
             title={`Abrir reportagem completa em ${article.source}`}
           >
             <span>Leia a notícia original</span>
-            <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-blue-600" />
+            <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-blue-700" />
           </a>
         </div>
       </div>
