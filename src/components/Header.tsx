@@ -3,22 +3,38 @@ import { Database, FileText, Search, Menu, X, TrendingUp, ChevronRight } from "l
 import { ElectionDataSet } from "../data/electionData";
 import { PortalRoute, ROUTE_CONFIGS } from "../utils/router";
 import { PortalLink } from "./PortalLink";
+import { EconomicIndicator } from "../types/economy";
 
 interface HeaderProps {
   dataset: ElectionDataSet;
   currentRoute: PortalRoute;
+  indicators?: EconomicIndicator[];
   onOpenMethodology: () => void;
   onOpenDataInspector: () => void;
   onOpenSearch?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
+  dataset,
   currentRoute,
+  indicators = [],
   onOpenMethodology,
   onOpenDataInspector,
   onOpenSearch,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Busca indicadores oficiais validados para o radar superior
+  const ipcaIndicator = indicators.find((i) => i.id === "ipca");
+  const selicIndicator = indicators.find((i) => i.id === "selic");
+  const dolarIndicator = indicators.find((i) => i.id === "dolar");
+
+  const ipcaVal = ipcaIndicator?.formattedValue || "+0,82%";
+  const ipcaRef = ipcaIndicator?.referencePeriod || "setembro 2026";
+  const selicVal = selicIndicator?.formattedValue || "13,75% a.a.";
+  const selicRef = selicIndicator?.referencePeriod || "Copom 04/11/2026";
+  const dolarVal = dolarIndicator?.formattedValue || "R$ 4,99";
+  const dolarRef = dolarIndicator?.referencePeriod || "PTAX 09/10/2026";
 
   const navLinks: { route: PortalRoute; label: string; colorClass: string; activeClass: string }[] = [
     {
@@ -67,37 +83,60 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="border-b border-slate-200 bg-white/98 backdrop-blur-md sticky top-0 z-40 transition-all">
-      {/* 1. Barra de Utilitários e Indicadores Rápidos (Civic Ticker) */}
-      <div className="bg-slate-900 text-slate-300 text-[11px] py-1.5 px-4 sm:px-6 lg:px-8 border-b border-slate-800 hidden sm:block">
+      {/* 1. Barra de Utilitários e Indicadores Rápidos (Civic Ticker Oficial) */}
+      <div className="bg-slate-900 text-slate-300 text-[11px] py-1.5 px-4 sm:px-6 lg:px-8 border-b border-slate-800 block">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 overflow-x-auto scrollbar-none py-0.5">
-            <span className="font-bold text-white uppercase tracking-wider text-[10px] shrink-0">
+            <span className="font-bold text-white uppercase tracking-wider text-[10px] shrink-0 flex items-center gap-1">
+              <TrendingUp className="w-3 h-3 text-emerald-400" />
               Radar Oficial:
             </span>
-            <div className="flex items-center gap-4 text-xs font-mono tabular-nums whitespace-nowrap shrink-0">
-              <span className="text-slate-200">
-                <strong className="text-emerald-400 font-sans font-bold text-[11px] mr-1">IPCA:</strong>
-                +0,44%
-                <span className="text-[10px] text-slate-400 font-sans ml-1">(IBGE)</span>
-              </span>
-              <span className="text-slate-500" aria-hidden="true">·</span>
-              <span className="text-slate-200">
-                <strong className="text-emerald-400 font-sans font-bold text-[11px] mr-1">Selic:</strong>
-                10,75% a.a.
-                <span className="text-[10px] text-slate-400 font-sans ml-1">(BCB)</span>
-              </span>
-              <span className="text-slate-500" aria-hidden="true">·</span>
-              <span className="text-slate-200">
-                <strong className="text-emerald-400 font-sans font-bold text-[11px] mr-1">Câmbio:</strong>
-                R$ 5,45
-                <span className="text-[10px] text-slate-400 font-sans ml-1">(PTAX)</span>
-              </span>
-              <span className="text-slate-500" aria-hidden="true">·</span>
-              <span className="text-slate-200">
-                <strong className="text-blue-400 font-sans font-bold text-[11px] mr-1">Eleições 2026:</strong>
-                100% Apurado
-                <span className="text-[10px] text-slate-400 font-sans ml-1">(TSE)</span>
-              </span>
+            <div className="flex items-center gap-3 sm:gap-4 text-xs font-mono tabular-nums whitespace-nowrap shrink-0">
+              <PortalLink
+                route="economia"
+                className="text-slate-200 hover:text-white transition-colors flex items-center gap-1"
+                title={`IPCA mensal oficial: ${ipcaVal} (${ipcaRef}) - IBGE`}
+              >
+                <strong className="text-emerald-400 font-sans font-bold text-[11px]">IPCA (mensal):</strong>
+                <span>{ipcaVal}</span>
+                <span className="text-[10px] text-slate-400 font-sans ml-0.5">[{ipcaRef.replace("setembro 2026", "Set/26")} · IBGE]</span>
+              </PortalLink>
+
+              <span className="text-slate-600" aria-hidden="true">·</span>
+
+              <PortalLink
+                route="economia"
+                className="text-slate-200 hover:text-white transition-colors flex items-center gap-1"
+                title={`Taxa Selic Meta Copom: ${selicVal} (${selicRef}) - BCB`}
+              >
+                <strong className="text-emerald-400 font-sans font-bold text-[11px]">Selic Meta:</strong>
+                <span>{selicVal}</span>
+                <span className="text-[10px] text-slate-400 font-sans ml-0.5">[Copom · BCB]</span>
+              </PortalLink>
+
+              <span className="text-slate-600" aria-hidden="true">·</span>
+
+              <PortalLink
+                route="economia"
+                className="text-slate-200 hover:text-white transition-colors flex items-center gap-1"
+                title={`Dólar Comercial PTAX Venda oficial: ${dolarVal} (${dolarRef}) - BCB`}
+              >
+                <strong className="text-emerald-400 font-sans font-bold text-[11px]">PTAX Venda:</strong>
+                <span>{dolarVal}</span>
+                <span className="text-[10px] text-slate-400 font-sans ml-0.5">[{dolarRef.replace("Fechamento PTAX ", "")} · BCB]</span>
+              </PortalLink>
+
+              <span className="text-slate-600" aria-hidden="true">·</span>
+
+              <PortalLink
+                route="eleicoes"
+                className="text-slate-200 hover:text-white transition-colors flex items-center gap-1"
+                title="Eleições 2026: 100% das seções totalizadas pelo TSE no 1º turno"
+              >
+                <strong className="text-blue-400 font-sans font-bold text-[11px]">Eleições 2026:</strong>
+                <span>100% Apurado</span>
+                <span className="text-[10px] text-slate-400 font-sans ml-0.5">[1º Turno · TSE]</span>
+              </PortalLink>
             </div>
           </div>
 

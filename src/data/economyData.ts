@@ -2,314 +2,598 @@ import { EconomicIndicator } from "../types/economy";
 
 export const OFFICIAL_ECONOMIC_INDICATORS: EconomicIndicator[] = [
   {
-    id: "ipca",
-    name: "Índice Nacional de Preços ao Consumidor Amplo",
-    shortName: "IPCA",
-    value: 0.44,
-    formattedValue: "+0,44%",
-    unit: "% a.m.",
-    variation: 0.46,
-    variationPeriod: "vs. mês anterior (-0,02%)",
-    previousValue: -0.02,
-    formattedPreviousValue: "-0,02%",
-    referencePeriod: "Setembro/2024",
-    source: "IBGE",
-    sourceAgency: "IBGE - Sistema Nacional de Índices de Preços ao Consumidor (SNIPC)",
-    sourceUrl: "https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9256-indice-nacional-de-precos-ao-consumidor-amplo.html",
-    officialSeriesCode: "Tabela SIDRA 7060 / BCB 433",
-    updatedAt: "09/10/2024",
-    frequency: "Mensal",
-    category: "Inflação",
-    description: "Principal indicador da inflação oficial do Brasil. Mede o custo de vida de famílias com renda de 1 a 40 salários mínimos e baliza a meta de inflação fixada pelo Conselho Monetário Nacional (CMN).",
-    methodologySummary: "Pesquisa contínua realizada em 16 regiões metropolitanas e capitais brasileiras, cobrindo 377 subitens de consumo divididos em nove grupos (alimentação, habitação, transportes, saúde, etc.).",
-    historicalData: [
-      { period: "02/2024", value: 0.83, formattedValue: "+0,83%" },
-      { period: "03/2024", value: 0.16, formattedValue: "+0,16%" },
-      { period: "04/2024", value: 0.38, formattedValue: "+0,38%" },
-      { period: "05/2024", value: 0.46, formattedValue: "+0,46%" },
-      { period: "06/2024", value: 0.21, formattedValue: "+0,21%" },
-      { period: "07/2024", value: 0.38, formattedValue: "+0,38%" },
-      { period: "08/2024", value: -0.02, formattedValue: "-0,02%" },
-      { period: "09/2024", value: 0.44, formattedValue: "+0,44%" },
-    ],
+    "id": "ipca",
+    "name": "Índice Nacional de Preços ao Consumidor Amplo",
+    "shortName": "IPCA",
+    "value": 0.82,
+    "formattedValue": "+0,82%",
+    "unit": "% a.m.",
+    "variation": 1.14,
+    "variationPeriod": "vs. mês anterior (-0,32%)",
+    "previousValue": -0.32,
+    "formattedPreviousValue": "-0,32%",
+    "referencePeriod": "setembro 2026",
+    "source": "IBGE",
+    "sourceAgency": "IBGE - Sistema Nacional de Índices de Preços ao Consumidor (SNIPC)",
+    "sourceUrl": "https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9256-indice-nacional-de-precos-ao-consumidor-amplo.html",
+    "officialSeriesCode": "Tabela SIDRA 7060 / BCB 433",
+    "updatedAt": "09/10/2026",
+    "frequency": "Mensal",
+    "category": "Inflação",
+    "description": "Principal indicador da inflação oficial do Brasil. Mede o custo de vida de famílias com renda de 1 a 40 salários mínimos e baliza a meta de inflação fixada pelo Conselho Monetário Nacional (CMN).",
+    "methodologySummary": "Pesquisa contínua realizada em 16 regiões metropolitanas e capitais brasileiras, cobrindo 377 subitens de consumo divididos em nove grupos.",
+    "historicalData": [
+      {
+        "period": "02/2024",
+        "value": 0.83,
+        "formattedValue": "+0,83%"
+      },
+      {
+        "period": "03/2024",
+        "value": 0.16,
+        "formattedValue": "+0,16%"
+      },
+      {
+        "period": "04/2024",
+        "value": 0.38,
+        "formattedValue": "+0,38%"
+      },
+      {
+        "period": "05/2024",
+        "value": 0.46,
+        "formattedValue": "+0,46%"
+      },
+      {
+        "period": "06/2024",
+        "value": 0.21,
+        "formattedValue": "+0,21%"
+      },
+      {
+        "period": "07/2024",
+        "value": 0.38,
+        "formattedValue": "+0,38%"
+      },
+      {
+        "period": "08/2024",
+        "value": -0.02,
+        "formattedValue": "-0,02%"
+      },
+      {
+        "period": "09/2024",
+        "value": 0.44,
+        "formattedValue": "+0,44%"
+      }
+    ]
   },
   {
-    id: "inpc",
-    name: "Índice Nacional de Preços ao Consumidor",
-    shortName: "INPC",
-    value: 0.48,
-    formattedValue: "+0,48%",
-    unit: "% a.m.",
-    variation: 0.62,
-    variationPeriod: "vs. mês anterior (-0,14%)",
-    previousValue: -0.14,
-    formattedPreviousValue: "-0,14%",
-    referencePeriod: "Setembro/2024",
-    source: "IBGE",
-    sourceAgency: "IBGE - Coordenação de Índices de Preços",
-    sourceUrl: "https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9258-indice-nacional-de-precos-ao-consumidor.html",
-    officialSeriesCode: "Tabela SIDRA 7062 / BCB 188",
-    updatedAt: "09/10/2024",
-    frequency: "Mensal",
-    category: "Inflação",
-    description: "Calcula a variação do custo de vida para famílias com rendimento entre 1 e 5 salários mínimos. É o parâmetro legal de reajuste do salário mínimo, benefícios do INSS e convenções coletivas de trabalho.",
-    methodologySummary: "Coletado nas mesmas regiões do IPCA, porém com peso maior para itens de necessidade básica como alimentação e transportes urbanos.",
-    historicalData: [
-      { period: "03/2024", value: 0.19, formattedValue: "+0,19%" },
-      { period: "04/2024", value: 0.37, formattedValue: "+0,37%" },
-      { period: "05/2024", value: 0.46, formattedValue: "+0,46%" },
-      { period: "06/2024", value: 0.25, formattedValue: "+0,25%" },
-      { period: "07/2024", value: 0.26, formattedValue: "+0,26%" },
-      { period: "08/2024", value: -0.14, formattedValue: "-0,14%" },
-      { period: "09/2024", value: 0.48, formattedValue: "+0,48%" },
-    ],
+    "id": "inpc",
+    "name": "Índice Nacional de Preços ao Consumidor",
+    "shortName": "INPC",
+    "value": 0.82,
+    "formattedValue": "+0,82%",
+    "unit": "% a.m.",
+    "variation": 1.14,
+    "variationPeriod": "vs. mês anterior (-0,32%)",
+    "previousValue": -0.32,
+    "formattedPreviousValue": "-0,32%",
+    "referencePeriod": "Posição 01/09/2026",
+    "source": "IBGE",
+    "sourceAgency": "IBGE - Coordenação de Índices de Preços",
+    "sourceUrl": "https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9258-indice-nacional-de-precos-ao-consumidor.html",
+    "officialSeriesCode": "Tabela SIDRA 7062 / BCB 188",
+    "updatedAt": "09/10/2026",
+    "frequency": "Mensal",
+    "category": "Inflação",
+    "description": "Calcula a variação do custo de vida para famílias com rendimento entre 1 e 5 salários mínimos. É o parâmetro legal de reajuste do salário mínimo e benefícios do INSS.",
+    "methodologySummary": "Coletado nas mesmas regiões do IPCA, porém com peso maior para itens de necessidade básica como alimentação e transportes urbanos.",
+    "historicalData": [
+      {
+        "period": "03/2024",
+        "value": 0.19,
+        "formattedValue": "+0,19%"
+      },
+      {
+        "period": "04/2024",
+        "value": 0.37,
+        "formattedValue": "+0,37%"
+      },
+      {
+        "period": "05/2024",
+        "value": 0.46,
+        "formattedValue": "+0,46%"
+      },
+      {
+        "period": "06/2024",
+        "value": 0.25,
+        "formattedValue": "+0,25%"
+      },
+      {
+        "period": "07/2024",
+        "value": 0.26,
+        "formattedValue": "+0,26%"
+      },
+      {
+        "period": "08/2024",
+        "value": -0.14,
+        "formattedValue": "-0,14%"
+      },
+      {
+        "period": "09/2024",
+        "value": 0.48,
+        "formattedValue": "+0,48%"
+      }
+    ]
   },
   {
-    id: "ipca-15",
-    name: "Índice Nacional de Preços ao Consumidor Amplo - 15",
-    shortName: "IPCA-15",
-    value: 0.54,
-    formattedValue: "+0,54%",
-    unit: "% a.m.",
-    variation: 0.41,
-    variationPeriod: "vs. mês anterior (+0,13%)",
-    previousValue: 0.13,
-    formattedPreviousValue: "+0,13%",
-    referencePeriod: "Outubro/2024",
-    source: "IBGE",
-    sourceAgency: "IBGE - Sistema Nacional de Índices de Preços ao Consumidor",
-    sourceUrl: "https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9260-indice-nacional-de-precos-ao-consumidor-amplo-15.html",
-    officialSeriesCode: "Tabela SIDRA 7061 / BCB 7478",
-    updatedAt: "24/10/2024",
-    frequency: "Mensal",
-    category: "Inflação",
-    description: "Considerado a 'prévia oficial da inflação'. Utiliza os mesmos critérios metodológicos do IPCA, mas com período de coleta de preços do dia 16 do mês anterior ao dia 15 do mês de referência.",
-    methodologySummary: "Permite antecipar as pressões inflacionárias do mês fechado com alta confiabilidade estatística em 11 áreas urbanas analisadas.",
-    historicalData: [
-      { period: "04/2024", value: 0.21, formattedValue: "+0,21%" },
-      { period: "05/2024", value: 0.44, formattedValue: "+0,44%" },
-      { period: "06/2024", value: 0.39, formattedValue: "+0,39%" },
-      { period: "07/2024", value: 0.30, formattedValue: "+0,30%" },
-      { period: "08/2024", value: 0.19, formattedValue: "+0,19%" },
-      { period: "09/2024", value: 0.13, formattedValue: "+0,13%" },
-      { period: "10/2024", value: 0.54, formattedValue: "+0,54%" },
-    ],
+    "id": "ipca-15",
+    "name": "Índice Nacional de Preços ao Consumidor Amplo - 15",
+    "shortName": "IPCA-15",
+    "value": 0.7,
+    "formattedValue": "+0,70%",
+    "unit": "% a.m.",
+    "variation": 1.1,
+    "variationPeriod": "vs. mês anterior (-0,40%)",
+    "previousValue": -0.4,
+    "formattedPreviousValue": "-0,40%",
+    "referencePeriod": "Posição 01/09/2026",
+    "source": "IBGE",
+    "sourceAgency": "IBGE - Sistema Nacional de Índices de Preços ao Consumidor",
+    "sourceUrl": "https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9260-indice-nacional-de-precos-ao-consumidor-amplo-15.html",
+    "officialSeriesCode": "Tabela SIDRA 7061 / BCB 7478",
+    "updatedAt": "09/10/2026",
+    "frequency": "Mensal",
+    "category": "Inflação",
+    "description": "Considerado a 'prévia oficial da inflação'. Utiliza os mesmos critérios metodológicos do IPCA, com coleta do dia 16 do mês anterior ao dia 15 do mês corrente.",
+    "methodologySummary": "Permite antecipar as pressões inflacionárias do mês fechado com alta confiabilidade estatística.",
+    "historicalData": [
+      {
+        "period": "04/2024",
+        "value": 0.21,
+        "formattedValue": "+0,21%"
+      },
+      {
+        "period": "05/2024",
+        "value": 0.44,
+        "formattedValue": "+0,44%"
+      },
+      {
+        "period": "06/2024",
+        "value": 0.39,
+        "formattedValue": "+0,39%"
+      },
+      {
+        "period": "07/2024",
+        "value": 0.3,
+        "formattedValue": "+0,30%"
+      },
+      {
+        "period": "08/2024",
+        "value": 0.19,
+        "formattedValue": "+0,19%"
+      },
+      {
+        "period": "09/2024",
+        "value": 0.13,
+        "formattedValue": "+0,13%"
+      },
+      {
+        "period": "10/2024",
+        "value": 0.54,
+        "formattedValue": "+0,54%"
+      }
+    ]
   },
   {
-    id: "pib",
-    name: "Produto Interno Bruto (Contas Nacionais Trimestrais)",
-    shortName: "PIB",
-    value: 1.4,
-    formattedValue: "+1,4%",
-    unit: "% trimestral",
-    variation: 0.4,
-    variationPeriod: "vs. 1º Tri (+1,0%)",
-    previousValue: 1.0,
-    formattedPreviousValue: "+1,0%",
-    referencePeriod: "2º Trimestre/2024",
-    source: "IBGE",
-    sourceAgency: "IBGE - Sistema de Contas Nacionais Trimestrais (SCNT)",
-    sourceUrl: "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9300-contas-nacionais-trimestrais.html",
-    officialSeriesCode: "Tabela SIDRA 5932 / SCNT",
-    updatedAt: "03/09/2024",
-    frequency: "Trimestral",
-    category: "Atividade Econômica",
-    description: "Soma de todos os bens e serviços finais produzidos no Brasil. Indica a taxa real de crescimento ou retração da economia nacional com ajuste sazonal.",
-    methodologySummary: "Apurado pela ótica da produção (agropecuária, indústria e serviços) e pela ótica da despesa (consumo das famílias, consumo do governo, investimentos FBCF e balanço comercial).",
-    historicalData: [
-      { period: "3T22", value: 0.6, formattedValue: "+0,6%" },
-      { period: "4T22", value: -0.1, formattedValue: "-0,1%" },
-      { period: "1T23", value: 1.4, formattedValue: "+1,4%" },
-      { period: "2T23", value: 1.0, formattedValue: "+1,0%" },
-      { period: "3T23", value: 0.1, formattedValue: "+0,1%" },
-      { period: "4T23", value: 0.1, formattedValue: "+0,1%" },
-      { period: "1T24", value: 1.0, formattedValue: "+1,0%" },
-      { period: "2T24", value: 1.4, formattedValue: "+1,4%" },
-    ],
+    "id": "pib",
+    "name": "Produto Interno Bruto (Contas Nacionais Trimestrais)",
+    "shortName": "PIB",
+    "value": 0.5,
+    "formattedValue": "+0,50%",
+    "unit": "% trimestral",
+    "variation": -0.6,
+    "variationPeriod": "vs. tri anterior (+1,10%)",
+    "previousValue": 1.1,
+    "formattedPreviousValue": "+1,10%",
+    "referencePeriod": "2º trimestre 2026",
+    "source": "IBGE",
+    "sourceAgency": "IBGE - Sistema de Contas Nacionais Trimestrais (SCNT)",
+    "sourceUrl": "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9300-contas-nacionais-trimestrais.html",
+    "officialSeriesCode": "Tabela SIDRA 5932 / SCNT",
+    "updatedAt": "09/10/2026",
+    "frequency": "Trimestral",
+    "category": "Atividade Econômica",
+    "description": "Soma de todos os bens e serviços finais produzidos no Brasil. Indica a taxa real de crescimento ou retração da economia nacional com ajuste sazonal.",
+    "methodologySummary": "Apurado pela ótica da produção e da despesa.",
+    "historicalData": [
+      {
+        "period": "3T22",
+        "value": 0.6,
+        "formattedValue": "+0,6%"
+      },
+      {
+        "period": "4T22",
+        "value": -0.1,
+        "formattedValue": "-0,1%"
+      },
+      {
+        "period": "1T23",
+        "value": 1.4,
+        "formattedValue": "+1,4%"
+      },
+      {
+        "period": "2T23",
+        "value": 1,
+        "formattedValue": "+1,0%"
+      },
+      {
+        "period": "3T23",
+        "value": 0.1,
+        "formattedValue": "+0,1%"
+      },
+      {
+        "period": "4T23",
+        "value": 0.1,
+        "formattedValue": "+0,1%"
+      },
+      {
+        "period": "1T24",
+        "value": 1,
+        "formattedValue": "+1,0%"
+      },
+      {
+        "period": "2T24",
+        "value": 1.4,
+        "formattedValue": "+1,4%"
+      }
+    ]
   },
   {
-    id: "desemprego",
-    name: "Taxa de Desocupação (PNAD Contínua)",
-    shortName: "Desemprego",
-    value: 6.6,
-    formattedValue: "6,6%",
-    unit: "% da força de trabalho",
-    variation: -0.5,
-    variationPeriod: "vs. trimestre móvel anterior (7,1%)",
-    previousValue: 7.1,
-    formattedPreviousValue: "7,1%",
-    referencePeriod: "Tri Móvel Jun-Ago/2024",
-    source: "IBGE",
-    sourceAgency: "IBGE - Pesquisa Nacional por Amostra de Domicílios Contínua",
-    sourceUrl: "https://www.ibge.gov.br/estatisticas/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html",
-    officialSeriesCode: "Tabela SIDRA 4099 / PNADC",
-    updatedAt: "27/09/2024",
-    frequency: "Mensal",
-    category: "Mercado de Trabalho",
-    description: "Mede o percentual de pessoas em idade de trabalhar que estão desocupadas e tomaram providências ativas para conseguir trabalho no período de referência. Menor taxa desde o início da série histórica trimestral recente.",
-    methodologySummary: "Amostra probabilística de mais de 200 mil domicílios em cerca de 3.500 municípios de todas as Unidades da Federação.",
-    historicalData: [
-      { period: "Jan-Mar/24", value: 7.9, formattedValue: "7,9%" },
-      { period: "Fev-Abr/24", value: 7.5, formattedValue: "7,5%" },
-      { period: "Mar-Mai/24", value: 7.1, formattedValue: "7,1%" },
-      { period: "Abr-Jun/24", value: 6.9, formattedValue: "6,9%" },
-      { period: "Mai-Jul/24", value: 6.8, formattedValue: "6,8%" },
-      { period: "Jun-Ago/24", value: 6.6, formattedValue: "6,6%" },
-    ],
+    "id": "desemprego",
+    "name": "Taxa de Desocupação (PNAD Contínua)",
+    "shortName": "Desemprego",
+    "value": 5.4,
+    "formattedValue": "5,4%",
+    "unit": "% da força de trabalho",
+    "variation": -0.7,
+    "variationPeriod": "vs. período anterior (6,1%)",
+    "previousValue": 6.1,
+    "formattedPreviousValue": "6,1%",
+    "referencePeriod": "2º trimestre 2026",
+    "source": "IBGE",
+    "sourceAgency": "IBGE - Pesquisa Nacional por Amostra de Domicílios Contínua",
+    "sourceUrl": "https://www.ibge.gov.br/estatisticas/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html",
+    "officialSeriesCode": "Tabela SIDRA 4099 / PNADC",
+    "updatedAt": "09/10/2026",
+    "frequency": "Mensal",
+    "category": "Mercado de Trabalho",
+    "description": "Mede o percentual de pessoas em idade de trabalhar que estão desocupadas e tomaram providências ativas para conseguir trabalho.",
+    "methodologySummary": "Amostra probabilística de mais de 200 mil domicílios em cerca de 3.500 municípios de todas as UFs.",
+    "historicalData": [
+      {
+        "period": "Jan-Mar/24",
+        "value": 7.9,
+        "formattedValue": "7,9%"
+      },
+      {
+        "period": "Fev-Abr/24",
+        "value": 7.5,
+        "formattedValue": "7,5%"
+      },
+      {
+        "period": "Mar-Mai/24",
+        "value": 7.1,
+        "formattedValue": "7,1%"
+      },
+      {
+        "period": "Abr-Jun/24",
+        "value": 6.9,
+        "formattedValue": "6,9%"
+      },
+      {
+        "period": "Mai-Jul/24",
+        "value": 6.8,
+        "formattedValue": "6,8%"
+      },
+      {
+        "period": "Jun-Ago/24",
+        "value": 6.6,
+        "formattedValue": "6,6%"
+      }
+    ]
   },
   {
-    id: "selic",
-    name: "Taxa Selic Meta (Política Monetária Copom)",
-    shortName: "Taxa Selic",
-    value: 10.75,
-    formattedValue: "10,75% a.a.",
-    unit: "% ao ano",
-    variation: 0.25,
-    variationPeriod: "vs. decisão anterior (10,50%)",
-    previousValue: 10.5,
-    formattedPreviousValue: "10,50% a.a.",
-    referencePeriod: "Reunião Copom Set/2024",
-    source: "Banco Central do Brasil",
-    sourceAgency: "Banco Central do Brasil - Comitê de Política Monetária (Copom)",
-    sourceUrl: "https://www.bcb.gov.br/controleinflacao/taxaselic",
-    officialSeriesCode: "SGS Série 4189 / BCB",
-    updatedAt: "18/09/2024",
-    frequency: "Reunião Copom",
-    category: "Juros & Câmbio",
-    description: "Taxa básica de juros da economia brasileira, fixada a cada 45 dias pelo Comitê de Política Monetária (Copom). É o principal instrumento para manter a inflação na meta estipulada pelo CMN.",
-    methodologySummary: "Taxa apurada no Sistema Especial de Liquidação e Custódia (Selic) que remunera operações compromissadas de 1 dia com títulos públicos federais.",
-    historicalData: [
-      { period: "Ago/23", value: 13.25, formattedValue: "13,25%" },
-      { period: "Set/23", value: 12.75, formattedValue: "12,75%" },
-      { period: "Nov/23", value: 12.25, formattedValue: "12,25%" },
-      { period: "Dez/23", value: 11.75, formattedValue: "11,75%" },
-      { period: "Jan/24", value: 11.25, formattedValue: "11,25%" },
-      { period: "Mar/24", value: 10.75, formattedValue: "10,75%" },
-      { period: "Mai/24", value: 10.50, formattedValue: "10,50%" },
-      { period: "Set/24", value: 10.75, formattedValue: "10,75%" },
-    ],
+    "id": "selic",
+    "name": "Taxa Selic Meta (Política Monetária Copom)",
+    "shortName": "Taxa Selic",
+    "value": 13.75,
+    "formattedValue": "13,75% a.a.",
+    "unit": "% ao ano",
+    "variation": 0,
+    "variationPeriod": "vs. valor anterior (13,75%)",
+    "previousValue": 13.75,
+    "formattedPreviousValue": "13,75% a.a.",
+    "referencePeriod": "Posição 04/11/2026",
+    "source": "Banco Central do Brasil",
+    "sourceAgency": "Banco Central do Brasil - Comitê de Política Monetária (Copom)",
+    "sourceUrl": "https://www.bcb.gov.br/controleinflacao/taxaselic",
+    "officialSeriesCode": "SGS Série 4189 / BCB",
+    "updatedAt": "09/10/2026",
+    "frequency": "Reunião Copom",
+    "category": "Juros & Câmbio",
+    "description": "Taxa básica de juros da economia brasileira, fixada pelo Comitê de Política Monetária (Copom).",
+    "methodologySummary": "Taxa apurada no Sistema Especial de Liquidação e Custódia (Selic) que remunera operações compromissadas de 1 dia com títulos públicos federais.",
+    "historicalData": [
+      {
+        "period": "Ago/23",
+        "value": 13.25,
+        "formattedValue": "13,25%"
+      },
+      {
+        "period": "Set/23",
+        "value": 12.75,
+        "formattedValue": "12,75%"
+      },
+      {
+        "period": "Nov/23",
+        "value": 12.25,
+        "formattedValue": "12,25%"
+      },
+      {
+        "period": "Dez/23",
+        "value": 11.75,
+        "formattedValue": "11,75%"
+      },
+      {
+        "period": "Jan/24",
+        "value": 11.25,
+        "formattedValue": "11,25%"
+      },
+      {
+        "period": "Mar/24",
+        "value": 10.75,
+        "formattedValue": "10,75%"
+      },
+      {
+        "period": "Mai/24",
+        "value": 10.5,
+        "formattedValue": "10,50%"
+      },
+      {
+        "period": "Set/24",
+        "value": 10.75,
+        "formattedValue": "10,75%"
+      }
+    ]
   },
   {
-    id: "dolar",
-    name: "Taxa de Câmbio Comercial dos EUA (PTAX Fechamento)",
-    shortName: "Dólar Comercial",
-    value: 5.485,
-    formattedValue: "R$ 5,49",
-    unit: "R$ / USD",
-    variation: 0.045,
-    variationPeriod: "vs. cotação anterior (R$ 5,44)",
-    previousValue: 5.44,
-    formattedPreviousValue: "R$ 5,44",
-    referencePeriod: "Fechamento Oficial Diário",
-    source: "Banco Central do Brasil",
-    sourceAgency: "Banco Central do Brasil - Departamento de Operações das Reservas Internacionais",
-    sourceUrl: "https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes",
-    officialSeriesCode: "SGS Série 1 / PTAX Venda",
-    updatedAt: "08/10/2024",
-    frequency: "Diária",
-    category: "Juros & Câmbio",
-    description: "Cotação oficial de venda do dólar norte-americano calculada pelo Banco Central do Brasil com base em quatro consultas diárias aos negociadores autorizados do mercado de câmbio interbancário.",
-    methodologySummary: "Média aritmética das cotações apuradas nas quatro janelas diárias de consulta do BCB, servindo de liquidação para derivativos e contratos de câmbio.",
-    historicalData: [
-      { period: "Mai/24", value: 5.15, formattedValue: "R$ 5,15" },
-      { period: "Jun/24", value: 5.42, formattedValue: "R$ 5,42" },
-      { period: "Jul/24", value: 5.65, formattedValue: "R$ 5,65" },
-      { period: "Ago/24", value: 5.58, formattedValue: "R$ 5,58" },
-      { period: "Set/24", value: 5.44, formattedValue: "R$ 5,44" },
-      { period: "Out/24", value: 5.49, formattedValue: "R$ 5,49" },
-    ],
+    "id": "dolar",
+    "name": "Taxa de Câmbio Comercial dos EUA (PTAX Fechamento)",
+    "shortName": "Dólar Comercial",
+    "value": 4.9892,
+    "formattedValue": "R$ 4,99",
+    "unit": "R$ / USD",
+    "variation": -0.0227,
+    "variationPeriod": "vs. cotação anterior (R$ 5,01)",
+    "previousValue": 5.0119,
+    "formattedPreviousValue": "R$ 5,01",
+    "referencePeriod": "Fechamento PTAX 09/10/2026",
+    "source": "Banco Central do Brasil",
+    "sourceAgency": "Banco Central do Brasil - Departamento de Operações das Reservas Internacionais",
+    "sourceUrl": "https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes",
+    "officialSeriesCode": "SGS Série 1 / PTAX Venda",
+    "updatedAt": "09/10/2026",
+    "frequency": "Diária",
+    "category": "Juros & Câmbio",
+    "description": "Cotação oficial de venda do dólar norte-americano calculada pelo Banco Central do Brasil com base em quatro consultas diárias ao mercado interbancário.",
+    "methodologySummary": "Média ponderada oficial calculada pelo Banco Central.",
+    "historicalData": [
+      {
+        "period": "Mai/24",
+        "value": 5.15,
+        "formattedValue": "R$ 5,15"
+      },
+      {
+        "period": "Jun/24",
+        "value": 5.42,
+        "formattedValue": "R$ 5,42"
+      },
+      {
+        "period": "Jul/24",
+        "value": 5.65,
+        "formattedValue": "R$ 5,65"
+      },
+      {
+        "period": "Ago/24",
+        "value": 5.58,
+        "formattedValue": "R$ 5,58"
+      },
+      {
+        "period": "Set/24",
+        "value": 5.44,
+        "formattedValue": "R$ 5,44"
+      },
+      {
+        "period": "Out/24",
+        "value": 5.49,
+        "formattedValue": "R$ 5,49"
+      }
+    ]
   },
   {
-    id: "producao-industrial",
-    name: "Produção Física Industrial (PIM-PF)",
-    shortName: "Produção Industrial",
-    value: 0.1,
-    formattedValue: "+0,1%",
-    unit: "% a.m.",
-    variation: 1.5,
-    variationPeriod: "vs. mês anterior (-1,4%)",
-    previousValue: -1.4,
-    formattedPreviousValue: "-1,4%",
-    referencePeriod: "Agosto/2024",
-    source: "IBGE",
-    sourceAgency: "IBGE - Coordenação de Indústria",
-    sourceUrl: "https://www.ibge.gov.br/estatisticas/economicas/industria/9294-pesquisa-industrial-mensal-producao-fisica-brasil.html",
-    officialSeriesCode: "Tabela SIDRA 8888 / PIM-PF",
-    updatedAt: "02/10/2024",
-    frequency: "Mensal",
-    category: "Atividade Econômica",
-    description: "Pesquisa que avalia a produção física nos setores de indústrias extrativas e de transformação. Permite monitorar o dinamismo do setor secundário brasileiro.",
-    methodologySummary: "Apurada a partir de amostra de estabelecimentos industriais com ajuste sazonal, contemplando bens de capital, intermediários e bens de consumo duráveis/semiduráveis.",
-    historicalData: [
-      { period: "Fev/24", value: 0.1, formattedValue: "+0,1%" },
-      { period: "Mar/24", value: 0.4, formattedValue: "+0,4%" },
-      { period: "Abr/24", value: -0.5, formattedValue: "-0,5%" },
-      { period: "Mai/24", value: -1.8, formattedValue: "-1,8%" },
-      { period: "Jun/24", value: 4.3, formattedValue: "+4,3%" },
-      { period: "Jul/24", value: -1.4, formattedValue: "-1,4%" },
-      { period: "Ago/24", value: 0.1, formattedValue: "+0,1%" },
-    ],
+    "id": "producao-industrial",
+    "name": "Produção Física Industrial (PIM-PF)",
+    "shortName": "Produção Industrial",
+    "value": -0.6,
+    "formattedValue": "-0,60%",
+    "unit": "% a.m.",
+    "variation": -0.7,
+    "variationPeriod": "vs. mês anterior (+0,10%)",
+    "previousValue": 0.1,
+    "formattedPreviousValue": "+0,10%",
+    "referencePeriod": "agosto 2026",
+    "source": "IBGE",
+    "sourceAgency": "IBGE - Coordenação de Indústria",
+    "sourceUrl": "https://www.ibge.gov.br/estatisticas/economicas/industria/9294-pesquisa-industrial-mensal-producao-fisica-brasil.html",
+    "officialSeriesCode": "Tabela SIDRA 8888 / PIM-PF",
+    "updatedAt": "09/10/2026",
+    "frequency": "Mensal",
+    "category": "Atividade Econômica",
+    "description": "Pesquisa que avalia a produção física nos setores de indústrias extrativas e de transformação.",
+    "methodologySummary": "Apurada a partir de amostra de estabelecimentos industriais com ajuste sazonal.",
+    "historicalData": [
+      {
+        "period": "Fev/24",
+        "value": 0.1,
+        "formattedValue": "+0,1%"
+      },
+      {
+        "period": "Mar/24",
+        "value": 0.4,
+        "formattedValue": "+0,4%"
+      },
+      {
+        "period": "Abr/24",
+        "value": -0.5,
+        "formattedValue": "-0,5%"
+      },
+      {
+        "period": "Mai/24",
+        "value": -1.8,
+        "formattedValue": "-1,8%"
+      },
+      {
+        "period": "Jun/24",
+        "value": 4.3,
+        "formattedValue": "+4,3%"
+      },
+      {
+        "period": "Jul/24",
+        "value": -1.4,
+        "formattedValue": "-1,4%"
+      },
+      {
+        "period": "Ago/24",
+        "value": 0.1,
+        "formattedValue": "+0,1%"
+      }
+    ]
   },
   {
-    id: "comercio",
-    name: "Pesquisa Mensal de Comércio (PMC - Varejo)",
-    shortName: "Comércio Varejista",
-    value: 0.6,
-    formattedValue: "+0,6%",
-    unit: "% a.m.",
-    variation: 0.4,
-    variationPeriod: "vs. mês anterior (+0,2%)",
-    previousValue: 0.2,
-    formattedPreviousValue: "+0,2%",
-    referencePeriod: "Julho/2024",
-    source: "IBGE",
-    sourceAgency: "IBGE - Coordenação de Serviços e Comércio",
-    sourceUrl: "https://www.ibge.gov.br/estatisticas/economicas/comercio/9227-pesquisa-mensal-de-comercio.html",
-    officialSeriesCode: "Tabela SIDRA 3416 / PMC",
-    updatedAt: "12/09/2024",
-    frequency: "Mensal",
-    category: "Atividade Econômica",
-    description: "Mede o comportamento do volume de vendas no comércio varejista (restrito e ampliado) nacional, refletindo o poder de compra e demanda das famílias brasileiras.",
-    methodologySummary: "Amostra probabilística de empresas comerciais em todo o país com receita bruta anual significativa, com ajuste sazonal.",
-    historicalData: [
-      { period: "Jan/24", value: 2.5, formattedValue: "+2,5%" },
-      { period: "Fev/24", value: 1.0, formattedValue: "+1,0%" },
-      { period: "Mar/24", value: 0.1, formattedValue: "+0,1%" },
-      { period: "Abr/24", value: 0.9, formattedValue: "+0,9%" },
-      { period: "Mai/24", value: 0.8, formattedValue: "+0,8%" },
-      { period: "Jun/24", value: 0.2, formattedValue: "+0,2%" },
-      { period: "Jul/24", value: 0.6, formattedValue: "+0,6%" },
-    ],
+    "id": "comercio",
+    "name": "Pesquisa Mensal de Comércio (PMC - Varejo)",
+    "shortName": "Comércio Varejista",
+    "value": -0.8,
+    "formattedValue": "-0,80%",
+    "unit": "% a.m.",
+    "variation": -1.1,
+    "variationPeriod": "vs. mês anterior (+0,30%)",
+    "previousValue": 0.3,
+    "formattedPreviousValue": "+0,30%",
+    "referencePeriod": "julho 2026",
+    "source": "IBGE",
+    "sourceAgency": "IBGE - Coordenação de Serviços e Comércio",
+    "sourceUrl": "https://www.ibge.gov.br/estatisticas/economicas/comercio/9227-pesquisa-mensal-de-comercio.html",
+    "officialSeriesCode": "Tabela SIDRA 3416 / PMC",
+    "updatedAt": "09/10/2026",
+    "frequency": "Mensal",
+    "category": "Atividade Econômica",
+    "description": "Mede o comportamento do volume de vendas no comércio varejista (restrito e ampliado) nacional.",
+    "methodologySummary": "Amostra probabilística de empresas comerciais com ajuste sazonal.",
+    "historicalData": [
+      {
+        "period": "Jan/24",
+        "value": 2.5,
+        "formattedValue": "+2,5%"
+      },
+      {
+        "period": "Fev/24",
+        "value": 1,
+        "formattedValue": "+1,0%"
+      },
+      {
+        "period": "Mar/24",
+        "value": 0.1,
+        "formattedValue": "+0,1%"
+      },
+      {
+        "period": "Abr/24",
+        "value": 0.9,
+        "formattedValue": "+0,9%"
+      },
+      {
+        "period": "Mai/24",
+        "value": 0.8,
+        "formattedValue": "+0,8%"
+      },
+      {
+        "period": "Jun/24",
+        "value": 0.2,
+        "formattedValue": "+0,2%"
+      },
+      {
+        "period": "Jul/24",
+        "value": 0.6,
+        "formattedValue": "+0,6%"
+      }
+    ]
   },
   {
-    id: "servicos",
-    name: "Pesquisa Mensal de Serviços (PMS - Volume)",
-    shortName: "Volume de Serviços",
-    value: 1.2,
-    formattedValue: "+1,2%",
-    unit: "% a.m.",
-    variation: 1.0,
-    variationPeriod: "vs. mês anterior (+0,2%)",
-    previousValue: 0.2,
-    formattedPreviousValue: "+0,2%",
-    referencePeriod: "Julho/2024",
-    source: "IBGE",
-    sourceAgency: "IBGE - Coordenação de Serviços e Comércio",
-    sourceUrl: "https://www.ibge.gov.br/estatisticas/economicas/servicos-e-turismo/9229-pesquisa-mensal-de-servicos.html",
-    officialSeriesCode: "Tabela SIDRA 5906 / PMS",
-    updatedAt: "11/09/2024",
-    frequency: "Mensal",
-    category: "Atividade Econômica",
-    description: "Acompanha a receita nominal e o volume de serviços prestados no país. O setor terciário responde por cerca de 70% de todo o valor adicionado do PIB brasileiro.",
-    methodologySummary: "Cobre transportes, serviços de informação e comunicação, serviços profissionais, administrativos e serviços prestados diretamente às famílias.",
-    historicalData: [
-      { period: "Jan/24", value: 0.7, formattedValue: "+0,7%" },
-      { period: "Fev/24", value: -0.9, formattedValue: "-0,9%" },
-      { period: "Mar/24", value: 0.4, formattedValue: "+0,4%" },
-      { period: "Abr/24", value: 0.5, formattedValue: "+0,5%" },
-      { period: "Mai/24", value: 0.4, formattedValue: "+0,4%" },
-      { period: "Jun/24", value: 0.2, formattedValue: "+0,2%" },
-      { period: "Jul/24", value: 1.2, formattedValue: "+1,2%" },
-    ],
-  },
+    "id": "servicos",
+    "name": "Pesquisa Mensal de Serviços (PMS - Volume)",
+    "shortName": "Volume de Serviços",
+    "value": 0,
+    "formattedValue": "0,00%",
+    "unit": "% a.m.",
+    "variation": -0.1,
+    "variationPeriod": "vs. mês anterior (+0,10%)",
+    "previousValue": 0.1,
+    "formattedPreviousValue": "+0,10%",
+    "referencePeriod": "julho 2026",
+    "source": "IBGE",
+    "sourceAgency": "IBGE - Coordenação de Serviços e Comércio",
+    "sourceUrl": "https://www.ibge.gov.br/estatisticas/economicas/servicos-e-turismo/9229-pesquisa-mensal-de-servicos.html",
+    "officialSeriesCode": "Tabela SIDRA 5906 / PMS",
+    "updatedAt": "09/10/2026",
+    "frequency": "Mensal",
+    "category": "Atividade Econômica",
+    "description": "Acompanha a receita nominal e o volume de serviços prestados no país. O setor responde por cerca de 70% do PIB brasileiro.",
+    "methodologySummary": "Cobre transportes, informação e comunicação, serviços profissionais e às famílias.",
+    "historicalData": [
+      {
+        "period": "Jan/24",
+        "value": 0.7,
+        "formattedValue": "+0,7%"
+      },
+      {
+        "period": "Fev/24",
+        "value": -0.9,
+        "formattedValue": "-0,9%"
+      },
+      {
+        "period": "Mar/24",
+        "value": 0.4,
+        "formattedValue": "+0,4%"
+      },
+      {
+        "period": "Abr/24",
+        "value": 0.5,
+        "formattedValue": "+0,5%"
+      },
+      {
+        "period": "Mai/24",
+        "value": 0.4,
+        "formattedValue": "+0,4%"
+      },
+      {
+        "period": "Jun/24",
+        "value": 0.2,
+        "formattedValue": "+0,2%"
+      },
+      {
+        "period": "Jul/24",
+        "value": 1.2,
+        "formattedValue": "+1,2%"
+      }
+    ]
+  }
 ];

@@ -61,6 +61,7 @@ export default function App() {
       <Header
         dataset={currentDataset}
         currentRoute={currentRoute}
+        indicators={indicators}
         onOpenMethodology={() => setIsMethodologyOpen(true)}
         onOpenDataInspector={() => setIsDataInspectorOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}

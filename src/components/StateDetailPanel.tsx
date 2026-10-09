@@ -38,8 +38,9 @@ export const StateDetailPanel: React.FC<StateDetailPanelProps> = ({
     dataset.candidates.map((c) => [c.id, c])
   );
 
-  const winner: Candidate | undefined = candidatesMap[stateData.winnerId];
-  const runnerUpResult = stateData.candidates[1];
+  const sortedCandidates = [...stateData.candidates].sort((a, b) => b.votes - a.votes);
+  const winner: Candidate | undefined = candidatesMap[stateData.winnerId] || candidatesMap[sortedCandidates[0]?.candidateId];
+  const runnerUpResult = sortedCandidates[1];
   const runnerUp: Candidate | undefined = runnerUpResult
     ? candidatesMap[runnerUpResult.candidateId]
     : undefined;

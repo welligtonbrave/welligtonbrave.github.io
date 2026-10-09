@@ -102,7 +102,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
                 Segundo Turno Confirmado: Flávio Bolsonaro vs. Lula
               </h4>
               <p className="text-xs sm:text-sm text-slate-700 mt-0.5 leading-relaxed">
-                Nenhum dos candidatos alcançou mais de 50% dos votos válidos no 1º turno. Conforme preconiza o Artigo 77 da Constituição Federal, <strong>Flávio Bolsonaro (47,03%)</strong> e <strong>Lula (45,16%)</strong> avançam para a votação definitiva no 2º turno.
+                Nenhum dos candidatos alcançou mais de 50% dos votos válidos no 1º turno. Conforme preconiza o Artigo 77 da Constituição Federal, <strong>Flávio Bolsonaro ({formatPercentBR(flavioTotal?.percentage || 44.79)})</strong> e <strong>Lula ({formatPercentBR(lulaTotal?.percentage || 43.01)})</strong> avançam para a votação definitiva no 2º turno.
               </p>
             </div>
           </div>
@@ -125,7 +125,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
               </h3>
             </div>
             <div className="text-xs font-mono font-bold text-slate-700 bg-white px-3 py-1.5 rounded-lg border border-slate-200 self-start sm:self-auto">
-              Total Votos Válidos: 125.272.513
+              Total Votos Válidos: {formatVotesBR(summary.validVotes)}
             </div>
           </div>
 
@@ -147,17 +147,17 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
                 </div>
                 <div className="flex items-baseline gap-2">
                   <span className="font-mono text-base sm:text-lg font-black text-blue-900">
-                    47,03%
+                    {formatPercentBR(flavioTotal?.percentage || 44.79)}
                   </span>
                   <span className="font-mono text-xs text-slate-500">
-                    (56.104.268 votos)
+                    ({formatVotesBR(flavioTotal?.votes || 0)} votos)
                   </span>
                 </div>
               </div>
               <div className="h-4 bg-slate-200 rounded-full overflow-hidden flex">
                 <div
                   className="h-full bg-blue-700 rounded-full transition-all duration-500"
-                  style={{ width: "47.03%" }}
+                  style={{ width: `${flavioTotal?.percentage || 44.79}%` }}
                 />
               </div>
             </div>
@@ -178,17 +178,17 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
                 </div>
                 <div className="flex items-baseline gap-2">
                   <span className="font-mono text-base sm:text-lg font-black text-red-900">
-                    45,16%
+                    {formatPercentBR(lulaTotal?.percentage || 43.01)}
                   </span>
                   <span className="font-mono text-xs text-slate-500">
-                    (53.876.617 votos)
+                    ({formatVotesBR(lulaTotal?.votes || 0)} votos)
                   </span>
                 </div>
               </div>
               <div className="h-4 bg-slate-200 rounded-full overflow-hidden flex">
                 <div
                   className="h-full bg-red-600 rounded-full transition-all duration-500"
-                  style={{ width: "45.16%" }}
+                  style={{ width: `${lulaTotal?.percentage || 43.01}%` }}
                 />
               </div>
             </div>
@@ -196,29 +196,29 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
             {/* Barra Combinada com Linha de Corte de 50% */}
             <div className="pt-4 sm:pt-3">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-6 sm:mb-5">
-                <span>Distribuição dos 125.272.513 votos válidos</span>
+                <span>Distribuição dos {formatVotesBR(summary.validVotes)} votos válidos</span>
                 <span className="text-blue-800">
-                  Diferença: +{formatVotesBR(voteDiff)} votos (+1,87 p.p.)
+                  Diferença: +{formatVotesBR(voteDiff)} votos (+{((flavioTotal?.percentage || 0) - (lulaTotal?.percentage || 0)).toFixed(2).replace(".", ",")} p.p.)
                 </span>
               </div>
               <div className="relative h-6 bg-slate-200 rounded-lg overflow-hidden flex shadow-inner">
                 {/* Segmento Flávio */}
                 <div
                   className="h-full bg-blue-700 transition-all duration-300"
-                  style={{ width: "47.03%" }}
-                  title="Flávio Bolsonaro: 47,03%"
+                  style={{ width: `${flavioTotal?.percentage || 44.79}%` }}
+                  title={`Flávio Bolsonaro: ${formatPercentBR(flavioTotal?.percentage || 44.79)}`}
                 />
                 {/* Segmento Lula */}
                 <div
                   className="h-full bg-red-600 transition-all duration-300"
-                  style={{ width: "45.16%" }}
-                  title="Lula: 45,16%"
+                  style={{ width: `${lulaTotal?.percentage || 43.01}%` }}
+                  title={`Lula: ${formatPercentBR(lulaTotal?.percentage || 43.01)}`}
                 />
                 {/* Segmento Outros */}
                 <div
                   className="h-full bg-slate-500 transition-all duration-300"
-                  style={{ width: "7.81%" }}
-                  title="Outros Candidatos: 7,81%"
+                  style={{ width: `${outrosTotal?.percentage || 12.21}%` }}
+                  title={`Outros Candidatos: ${formatPercentBR(outrosTotal?.percentage || 12.21)}`}
                 />
 
                 {/* Marcador Constitucional de 50% */}

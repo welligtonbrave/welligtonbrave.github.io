@@ -95,7 +95,7 @@ export const CANDIDATES_2026: Candidate[] = [
     color: "#1D4ED8", // Royal Blue
     colorMuted: "#93C5FD",
     nationalVotes: 56104268,
-    nationalPercentage: 47.03
+    nationalPercentage: 44.79
   },
   {
     id: "lula",
@@ -107,7 +107,7 @@ export const CANDIDATES_2026: Candidate[] = [
     color: "#DC2626", // Deep Red
     colorMuted: "#FCA5A5",
     nationalVotes: 53876617,
-    nationalPercentage: 45.16
+    nationalPercentage: 43.01
   },
   {
     id: "outros",
@@ -119,7 +119,7 @@ export const CANDIDATES_2026: Candidate[] = [
     color: "#64748B", // Slate
     colorMuted: "#CBD5E1",
     nationalVotes: 15291628,
-    nationalPercentage: 7.81
+    nationalPercentage: 12.21
   }
 ];
 
@@ -1223,55 +1223,85 @@ export const AVAILABLE_DATASETS: ElectionDataSet[] = [
 ];
 
 export function calculateNationalSummary(dataset: ElectionDataSet): NationalSummary {
-  const electorate = 156454011;
-  const validVotes = 125272513;
-  const blankVotes = 2300781;
-  const nullVotes = 3674149;
-  const turnout = validVotes + blankVotes + nullVotes;
-  const abstention = electorate - turnout;
+  const states = Object.values(dataset.states);
 
-  const candidateMap: Record<string, { votes: number; statesWon: number; ufsWon: string[]; pct: number }> = {
-    flavio: { votes: 56104268, statesWon: 0, ufsWon: [], pct: 47.03 },
-    lula: { votes: 53876617, statesWon: 0, ufsWon: [], pct: 45.16 },
-    outros: { votes: 15291628, statesWon: 0, ufsWon: [], pct: 7.81 }
-  };
+  let electorate = 0;
+  let turnout = 0;
+  let abstention = 0;
+  let validVotes = 0;
+  let blankVotes = 0;
+  let nullVotes = 0;
+  let sectionsTotal = 0;
+  let sectionsCounted = 0;
 
-  Object.values(dataset.states).forEach(st => {
-    if (candidateMap[st.winnerId]) {
-      candidateMap[st.winnerId].statesWon += 1;
-      candidateMap[st.winnerId].ufsWon.push(st.uf);
+  const candidateVotesMap: Record<string, { votes: number; statesWon: number; ufsWon: string[] }> = {};
+  dataset.candidates.forEach((c) => {
+    candidateVotesMap[c.id] = { votes: 0, statesWon: 0, ufsWon: [] };
+  });
+
+  states.forEach((st) => {
+    electorate += st.electorate;
+    turnout += st.turnout;
+    abstention += st.abstention;
+    validVotes += st.validVotes;
+    blankVotes += st.blankVotes;
+    nullVotes += st.nullVotes;
+    sectionsTotal += st.sectionsTotal;
+    sectionsCounted += st.sectionsCounted;
+
+    st.candidates.forEach((c) => {
+      if (candidateVotesMap[c.candidateId]) {
+        candidateVotesMap[c.candidateId].votes += c.votes;
+      }
+    });
+
+    if (candidateVotesMap[st.winnerId]) {
+      candidateVotesMap[st.winnerId].statesWon += 1;
+      candidateVotesMap[st.winnerId].ufsWon.push(st.uf);
     }
   });
 
-  const candidateTotals = dataset.candidates.map(c => {
-    const data = candidateMap[c.id];
+  const candidateTotals = dataset.candidates.map((c) => {
+    const data = candidateVotesMap[c.id] || { votes: 0, statesWon: 0, ufsWon: [] };
+    const percentage = validVotes > 0 ? Number(((data.votes / validVotes) * 100).toFixed(2)) : 0;
     return {
       candidateId: c.id,
       votes: data.votes,
-      percentage: data.pct,
+      percentage,
       statesWon: data.statesWon,
-      ufsWon: data.ufsWon
+      ufsWon: data.ufsWon,
     };
   }).sort((a, b) => b.votes - a.votes);
+
+  const topTwoCandidates: [string, string] = [
+    candidateTotals[0]?.candidateId || "flavio",
+    candidateTotals[1]?.candidateId || "lula",
+  ];
+
+  const countingProgress = sectionsTotal > 0
+    ? Number(((sectionsCounted / sectionsTotal) * 100).toFixed(2))
+    : 100.0;
+
+  const isRunoffRequired = (candidateTotals[0]?.percentage || 0) <= 50.0;
 
   return {
     electorate,
     turnout,
-    turnoutPercentage: Number(((turnout / electorate) * 100).toFixed(2)),
+    turnoutPercentage: electorate > 0 ? Number(((turnout / electorate) * 100).toFixed(2)) : 0,
     abstention,
-    abstentionPercentage: Number(((abstention / electorate) * 100).toFixed(2)),
+    abstentionPercentage: electorate > 0 ? Number(((abstention / electorate) * 100).toFixed(2)) : 0,
     validVotes,
-    validVotesPercentage: 100.0,
+    validVotesPercentage: turnout > 0 ? Number(((validVotes / turnout) * 100).toFixed(2)) : 100.0,
     blankVotes,
-    blankVotesPercentage: 1.84, // Official TSE metric specified: 1.84%
+    blankVotesPercentage: turnout > 0 ? Number(((blankVotes / turnout) * 100).toFixed(2)) : 0,
     nullVotes,
-    nullVotesPercentage: 2.93, // Official TSE metric specified: 2.93%
-    sectionsTotal: 497000,
-    sectionsCounted: 497000,
-    countingProgress: 100.0,
+    nullVotesPercentage: turnout > 0 ? Number(((nullVotes / turnout) * 100).toFixed(2)) : 0,
+    sectionsTotal,
+    sectionsCounted,
+    countingProgress,
     candidateTotals,
-    isRunoffRequired: true,
-    topTwoCandidates: ["flavio", "lula"]
+    isRunoffRequired,
+    topTwoCandidates,
   };
 }
 

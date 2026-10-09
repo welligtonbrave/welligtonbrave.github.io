@@ -628,6 +628,9 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
               const isSelected = selectedStateUf === geo.uf;
               const fill = getStateColor(geo.uf);
               const opacity = getStateOpacity(geo.uf);
+              const stateResult = dataset.states[geo.uf];
+              const winnerName = stateResult?.winnerId === "flavio" ? "Flávio Bolsonaro" : "Lula";
+              const winnerPct = stateResult?.candidates[0]?.percentage || 0;
 
               return (
                 <path
@@ -638,12 +641,21 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
                   stroke="#FFFFFF"
                   strokeWidth={isSelected ? 2.6 : 1.1}
                   strokeLinejoin="round"
-                  className={`brazil-state-path ${
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`${geo.name} (${geo.uf}): 1º lugar ${winnerName} com ${winnerPct}%. Clique para ver apuração completa.`}
+                  className={`brazil-state-path focus:outline-none focus:ring-2 focus:ring-slate-900 cursor-pointer ${
                     isSelected ? "is-selected" : ""
                   }`}
                   onClick={(e) => {
                     e.stopPropagation();
                     handleStateClick(geo.uf);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleStateClick(geo.uf);
+                    }
                   }}
                   onMouseEnter={(e) => handleStateMouseEnter(e, geo)}
                   onMouseMove={handleStateMouseMove}
@@ -665,10 +677,19 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
                   <g
                     key={`conector-${geo.uf}`}
                     opacity={opacity}
-                    className="cursor-pointer pointer-events-auto transition-transform hover:scale-110 active:scale-95"
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`Selecionar estado ${geo.name} (${geo.uf})`}
+                    className="cursor-pointer pointer-events-auto transition-transform hover:scale-110 active:scale-95 focus:outline-none"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleStateClick(geo.uf);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleStateClick(geo.uf);
+                      }
                     }}
                   >
                     <line
