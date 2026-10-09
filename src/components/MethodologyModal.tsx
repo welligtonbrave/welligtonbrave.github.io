@@ -48,7 +48,7 @@ export const MethodologyModal: React.FC<MethodologyModalProps> = ({
               1. Cálculo Constitucional sobre Votos Válidos
             </h4>
             <p>
-              Em estrita consonância com o <strong>Art. 77, § 2º da Constituição Federal de 1988</strong> e as resoluções vigentes do Tribunal Superior Eleitoral (TSE), todas as porcentagens de votação nominal dos candidatos a Presidente da República apresentadas nesta visualização são calculadas <strong>exclusivamente sobre os votos válidos</strong> (125.272.513 votos).
+              Em estrita consonância com o <strong>Art. 77, § 2º da Constituição Federal de 1988</strong> e as resoluções vigentes do Tribunal Superior Eleitoral (TSE), todas as porcentagens de votação nominal dos candidatos a Presidente da República apresentadas nesta visualização são calculadas <strong>exclusivamente sobre os votos válidos</strong> (119.297.583 votos nominais).
             </p>
             <p className="mt-2 text-stone-500 italic text-xs">
               “Será considerado eleito o candidato que obtiver a maioria absoluta de votos, não computados os em branco e os nulos.” (Art. 77, § 2º, CF/88)
@@ -72,7 +72,7 @@ export const MethodologyModal: React.FC<MethodologyModalProps> = ({
                 <strong>Lula (PT, nº 13):</strong> 53.876.617 votos — 45,16%
               </li>
               <li>
-                <strong>Demais Candidatos somados:</strong> 15.291.628 votos — 7,81%
+                <strong>Demais Candidatos somados:</strong> 9.316.698 votos — 7,81%
               </li>
             </ul>
           </div>
@@ -87,11 +87,12 @@ export const MethodologyModal: React.FC<MethodologyModalProps> = ({
               Na totalização oficial de 100% das urnas eletrônicas brasileiras foram registrados:
             </p>
             <ul className="list-disc list-inside mt-1.5 space-y-1 text-xs text-stone-700">
-              <li><strong>Votos em Branco:</strong> 2.300.781 (1,84%)</li>
-              <li><strong>Votos Nulos:</strong> 3.674.149 (2,93%)</li>
-              <li><strong>Total de Votos Válidos:</strong> 125.272.513</li>
-              <li><strong>Total de Comparecimento:</strong> 131.247.443 eleitores</li>
-              <li><strong>Abstenção Nacional:</strong> 25.206.568 eleitores</li>
+              <li><strong>Votos em Branco:</strong> 2.300.781 (1,84% do comparecimento)</li>
+              <li><strong>Votos Nulos:</strong> 3.674.149 (2,93% do comparecimento)</li>
+              <li><strong>Total de Votos Válidos:</strong> 119.297.583 (95,23% do comparecimento)</li>
+              <li><strong>Total de Comparecimento:</strong> 125.272.513 eleitores (80,07% do eleitorado)</li>
+              <li><strong>Abstenção Nacional:</strong> 31.181.498 eleitores (19,93% do eleitorado)</li>
+              <li><strong>Eleitorado Total:</strong> 156.454.011 eleitores aptos no TSE</li>
             </ul>
           </div>
 

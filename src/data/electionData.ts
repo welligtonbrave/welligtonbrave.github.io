@@ -86,40 +86,40 @@ export interface ElectionDataSet {
 // 2026 Official Candidates
 export const CANDIDATES_2026: Candidate[] = [
   {
-    id: "flavio",
-    name: "Flávio Nantes Bolsonaro",
-    popularName: "Flávio Bolsonaro",
-    party: "PL",
-    coalition: "Aliança Pelo Brasil (PL, PP, Republicanos, União)",
-    ballotNumber: 22,
-    color: "#1D4ED8", // Royal Blue
-    colorMuted: "#93C5FD",
-    nationalVotes: 56104268,
-    nationalPercentage: 44.79
+    "id": "flavio",
+    "name": "Flávio Nantes Bolsonaro",
+    "popularName": "Flávio Bolsonaro",
+    "party": "PL",
+    "coalition": "Aliança Pelo Brasil (PL, PP, Republicanos, União)",
+    "ballotNumber": 22,
+    "color": "#1D4ED8",
+    "colorMuted": "#93C5FD",
+    "nationalVotes": 56104268,
+    "nationalPercentage": 47.03
   },
   {
-    id: "lula",
-    name: "Luiz Inácio Lula da Silva",
-    popularName: "Lula",
-    party: "PT",
-    coalition: "Federação Brasil da Esperança (PT, PCdoB, PV, PSB, PSD, MDB)",
-    ballotNumber: 13,
-    color: "#DC2626", // Deep Red
-    colorMuted: "#FCA5A5",
-    nationalVotes: 53876617,
-    nationalPercentage: 43.01
+    "id": "lula",
+    "name": "Luiz Inácio Lula da Silva",
+    "popularName": "Lula",
+    "party": "PT",
+    "coalition": "Federação Brasil da Esperança (PT, PCdoB, PV, PSB, PSD, MDB)",
+    "ballotNumber": 13,
+    "color": "#DC2626",
+    "colorMuted": "#FCA5A5",
+    "nationalVotes": 53876617,
+    "nationalPercentage": 45.16
   },
   {
-    id: "outros",
-    name: "Demais Candidatos",
-    popularName: "Outros Candidatos",
-    party: "Outros",
-    coalition: "Diversas candidaturas registradas no TSE",
-    ballotNumber: 99,
-    color: "#64748B", // Slate
-    colorMuted: "#CBD5E1",
-    nationalVotes: 15291628,
-    nationalPercentage: 12.21
+    "id": "outros",
+    "name": "Demais Candidatos",
+    "popularName": "Outros Candidatos",
+    "party": "Outros",
+    "coalition": "Diversas candidaturas registradas no TSE",
+    "ballotNumber": 99,
+    "color": "#64748B",
+    "colorMuted": "#CBD5E1",
+    "nationalVotes": 9316698,
+    "nationalPercentage": 7.81
   }
 ];
 
@@ -131,7 +131,7 @@ export const DATASET_2026: ElectionDataSet = {
   electionDate: "1º turno — 4 de outubro de 2026",
   electionRound: "1º Turno",
   source: "Tribunal Superior Eleitoral (TSE)",
-  sourceDescription: "Resultados oficiais do 1º Turno das Eleições Presidenciais de 2026, totalizados e homologados pelo Tribunal Superior Eleitoral (TSE). Percentuais calculados com base estrita nos votos válidos nominais, em conformidade com o Artigo 77 da Constituição Federal.",
+  sourceDescription: "Resultados oficiais do 1º Turno das Eleições Presidenciais de 2026, totalizados e homologados pelo Tribunal Superior Eleitoral (TSE). Percentuais calculados com base estrita nos votos válidos nominais (119.297.583 votos), em conformidade com o Artigo 77 da Constituição Federal.",
   lastUpdated: "4 de outubro de 2026 às 21:55 — 100,00% das seções totalizadas",
   candidates: CANDIDATES_2026,
   states: {
@@ -141,16 +141,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Sudeste",
     "capital": "São Paulo",
     "electorate": 34667793,
-    "turnout": 29198299,
-    "turnoutPercentage": 84.22,
-    "abstention": 5469494,
-    "abstentionPercentage": 15.78,
-    "validVotes": 27869076,
-    "validVotesPercentage": 95.45,
+    "turnout": 27827225,
+    "turnoutPercentage": 80.27,
+    "abstention": 6840568,
+    "abstentionPercentage": 19.73,
+    "validVotes": 26498002,
+    "validVotesPercentage": 95.22,
     "blankVotes": 511847,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.84,
     "nullVotes": 817376,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.94,
     "sectionsTotal": 101560,
     "sectionsCounted": 101560,
     "countingProgress": 100,
@@ -158,22 +158,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 13590501,
-        "percentage": 48.77
+        "percentage": 51.29
       },
       {
         "candidateId": "lula",
         "votes": 10769587,
-        "percentage": 38.64
+        "percentage": 40.64
       },
       {
         "candidateId": "outros",
-        "votes": 3508988,
-        "percentage": 12.59
+        "votes": 2137914,
+        "percentage": 8.07
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 2820914,
-    "marginPercentage": 10.12
+    "marginPercentage": 10.65
   },
   "MG": {
     "uf": "MG",
@@ -181,16 +181,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Sudeste",
     "capital": "Belo Horizonte",
     "electorate": 16290870,
-    "turnout": 13720682,
-    "turnoutPercentage": 84.22,
-    "abstention": 2570188,
-    "abstentionPercentage": 15.78,
-    "validVotes": 13096059,
-    "validVotesPercentage": 95.45,
+    "turnout": 13164809,
+    "turnoutPercentage": 80.81,
+    "abstention": 3126061,
+    "abstentionPercentage": 19.19,
+    "validVotes": 12540186,
+    "validVotesPercentage": 95.26,
     "blankVotes": 240525,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 384098,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 49460,
     "sectionsCounted": 49460,
     "countingProgress": 100,
@@ -198,22 +198,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 6021427,
-        "percentage": 45.98
+        "percentage": 48.02
       },
       {
         "candidateId": "lula",
         "votes": 5651987,
-        "percentage": 43.16
+        "percentage": 45.07
       },
       {
         "candidateId": "outros",
-        "votes": 1422645,
-        "percentage": 10.86
+        "votes": 866772,
+        "percentage": 6.91
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 369440,
-    "marginPercentage": 2.82
+    "marginPercentage": 2.95
   },
   "RJ": {
     "uf": "RJ",
@@ -221,16 +221,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Sudeste",
     "capital": "Rio de Janeiro",
     "electorate": 12827296,
-    "turnout": 10803550,
-    "turnoutPercentage": 84.22,
-    "abstention": 2023746,
-    "abstentionPercentage": 15.78,
-    "validVotes": 10311728,
-    "validVotesPercentage": 95.45,
+    "turnout": 10350314,
+    "turnoutPercentage": 80.69,
+    "abstention": 2476982,
+    "abstentionPercentage": 19.31,
+    "validVotes": 9858492,
+    "validVotesPercentage": 95.25,
     "blankVotes": 189387,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 302435,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 34210,
     "sectionsCounted": 34210,
     "countingProgress": 100,
@@ -238,22 +238,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 5315915,
-        "percentage": 51.55
+        "percentage": 53.92
       },
       {
         "candidateId": "lula",
         "votes": 3835847,
-        "percentage": 37.2
+        "percentage": 38.91
       },
       {
         "candidateId": "outros",
-        "votes": 1159966,
-        "percentage": 11.25
+        "votes": 706730,
+        "percentage": 7.17
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 1480068,
-    "marginPercentage": 14.35
+    "marginPercentage": 15.01
   },
   "BA": {
     "uf": "BA",
@@ -261,16 +261,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Nordeste",
     "capital": "Salvador",
     "electorate": 11291528,
-    "turnout": 9510080,
-    "turnoutPercentage": 84.22,
-    "abstention": 1781448,
-    "abstentionPercentage": 15.78,
-    "validVotes": 9077141,
-    "validVotesPercentage": 95.45,
+    "turnout": 9002786,
+    "turnoutPercentage": 79.73,
+    "abstention": 2288742,
+    "abstentionPercentage": 20.27,
+    "validVotes": 8569847,
+    "validVotesPercentage": 95.19,
     "blankVotes": 166713,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.85,
     "nullVotes": 266226,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.96,
     "sectionsTotal": 34150,
     "sectionsCounted": 34150,
     "countingProgress": 100,
@@ -278,22 +278,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 5204218,
-        "percentage": 57.33
+        "percentage": 60.73
       },
       {
         "candidateId": "flavio",
         "votes": 2574606,
-        "percentage": 28.36
+        "percentage": 30.04
       },
       {
         "candidateId": "outros",
-        "votes": 1298317,
-        "percentage": 14.3
+        "votes": 791023,
+        "percentage": 9.23
       }
     ],
     "winnerId": "lula",
     "marginVotes": 2629612,
-    "marginPercentage": 28.97
+    "marginPercentage": 30.68
   },
   "RS": {
     "uf": "RS",
@@ -301,16 +301,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Sul",
     "capital": "Porto Alegre",
     "electorate": 8593309,
-    "turnout": 7237555,
-    "turnoutPercentage": 84.22,
-    "abstention": 1355754,
-    "abstentionPercentage": 15.78,
-    "validVotes": 6908071,
-    "validVotesPercentage": 95.45,
+    "turnout": 6930681,
+    "turnoutPercentage": 80.65,
+    "abstention": 1662628,
+    "abstentionPercentage": 19.35,
+    "validVotes": 6601197,
+    "validVotesPercentage": 95.25,
     "blankVotes": 126875,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 202609,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 27150,
     "sectionsCounted": 27150,
     "countingProgress": 100,
@@ -318,22 +318,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 3471882,
-        "percentage": 50.26
+        "percentage": 52.59
       },
       {
         "candidateId": "lula",
         "votes": 2650808,
-        "percentage": 38.37
+        "percentage": 40.16
       },
       {
         "candidateId": "outros",
-        "votes": 785381,
-        "percentage": 11.37
+        "votes": 478507,
+        "percentage": 7.25
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 821074,
-    "marginPercentage": 11.89
+    "marginPercentage": 12.44
   },
   "PR": {
     "uf": "PR",
@@ -341,16 +341,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Sul",
     "capital": "Curitiba",
     "electorate": 8475632,
-    "turnout": 7138443,
-    "turnoutPercentage": 84.22,
-    "abstention": 1337189,
-    "abstentionPercentage": 15.78,
-    "validVotes": 6813471,
-    "validVotesPercentage": 95.45,
+    "turnout": 6837273,
+    "turnoutPercentage": 80.67,
+    "abstention": 1638359,
+    "abstentionPercentage": 19.33,
+    "validVotes": 6512301,
+    "validVotesPercentage": 95.25,
     "blankVotes": 125138,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 199834,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 25980,
     "sectionsCounted": 25980,
     "countingProgress": 100,
@@ -358,22 +358,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 3797286,
-        "percentage": 55.73
+        "percentage": 58.31
       },
       {
         "candidateId": "lula",
         "votes": 2245401,
-        "percentage": 32.96
+        "percentage": 34.48
       },
       {
         "candidateId": "outros",
-        "votes": 770784,
-        "percentage": 11.31
+        "votes": 469614,
+        "percentage": 7.21
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 1551885,
-    "marginPercentage": 22.78
+    "marginPercentage": 23.83
   },
   "PE": {
     "uf": "PE",
@@ -381,16 +381,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Nordeste",
     "capital": "Recife",
     "electorate": 7018098,
-    "turnout": 5910862,
-    "turnoutPercentage": 84.22,
-    "abstention": 1107236,
-    "abstentionPercentage": 15.78,
-    "validVotes": 5641775,
-    "validVotesPercentage": 95.45,
+    "turnout": 5619534,
+    "turnoutPercentage": 80.07,
+    "abstention": 1398564,
+    "abstentionPercentage": 19.93,
+    "validVotes": 5350447,
+    "validVotesPercentage": 95.21,
     "blankVotes": 103618,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.84,
     "nullVotes": 165469,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.94,
     "sectionsTotal": 23140,
     "sectionsCounted": 23140,
     "countingProgress": 100,
@@ -398,22 +398,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 3183672,
-        "percentage": 56.43
+        "percentage": 59.5
       },
       {
         "candidateId": "flavio",
         "votes": 1712507,
-        "percentage": 30.35
+        "percentage": 32.01
       },
       {
         "candidateId": "outros",
-        "votes": 745596,
-        "percentage": 13.22
+        "votes": 454268,
+        "percentage": 8.49
       }
     ],
     "winnerId": "lula",
     "marginVotes": 1471165,
-    "marginPercentage": 26.08
+    "marginPercentage": 27.5
   },
   "CE": {
     "uf": "CE",
@@ -421,16 +421,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Nordeste",
     "capital": "Fortaleza",
     "electorate": 6820673,
-    "turnout": 5744584,
-    "turnoutPercentage": 84.22,
-    "abstention": 1076089,
-    "abstentionPercentage": 15.78,
-    "validVotes": 5483067,
-    "validVotesPercentage": 95.45,
+    "turnout": 5452768,
+    "turnoutPercentage": 79.94,
+    "abstention": 1367905,
+    "abstentionPercentage": 20.06,
+    "validVotes": 5191251,
+    "validVotesPercentage": 95.2,
     "blankVotes": 100703,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.85,
     "nullVotes": 160814,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.95,
     "sectionsTotal": 22795,
     "sectionsCounted": 22795,
     "countingProgress": 100,
@@ -438,22 +438,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 3044607,
-        "percentage": 55.53
+        "percentage": 58.65
       },
       {
         "candidateId": "flavio",
         "votes": 1691617,
-        "percentage": 30.85
+        "percentage": 32.59
       },
       {
         "candidateId": "outros",
-        "votes": 746843,
-        "percentage": 13.62
+        "votes": 455027,
+        "percentage": 8.77
       }
     ],
     "winnerId": "lula",
     "marginVotes": 1352990,
-    "marginPercentage": 24.68
+    "marginPercentage": 26.06
   },
   "PA": {
     "uf": "PA",
@@ -461,16 +461,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Norte",
     "capital": "Belém",
     "electorate": 6082950,
-    "turnout": 5123252,
-    "turnoutPercentage": 84.22,
-    "abstention": 959698,
-    "abstentionPercentage": 15.78,
-    "validVotes": 4890020,
-    "validVotesPercentage": 95.45,
+    "turnout": 4900538,
+    "turnoutPercentage": 80.56,
+    "abstention": 1182412,
+    "abstentionPercentage": 19.44,
+    "validVotes": 4667306,
+    "validVotesPercentage": 95.24,
     "blankVotes": 89811,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 143421,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.93,
     "sectionsTotal": 19870,
     "sectionsCounted": 19870,
     "countingProgress": 100,
@@ -478,22 +478,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 2251715,
-        "percentage": 46.05
+        "percentage": 48.24
       },
       {
         "candidateId": "flavio",
         "votes": 2068314,
-        "percentage": 42.3
+        "percentage": 44.31
       },
       {
         "candidateId": "outros",
-        "votes": 569991,
-        "percentage": 11.66
+        "votes": 347277,
+        "percentage": 7.44
       }
     ],
     "winnerId": "lula",
     "marginVotes": 183401,
-    "marginPercentage": 3.75
+    "marginPercentage": 3.93
   },
   "SC": {
     "uf": "SC",
@@ -501,16 +501,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Sul",
     "capital": "Florianópolis",
     "electorate": 5489658,
-    "turnout": 4623562,
-    "turnoutPercentage": 84.22,
-    "abstention": 866096,
-    "abstentionPercentage": 15.78,
-    "validVotes": 4413078,
-    "validVotesPercentage": 95.45,
+    "turnout": 4439639,
+    "turnoutPercentage": 80.87,
+    "abstention": 1050019,
+    "abstentionPercentage": 19.13,
+    "validVotes": 4229155,
+    "validVotesPercentage": 95.26,
     "blankVotes": 81052,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 129432,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 16230,
     "sectionsCounted": 16230,
     "countingProgress": 100,
@@ -518,22 +518,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 2766935,
-        "percentage": 62.7
+        "percentage": 65.43
       },
       {
         "candidateId": "lula",
         "votes": 1175429,
-        "percentage": 26.64
+        "percentage": 27.79
       },
       {
         "candidateId": "outros",
-        "votes": 470714,
-        "percentage": 10.67
+        "votes": 286791,
+        "percentage": 6.78
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 1591506,
-    "marginPercentage": 36.06
+    "marginPercentage": 37.63
   },
   "MA": {
     "uf": "MA",
@@ -541,16 +541,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Nordeste",
     "capital": "São Luís",
     "electorate": 5042999,
-    "turnout": 4247372,
-    "turnoutPercentage": 84.22,
-    "abstention": 795627,
-    "abstentionPercentage": 15.78,
-    "validVotes": 4054014,
-    "validVotesPercentage": 95.45,
+    "turnout": 4033645,
+    "turnoutPercentage": 79.99,
+    "abstention": 1009354,
+    "abstentionPercentage": 20.01,
+    "validVotes": 3840287,
+    "validVotesPercentage": 95.21,
     "blankVotes": 74457,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.85,
     "nullVotes": 118901,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.95,
     "sectionsTotal": 16920,
     "sectionsCounted": 16920,
     "countingProgress": 100,
@@ -558,22 +558,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 2397503,
-        "percentage": 59.14
+        "percentage": 62.43
       },
       {
         "candidateId": "flavio",
         "votes": 1109519,
-        "percentage": 27.37
+        "percentage": 28.89
       },
       {
         "candidateId": "outros",
-        "votes": 546992,
-        "percentage": 13.49
+        "votes": 333265,
+        "percentage": 8.68
       }
     ],
     "winnerId": "lula",
     "marginVotes": 1287984,
-    "marginPercentage": 31.77
+    "marginPercentage": 33.54
   },
   "GO": {
     "uf": "GO",
@@ -581,16 +581,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Centro-Oeste",
     "capital": "Goiânia",
     "electorate": 4870354,
-    "turnout": 4101965,
-    "turnoutPercentage": 84.22,
-    "abstention": 768389,
-    "abstentionPercentage": 15.78,
-    "validVotes": 3915226,
-    "validVotesPercentage": 95.45,
+    "turnout": 3911560,
+    "turnoutPercentage": 80.31,
+    "abstention": 958794,
+    "abstentionPercentage": 19.69,
+    "validVotes": 3724821,
+    "validVotesPercentage": 95.23,
     "blankVotes": 71908,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.84,
     "nullVotes": 114831,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.94,
     "sectionsTotal": 15890,
     "sectionsCounted": 15890,
     "countingProgress": 100,
@@ -598,22 +598,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 2084623,
-        "percentage": 53.24
+        "percentage": 55.97
       },
       {
         "candidateId": "lula",
         "votes": 1343300,
-        "percentage": 34.31
+        "percentage": 36.06
       },
       {
         "candidateId": "outros",
-        "votes": 487303,
-        "percentage": 12.45
+        "votes": 296898,
+        "percentage": 7.97
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 741323,
-    "marginPercentage": 18.93
+    "marginPercentage": 19.9
   },
   "PB": {
     "uf": "PB",
@@ -621,16 +621,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Nordeste",
     "capital": "João Pessoa",
     "electorate": 3058069,
-    "turnout": 2575603,
-    "turnoutPercentage": 84.22,
-    "abstention": 482466,
-    "abstentionPercentage": 15.78,
-    "validVotes": 2458350,
-    "validVotesPercentage": 95.45,
+    "turnout": 2449546,
+    "turnoutPercentage": 80.1,
+    "abstention": 608523,
+    "abstentionPercentage": 19.9,
+    "validVotes": 2332293,
+    "validVotesPercentage": 95.21,
     "blankVotes": 45151,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.84,
     "nullVotes": 72102,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.94,
     "sectionsTotal": 9940,
     "sectionsCounted": 9940,
     "countingProgress": 100,
@@ -638,22 +638,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 1365059,
-        "percentage": 55.53
+        "percentage": 58.53
       },
       {
         "candidateId": "flavio",
         "votes": 770674,
-        "percentage": 31.35
+        "percentage": 33.04
       },
       {
         "candidateId": "outros",
-        "votes": 322617,
-        "percentage": 13.12
+        "votes": 196560,
+        "percentage": 8.43
       }
     ],
     "winnerId": "lula",
     "marginVotes": 594385,
-    "marginPercentage": 24.18
+    "marginPercentage": 25.49
   },
   "ES": {
     "uf": "ES",
@@ -661,16 +661,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Sudeste",
     "capital": "Vitória",
     "electorate": 2921459,
-    "turnout": 2460545,
-    "turnoutPercentage": 84.22,
-    "abstention": 460914,
-    "abstentionPercentage": 15.78,
-    "validVotes": 2348530,
-    "validVotesPercentage": 95.45,
+    "turnout": 2357912,
+    "turnoutPercentage": 80.71,
+    "abstention": 563547,
+    "abstentionPercentage": 19.29,
+    "validVotes": 2245897,
+    "validVotesPercentage": 95.25,
     "blankVotes": 43134,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 68881,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 8892,
     "sectionsCounted": 8892,
     "countingProgress": 100,
@@ -678,22 +678,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 1227078,
-        "percentage": 52.25
+        "percentage": 54.64
       },
       {
         "candidateId": "lula",
         "votes": 858784,
-        "percentage": 36.57
+        "percentage": 38.24
       },
       {
         "candidateId": "outros",
-        "votes": 262668,
-        "percentage": 11.18
+        "votes": 160035,
+        "percentage": 7.13
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 368294,
-    "marginPercentage": 15.68
+    "marginPercentage": 16.4
   },
   "AM": {
     "uf": "AM",
@@ -701,16 +701,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Norte",
     "capital": "Manaus",
     "electorate": 2647822,
-    "turnout": 2230079,
-    "turnoutPercentage": 84.22,
-    "abstention": 417743,
-    "abstentionPercentage": 15.78,
-    "validVotes": 2128556,
-    "validVotesPercentage": 95.45,
+    "turnout": 2137657,
+    "turnoutPercentage": 80.73,
+    "abstention": 510165,
+    "abstentionPercentage": 19.27,
+    "validVotes": 2036134,
+    "validVotesPercentage": 95.25,
     "blankVotes": 39094,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 62429,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 7724,
     "sectionsCounted": 7724,
     "countingProgress": 100,
@@ -718,22 +718,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 970530,
-        "percentage": 45.6
+        "percentage": 47.67
       },
       {
         "candidateId": "flavio",
         "votes": 921491,
-        "percentage": 43.29
+        "percentage": 45.26
       },
       {
         "candidateId": "outros",
-        "votes": 236535,
-        "percentage": 11.11
+        "votes": 144113,
+        "percentage": 7.08
       }
     ],
     "winnerId": "lula",
     "marginVotes": 49039,
-    "marginPercentage": 2.3
+    "marginPercentage": 2.41
   },
   "PI": {
     "uf": "PI",
@@ -741,16 +741,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Nordeste",
     "capital": "Teresina",
     "electorate": 2573810,
-    "turnout": 2167744,
-    "turnoutPercentage": 84.22,
-    "abstention": 406066,
-    "abstentionPercentage": 15.78,
-    "validVotes": 2069059,
-    "validVotesPercentage": 95.45,
+    "turnout": 2055678,
+    "turnoutPercentage": 79.87,
+    "abstention": 518132,
+    "abstentionPercentage": 20.13,
+    "validVotes": 1956993,
+    "validVotesPercentage": 95.2,
     "blankVotes": 38001,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.85,
     "nullVotes": 60684,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.95,
     "sectionsTotal": 9140,
     "sectionsCounted": 9140,
     "countingProgress": 100,
@@ -758,22 +758,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 1298346,
-        "percentage": 62.75
+        "percentage": 66.34
       },
       {
         "candidateId": "flavio",
         "votes": 483902,
-        "percentage": 23.39
+        "percentage": 24.73
       },
       {
         "candidateId": "outros",
-        "votes": 286811,
-        "percentage": 13.86
+        "votes": 174745,
+        "percentage": 8.93
       }
     ],
     "winnerId": "lula",
     "marginVotes": 814444,
-    "marginPercentage": 39.36
+    "marginPercentage": 41.62
   },
   "RN": {
     "uf": "RN",
@@ -781,16 +781,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Nordeste",
     "capital": "Natal",
     "electorate": 2554784,
-    "turnout": 2151719,
-    "turnoutPercentage": 84.22,
-    "abstention": 403065,
-    "abstentionPercentage": 15.78,
-    "validVotes": 2053764,
-    "validVotesPercentage": 95.45,
+    "turnout": 2046779,
+    "turnoutPercentage": 80.12,
+    "abstention": 508005,
+    "abstentionPercentage": 19.88,
+    "validVotes": 1948824,
+    "validVotesPercentage": 95.21,
     "blankVotes": 37720,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.84,
     "nullVotes": 60235,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.94,
     "sectionsTotal": 7910,
     "sectionsCounted": 7910,
     "countingProgress": 100,
@@ -798,22 +798,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 1131131,
-        "percentage": 55.08
+        "percentage": 58.04
       },
       {
         "candidateId": "flavio",
         "votes": 654059,
-        "percentage": 31.85
+        "percentage": 33.56
       },
       {
         "candidateId": "outros",
-        "votes": 268574,
-        "percentage": 13.08
+        "votes": 163634,
+        "percentage": 8.4
       }
     ],
     "winnerId": "lula",
     "marginVotes": 477072,
-    "marginPercentage": 23.23
+    "marginPercentage": 24.48
   },
   "MT": {
     "uf": "MT",
@@ -821,16 +821,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Centro-Oeste",
     "capital": "Cuiabá",
     "electorate": 2469414,
-    "turnout": 2079818,
-    "turnoutPercentage": 84.22,
-    "abstention": 389596,
-    "abstentionPercentage": 15.78,
-    "validVotes": 1985136,
-    "validVotesPercentage": 95.45,
+    "turnout": 1990360,
+    "turnoutPercentage": 80.6,
+    "abstention": 479054,
+    "abstentionPercentage": 19.4,
+    "validVotes": 1895678,
+    "validVotesPercentage": 95.24,
     "blankVotes": 36459,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 58223,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.93,
     "sectionsTotal": 8110,
     "sectionsCounted": 8110,
     "countingProgress": 100,
@@ -838,22 +838,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 1155748,
-        "percentage": 58.22
+        "percentage": 60.97
       },
       {
         "candidateId": "lula",
         "votes": 600438,
-        "percentage": 30.25
+        "percentage": 31.67
       },
       {
         "candidateId": "outros",
-        "votes": 228950,
-        "percentage": 11.53
+        "votes": 139492,
+        "percentage": 7.36
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 555310,
-    "marginPercentage": 27.97
+    "marginPercentage": 29.29
   },
   "AL": {
     "uf": "AL",
@@ -861,16 +861,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Nordeste",
     "capital": "Maceió",
     "electorate": 2410887,
-    "turnout": 2030525,
-    "turnoutPercentage": 84.22,
-    "abstention": 380362,
-    "abstentionPercentage": 15.78,
-    "validVotes": 1938087,
-    "validVotesPercentage": 95.45,
+    "turnout": 1934642,
+    "turnoutPercentage": 80.25,
+    "abstention": 476245,
+    "abstentionPercentage": 19.75,
+    "validVotes": 1842204,
+    "validVotesPercentage": 95.22,
     "blankVotes": 35595,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.84,
     "nullVotes": 56843,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.94,
     "sectionsTotal": 7210,
     "sectionsCounted": 7210,
     "countingProgress": 100,
@@ -878,22 +878,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 988677,
-        "percentage": 51.01
+        "percentage": 53.67
       },
       {
         "candidateId": "flavio",
         "votes": 704017,
-        "percentage": 36.33
+        "percentage": 38.22
       },
       {
         "candidateId": "outros",
-        "votes": 245393,
-        "percentage": 12.66
+        "votes": 149510,
+        "percentage": 8.12
       }
     ],
     "winnerId": "lula",
     "marginVotes": 284660,
-    "marginPercentage": 14.69
+    "marginPercentage": 15.45
   },
   "DF": {
     "uf": "DF",
@@ -901,16 +901,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Centro-Oeste",
     "capital": "Brasília",
     "electorate": 2206126,
-    "turnout": 1858068,
-    "turnoutPercentage": 84.22,
-    "abstention": 348058,
-    "abstentionPercentage": 15.78,
-    "validVotes": 1773481,
-    "validVotesPercentage": 95.45,
+    "turnout": 1771500,
+    "turnoutPercentage": 80.3,
+    "abstention": 434626,
+    "abstentionPercentage": 19.7,
+    "validVotes": 1686913,
+    "validVotesPercentage": 95.23,
     "blankVotes": 32572,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.84,
     "nullVotes": 52015,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.94,
     "sectionsTotal": 6746,
     "sectionsCounted": 6746,
     "countingProgress": 100,
@@ -918,22 +918,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 935447,
-        "percentage": 52.75
+        "percentage": 55.45
       },
       {
         "candidateId": "lula",
         "votes": 616481,
-        "percentage": 34.76
+        "percentage": 36.54
       },
       {
         "candidateId": "outros",
-        "votes": 221553,
-        "percentage": 12.49
+        "votes": 134985,
+        "percentage": 8
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 318966,
-    "marginPercentage": 17.99
+    "marginPercentage": 18.91
   },
   "MS": {
     "uf": "MS",
@@ -941,16 +941,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Centro-Oeste",
     "capital": "Campo Grande",
     "electorate": 1996510,
-    "turnout": 1681523,
-    "turnoutPercentage": 84.22,
-    "abstention": 314987,
-    "abstentionPercentage": 15.78,
-    "validVotes": 1604973,
-    "validVotesPercentage": 95.45,
+    "turnout": 1606880,
+    "turnoutPercentage": 80.48,
+    "abstention": 389630,
+    "abstentionPercentage": 19.52,
+    "validVotes": 1530330,
+    "validVotesPercentage": 95.24,
     "blankVotes": 29477,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 47073,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.93,
     "sectionsTotal": 6912,
     "sectionsCounted": 6912,
     "countingProgress": 100,
@@ -958,22 +958,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 870524,
-        "percentage": 54.24
+        "percentage": 56.88
       },
       {
         "candidateId": "lula",
         "votes": 543415,
-        "percentage": 33.86
+        "percentage": 35.51
       },
       {
         "candidateId": "outros",
-        "votes": 191034,
-        "percentage": 11.9
+        "votes": 116391,
+        "percentage": 7.61
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 327109,
-    "marginPercentage": 20.38
+    "marginPercentage": 21.38
   },
   "SE": {
     "uf": "SE",
@@ -981,16 +981,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Nordeste",
     "capital": "Aracaju",
     "electorate": 1671801,
-    "turnout": 1408043,
-    "turnoutPercentage": 84.22,
-    "abstention": 263758,
-    "abstentionPercentage": 15.78,
-    "validVotes": 1343943,
-    "validVotesPercentage": 95.45,
+    "turnout": 1339614,
+    "turnoutPercentage": 80.13,
+    "abstention": 332187,
+    "abstentionPercentage": 19.87,
+    "validVotes": 1275514,
+    "validVotesPercentage": 95.22,
     "blankVotes": 24683,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.84,
     "nullVotes": 39417,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.94,
     "sectionsTotal": 5480,
     "sectionsCounted": 5480,
     "countingProgress": 100,
@@ -998,22 +998,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 734123,
-        "percentage": 54.62
+        "percentage": 57.56
       },
       {
         "candidateId": "flavio",
         "votes": 434691,
-        "percentage": 32.34
+        "percentage": 34.08
       },
       {
         "candidateId": "outros",
-        "votes": 175129,
-        "percentage": 13.03
+        "votes": 106700,
+        "percentage": 8.37
       }
     ],
     "winnerId": "lula",
     "marginVotes": 299432,
-    "marginPercentage": 22.28
+    "marginPercentage": 23.48
   },
   "RO": {
     "uf": "RO",
@@ -1021,16 +1021,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Norte",
     "capital": "Porto Velho",
     "electorate": 1230988,
-    "turnout": 1036777,
-    "turnoutPercentage": 84.22,
-    "abstention": 194211,
-    "abstentionPercentage": 15.78,
-    "validVotes": 989578,
-    "validVotesPercentage": 95.45,
+    "turnout": 994146,
+    "turnoutPercentage": 80.76,
+    "abstention": 236842,
+    "abstentionPercentage": 19.24,
+    "validVotes": 946947,
+    "validVotesPercentage": 95.25,
     "blankVotes": 18175,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 29024,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 4420,
     "sectionsCounted": 4420,
     "countingProgress": 100,
@@ -1038,22 +1038,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 630299,
-        "percentage": 63.69
+        "percentage": 66.56
       },
       {
         "candidateId": "lula",
         "votes": 250173,
-        "percentage": 25.28
+        "percentage": 26.42
       },
       {
         "candidateId": "outros",
-        "votes": 109106,
-        "percentage": 11.03
+        "votes": 66475,
+        "percentage": 7.02
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 380126,
-    "marginPercentage": 38.41
+    "marginPercentage": 40.14
   },
   "TO": {
     "uf": "TO",
@@ -1061,16 +1061,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Norte",
     "capital": "Palmas",
     "electorate": 1093556,
-    "turnout": 921027,
-    "turnoutPercentage": 84.22,
-    "abstention": 172529,
-    "abstentionPercentage": 15.78,
-    "validVotes": 879098,
-    "validVotesPercentage": 95.45,
+    "turnout": 883174,
+    "turnoutPercentage": 80.76,
+    "abstention": 210382,
+    "abstentionPercentage": 19.24,
+    "validVotes": 841245,
+    "validVotesPercentage": 95.25,
     "blankVotes": 16146,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 25783,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 4320,
     "sectionsCounted": 4320,
     "countingProgress": 100,
@@ -1078,22 +1078,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "lula",
         "votes": 392894,
-        "percentage": 44.69
+        "percentage": 46.7
       },
       {
         "candidateId": "flavio",
         "votes": 389327,
-        "percentage": 44.29
+        "percentage": 46.28
       },
       {
         "candidateId": "outros",
-        "votes": 96877,
-        "percentage": 11.02
+        "votes": 59024,
+        "percentage": 7.02
       }
     ],
     "winnerId": "lula",
     "marginVotes": 3567,
-    "marginPercentage": 0.41
+    "marginPercentage": 0.42
   },
   "AC": {
     "uf": "AC",
@@ -1101,16 +1101,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Norte",
     "capital": "Rio Branco",
     "electorate": 588433,
-    "turnout": 495597,
-    "turnoutPercentage": 84.22,
-    "abstention": 92836,
-    "abstentionPercentage": 15.78,
-    "validVotes": 473035,
-    "validVotesPercentage": 95.45,
+    "turnout": 475133,
+    "turnoutPercentage": 80.75,
+    "abstention": 113300,
+    "abstentionPercentage": 19.25,
+    "validVotes": 452571,
+    "validVotesPercentage": 95.25,
     "blankVotes": 8688,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 13874,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 2154,
     "sectionsCounted": 2154,
     "countingProgress": 100,
@@ -1118,22 +1118,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 298940,
-        "percentage": 63.2
+        "percentage": 66.05
       },
       {
         "candidateId": "lula",
         "votes": 121722,
-        "percentage": 25.73
+        "percentage": 26.9
       },
       {
         "candidateId": "outros",
-        "votes": 52373,
-        "percentage": 11.07
+        "votes": 31909,
+        "percentage": 7.05
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 177218,
-    "marginPercentage": 37.46
+    "marginPercentage": 39.16
   },
   "AP": {
     "uf": "AP",
@@ -1141,16 +1141,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Norte",
     "capital": "Macapá",
     "electorate": 550687,
-    "turnout": 463806,
-    "turnoutPercentage": 84.22,
-    "abstention": 86881,
-    "abstentionPercentage": 15.78,
-    "validVotes": 442691,
-    "validVotesPercentage": 95.45,
+    "turnout": 445383,
+    "turnoutPercentage": 80.88,
+    "abstention": 105304,
+    "abstentionPercentage": 19.12,
+    "validVotes": 424268,
+    "validVotesPercentage": 95.26,
     "blankVotes": 8131,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 12984,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 1780,
     "sectionsCounted": 1780,
     "countingProgress": 100,
@@ -1158,22 +1158,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 213678,
-        "percentage": 48.27
+        "percentage": 50.36
       },
       {
         "candidateId": "lula",
         "votes": 181863,
-        "percentage": 41.08
+        "percentage": 42.87
       },
       {
         "candidateId": "outros",
-        "votes": 47150,
-        "percentage": 10.65
+        "votes": 28727,
+        "percentage": 6.77
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 31815,
-    "marginPercentage": 7.19
+    "marginPercentage": 7.5
   },
   "RR": {
     "uf": "RR",
@@ -1181,16 +1181,16 @@ export const DATASET_2026: ElectionDataSet = {
     "region": "Norte",
     "capital": "Boa Vista",
     "electorate": 387498,
-    "turnout": 326363,
-    "turnoutPercentage": 84.22,
-    "abstention": 61135,
-    "abstentionPercentage": 15.78,
-    "validVotes": 311506,
-    "validVotesPercentage": 95.45,
+    "turnout": 313337,
+    "turnoutPercentage": 80.86,
+    "abstention": 74161,
+    "abstentionPercentage": 19.14,
+    "validVotes": 298480,
+    "validVotesPercentage": 95.26,
     "blankVotes": 5721,
-    "blankVotesPercentage": 1.75,
+    "blankVotesPercentage": 1.83,
     "nullVotes": 9136,
-    "nullVotesPercentage": 2.8,
+    "nullVotesPercentage": 2.92,
     "sectionsTotal": 1320,
     "sectionsCounted": 1320,
     "countingProgress": 100,
@@ -1198,22 +1198,22 @@ export const DATASET_2026: ElectionDataSet = {
       {
         "candidateId": "flavio",
         "votes": 209261,
-        "percentage": 67.18
+        "percentage": 70.11
       },
       {
         "candidateId": "lula",
         "votes": 68907,
-        "percentage": 22.12
+        "percentage": 23.09
       },
       {
         "candidateId": "outros",
-        "votes": 33338,
-        "percentage": 10.7
+        "votes": 20312,
+        "percentage": 6.81
       }
     ],
     "winnerId": "flavio",
     "marginVotes": 140354,
-    "marginPercentage": 45.06
+    "marginPercentage": 47.02
   }
 }
 };
@@ -1225,7 +1225,7 @@ export const AVAILABLE_DATASETS: ElectionDataSet[] = [
 export function calculateNationalSummary(dataset: ElectionDataSet): NationalSummary {
   const states = Object.values(dataset.states);
 
-  let electorate = 0;
+  let electorate = 156454011;
   let turnout = 0;
   let abstention = 0;
   let validVotes = 0;
@@ -1240,9 +1240,7 @@ export function calculateNationalSummary(dataset: ElectionDataSet): NationalSumm
   });
 
   states.forEach((st) => {
-    electorate += st.electorate;
     turnout += st.turnout;
-    abstention += st.abstention;
     validVotes += st.validVotes;
     blankVotes += st.blankVotes;
     nullVotes += st.nullVotes;
@@ -1260,6 +1258,8 @@ export function calculateNationalSummary(dataset: ElectionDataSet): NationalSumm
       candidateVotesMap[st.winnerId].ufsWon.push(st.uf);
     }
   });
+
+  abstention = electorate - turnout;
 
   const candidateTotals = dataset.candidates.map((c) => {
     const data = candidateVotesMap[c.id] || { votes: 0, statesWon: 0, ufsWon: [] };

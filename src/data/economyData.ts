@@ -305,63 +305,48 @@ export const OFFICIAL_ECONOMIC_INDICATORS: EconomicIndicator[] = [
     "id": "selic",
     "name": "Taxa Selic Meta (Política Monetária Copom)",
     "shortName": "Taxa Selic",
-    "value": 13.75,
-    "formattedValue": "13,75% a.a.",
+    "value": 14.25,
+    "formattedValue": "14,25% a.a.",
     "unit": "% ao ano",
-    "variation": 0,
-    "variationPeriod": "vs. valor anterior (13,75%)",
-    "previousValue": 13.75,
-    "formattedPreviousValue": "13,75% a.a.",
-    "referencePeriod": "Posição 04/11/2026",
+    "variation": -0.25,
+    "variationPeriod": "vs. decisão anterior (14,50%)",
+    "previousValue": 14.5,
+    "formattedPreviousValue": "14,50% a.a.",
+    "referencePeriod": "Vigência a partir de 18/06/2026 (Copom)",
     "source": "Banco Central do Brasil",
     "sourceAgency": "Banco Central do Brasil - Comitê de Política Monetária (Copom)",
-    "sourceUrl": "https://www.bcb.gov.br/controleinflacao/taxaselic",
-    "officialSeriesCode": "SGS Série 4189 / BCB",
+    "sourceUrl": "https://www.bcb.gov.br/controleinflacao/historicotaxasjuros",
+    "officialSeriesCode": "Copom Histórico / SGS Série 432",
     "updatedAt": "09/10/2026",
     "frequency": "Reunião Copom",
     "category": "Juros & Câmbio",
-    "description": "Taxa básica de juros da economia brasileira, fixada pelo Comitê de Política Monetária (Copom).",
+    "description": "Taxa básica de juros da economia brasileira, fixada pelo Comitê de Política Monetária (Copom). Histórico oficial do Banco Central do Brasil com vigência a partir de 18/06/2026.",
     "methodologySummary": "Taxa apurada no Sistema Especial de Liquidação e Custódia (Selic) que remunera operações compromissadas de 1 dia com títulos públicos federais.",
     "historicalData": [
       {
-        "period": "Ago/23",
-        "value": 13.25,
-        "formattedValue": "13,25%"
+        "period": "Nov/25",
+        "value": 15,
+        "formattedValue": "15,00%"
       },
       {
-        "period": "Set/23",
-        "value": 12.75,
-        "formattedValue": "12,75%"
+        "period": "Jan/26",
+        "value": 15,
+        "formattedValue": "15,00%"
       },
       {
-        "period": "Nov/23",
-        "value": 12.25,
-        "formattedValue": "12,25%"
+        "period": "Mar/26",
+        "value": 14.75,
+        "formattedValue": "14,75%"
       },
       {
-        "period": "Dez/23",
-        "value": 11.75,
-        "formattedValue": "11,75%"
+        "period": "Abr/26",
+        "value": 14.5,
+        "formattedValue": "14,50%"
       },
       {
-        "period": "Jan/24",
-        "value": 11.25,
-        "formattedValue": "11,25%"
-      },
-      {
-        "period": "Mar/24",
-        "value": 10.75,
-        "formattedValue": "10,75%"
-      },
-      {
-        "period": "Mai/24",
-        "value": 10.5,
-        "formattedValue": "10,50%"
-      },
-      {
-        "period": "Set/24",
-        "value": 10.75,
-        "formattedValue": "10,75%"
+        "period": "Jun/26",
+        "value": 14.25,
+        "formattedValue": "14,25%"
       }
     ]
   },

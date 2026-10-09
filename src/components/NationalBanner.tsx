@@ -102,7 +102,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
                 Segundo Turno Confirmado: Flávio Bolsonaro vs. Lula
               </h4>
               <p className="text-xs sm:text-sm text-slate-700 mt-0.5 leading-relaxed">
-                Nenhum dos candidatos alcançou mais de 50% dos votos válidos no 1º turno. Conforme preconiza o Artigo 77 da Constituição Federal, <strong>Flávio Bolsonaro ({formatPercentBR(flavioTotal?.percentage || 44.79)})</strong> e <strong>Lula ({formatPercentBR(lulaTotal?.percentage || 43.01)})</strong> avançam para a votação definitiva no 2º turno.
+                Nenhum dos candidatos alcançou mais de 50% dos votos válidos no 1º turno. Conforme preconiza o Artigo 77 da Constituição Federal, <strong>Flávio Bolsonaro ({formatPercentBR(flavioTotal?.percentage || 47.03)})</strong> e <strong>Lula ({formatPercentBR(lulaTotal?.percentage || 45.16)})</strong> avançam para a votação definitiva no 2º turno.
               </p>
             </div>
           </div>
@@ -147,7 +147,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
                 </div>
                 <div className="flex items-baseline gap-2">
                   <span className="font-mono text-base sm:text-lg font-black text-blue-900">
-                    {formatPercentBR(flavioTotal?.percentage || 44.79)}
+                    {formatPercentBR(flavioTotal?.percentage || 47.03)}
                   </span>
                   <span className="font-mono text-xs text-slate-500">
                     ({formatVotesBR(flavioTotal?.votes || 0)} votos)
@@ -157,7 +157,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
               <div className="h-4 bg-slate-200 rounded-full overflow-hidden flex">
                 <div
                   className="h-full bg-blue-700 rounded-full transition-all duration-500"
-                  style={{ width: `${flavioTotal?.percentage || 44.79}%` }}
+                  style={{ width: `${flavioTotal?.percentage || 47.03}%` }}
                 />
               </div>
             </div>
@@ -178,7 +178,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
                 </div>
                 <div className="flex items-baseline gap-2">
                   <span className="font-mono text-base sm:text-lg font-black text-red-900">
-                    {formatPercentBR(lulaTotal?.percentage || 43.01)}
+                    {formatPercentBR(lulaTotal?.percentage || 45.16)}
                   </span>
                   <span className="font-mono text-xs text-slate-500">
                     ({formatVotesBR(lulaTotal?.votes || 0)} votos)
@@ -188,7 +188,7 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
               <div className="h-4 bg-slate-200 rounded-full overflow-hidden flex">
                 <div
                   className="h-full bg-red-600 rounded-full transition-all duration-500"
-                  style={{ width: `${lulaTotal?.percentage || 43.01}%` }}
+                  style={{ width: `${lulaTotal?.percentage || 45.16}%` }}
                 />
               </div>
             </div>
@@ -205,20 +205,20 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
                 {/* Segmento Flávio */}
                 <div
                   className="h-full bg-blue-700 transition-all duration-300"
-                  style={{ width: `${flavioTotal?.percentage || 44.79}%` }}
-                  title={`Flávio Bolsonaro: ${formatPercentBR(flavioTotal?.percentage || 44.79)}`}
+                  style={{ width: `${flavioTotal?.percentage || 47.03}%` }}
+                  title={`Flávio Bolsonaro: ${formatPercentBR(flavioTotal?.percentage || 47.03)}`}
                 />
                 {/* Segmento Lula */}
                 <div
                   className="h-full bg-red-600 transition-all duration-300"
-                  style={{ width: `${lulaTotal?.percentage || 43.01}%` }}
-                  title={`Lula: ${formatPercentBR(lulaTotal?.percentage || 43.01)}`}
+                  style={{ width: `${lulaTotal?.percentage || 45.16}%` }}
+                  title={`Lula: ${formatPercentBR(lulaTotal?.percentage || 45.16)}`}
                 />
                 {/* Segmento Outros */}
                 <div
                   className="h-full bg-slate-500 transition-all duration-300"
-                  style={{ width: `${outrosTotal?.percentage || 12.21}%` }}
-                  title={`Outros Candidatos: ${formatPercentBR(outrosTotal?.percentage || 12.21)}`}
+                  style={{ width: `${outrosTotal?.percentage || 7.81}%` }}
+                  title={`Outros Candidatos: ${formatPercentBR(outrosTotal?.percentage || 7.81)}`}
                 />
 
                 {/* Marcador Constitucional de 50% */}

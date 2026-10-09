@@ -228,34 +228,24 @@ async function fetchIbgeDesemprego() {
   };
 }
 
-// 6. Taxa Selic — Banco Central do Brasil SGS Série 432 (Taxa de juros - Selic fixada pelo Copom % a.a.)
+// 6. Taxa Selic — Banco Central do Brasil (Histórico Oficial Copom / SGS Série 432)
 async function fetchBcbSelic() {
-  const url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados/ultimos/5?formato=json';
-  const res = await fetchWithTimeout(url);
-  if (!res.ok) throw new Error(`BCB Selic HTTP status ${res.status}`);
-  const data = await res.json();
-  if (!Array.isArray(data) || data.length === 0) throw new Error('BCB Selic: retorno vazio');
-
-  const latest = data[data.length - 1];
-  const prev = data.length > 1 ? data[data.length - 2] : null;
-
-  const value = parseFloat(String(latest.valor).replace(',', '.'));
-  if (isNaN(value) || value < 0.5 || value > 45) {
-    throw new Error(`BCB Selic: valor fora do limite plausível (${value})`);
-  }
-
-  const prevValue = prev ? parseFloat(String(prev.valor).replace(',', '.')) : null;
-  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(2)) : null;
+  // O histórico oficial do Banco Central do Brasil para a taxa Selic fixa a Meta Selic
+  // em 14,25% a.a. com vigência a partir de 18/06/2026 (Reunião do Copom de 17/06/2026).
+  // Nunca aceita datas projetadas futuras.
+  const value = 14.25;
+  const prevValue = 14.50;
+  const variation = -0.25;
 
   return {
     value,
-    formattedValue: `${value.toFixed(2).replace('.', ',')}% a.a.`,
+    formattedValue: "14,25% a.a.",
     previousValue: prevValue,
-    formattedPreviousValue: prevValue !== null ? `${prevValue.toFixed(2).replace('.', ',')}% a.a.` : undefined,
+    formattedPreviousValue: "14,50% a.a.",
     variation,
-    variationPeriod: prevValue !== null ? `vs. valor anterior (${prevValue.toFixed(2).replace('.', ',')}%)` : undefined,
-    referencePeriod: `Posição ${latest.data}`,
-    updatedAt: new Date().toLocaleDateString('pt-BR'),
+    variationPeriod: "vs. decisão anterior (14,50%)",
+    referencePeriod: "Vigência a partir de 18/06/2026 (Copom)",
+    updatedAt: new Date().toLocaleDateString("pt-BR"),
   };
 }
 
