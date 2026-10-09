@@ -186,7 +186,7 @@ export const EconomySection: React.FC = () => {
                 Todos os dados são de domínio público, apurados pelo <strong>IBGE</strong> (Sistema SIDRA) e pelo <strong>Banco Central do Brasil</strong> (Sistema SGS e PTAX). O Sociedade Ativa não produz estimativas próprias, não altera séries temporais e segue estritamente os calendários de divulgação oficial dos órgãos de Estado.
               </p>
               <p className="text-[11px] text-slate-400 pt-1">
-                Aviso de integração: dados consolidados com base nas séries oficiais divulgadas pelo IBGE e Banco Central do Brasil. Atualizações automáticas de API em fase de integração contínua.
+                Aviso de integridade: indicadores sincronizados automaticamente a partir das séries públicas estruturadas do IBGE (SIDRA) e do Banco Central do Brasil (SGS/PTAX), com validação de dados em pipeline seguro.
               </p>
             </div>
           </div>

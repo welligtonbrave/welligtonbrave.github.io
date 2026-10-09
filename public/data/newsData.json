@@ -1,158 +1,949 @@
 [
   {
-    "id": "eleicoes-2026-tse-apuracao-primeiro-turno",
-    "title": "TSE conclui 100% da totalização: Flávio Bolsonaro e Lula disputarão o 2º turno",
-    "summary": "Com 125,2 milhões de votos válidos nominais, Tribunal Superior Eleitoral confirma votação e convoca eleitores para o segundo turno no último domingo de outubro.",
-    "source": "Redação Sociedade Ativa",
-    "sourceUrl": "https://welligtonbrave.github.io/",
-    "articleUrl": "https://welligtonbrave.github.io/",
-    "publishedAt": "05/10/2026 às 08:30",
-    "updatedAt": "05/10/2026 às 10:15",
+    "id": "camara-1306625-projeto-exclui-salario-de-jove",
+    "title": "Projeto exclui salário de Jovem Aprendiz do cálculo de renda do Bolsa Família",
+    "summary": "Texto está em análise a Câmara",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1306625-projeto-exclui-salario-de-jovem-aprendiz-do-calculo-de-renda-do-bolsa-familia",
+    "publishedAt": "09/10/2026 às 14:17",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "ebc-1704935",
+    "title": "Caldeira de usina explode e mata dois homens no interior de SP",
+    "summary": "Duas pessoas morreram na manhã desta sexta-feira (9) com a explosão de uma caldeira em uma usina na cidade de Tapiratiba, no interior paulista. A Secretaria de Segurança Pública de São Paulo (SSP) não divulgou o nome das vítimas, mas informou que eram dois homens que tinham...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/geral/noticia/2026-10/caldeira-de-usina-explode-e-mata-dois-homens-no-interior-de-sp",
+    "publishedAt": "09/10/2026 às 13:49",
+    "category": "Política",
+    "author": "Elaine Patricia Cruz – Repórter da Agência Brasil",
+    "tags": [
+      "Geral",
+      "São Paulo",
+      "Acidente de Trabalho",
+      "Tapiratiba",
+      "Política"
+    ]
+  },
+  {
+    "id": "ebc-1704932",
+    "title": "Pix ultrapassa 1 bilhão de chaves cadastradas no Brasil",
+    "summary": "O número de chaves Pix cadastradas no Brasil ultrapassou a marca de 1 bilhão em setembro, segundo dados do Banco Central (BC). Ao todo, o sistema contabilizava 1,008 bilhão de registros no dia 30, ante 998 milhões em agosto. O total representa um crescimento de...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/pix-ultrapassa-1-bilhao-de-chaves-cadastradas-no-brasil",
+    "publishedAt": "09/10/2026 às 13:42",
+    "category": "Economia",
+    "author": "Wellton Máximo - Repórter da Agência Brasil",
+    "tags": [
+      "Economia",
+      "PIX",
+      "sistema financeiro",
+      "banco central",
+      "chaves pix"
+    ]
+  },
+  {
+    "id": "ebc-1704931",
+    "title": "Tributos da gasolina são zerados e subsídios a combustíveis, ampliados",
+    "summary": "A equipe econômica anunciou nesta sexta-feira (9) que vai ampliar a desoneração de tributos federais sobre a gasolina e aumentar os subsídios ao etanol e ao diesel importado. As medidas ocorrem a 16 dias do segundo turno das eleições e envolvem custos estimados em R$ 5,2...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/tributos-da-gasolina-sao-zerados-e-subsidios-combustiveis-ampliados",
+    "publishedAt": "09/10/2026 às 13:40",
+    "category": "Economia",
+    "author": "Wellton Máximo – Repórter da Agência Brasil",
+    "tags": [
+      "Economia",
+      "undefined",
+      "Brasil"
+    ]
+  },
+  {
+    "id": "ebc-1704929",
+    "title": "EUA impõem sanções ao TPI pouco depois de ex-juíza receber Nobel",
+    "summary": "O governo do presidente dos Estados Unidos (EUA), Donald Trump, impôs sanções ao Tribunal Penal Internacional (TPI) nesta sexta-feira (9), poucas horas depois que uma de suas ex-juízas ganhou o Prêmio Nobel da Paz,. A decisão coloca Washington em rota de colisão diplomática...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/internacional/noticia/2026-10/eua-impoem-sancoes-ao-tpi-pouco-depois-de-ex-juiza-receber-nobel",
+    "publishedAt": "09/10/2026 às 13:18",
+    "category": "Justiça",
+    "author": "Humeyra Pamuk e Steve Holland - Repórteres da Reuters*",
+    "tags": [
+      "Internacional",
+      "Donald Trump",
+      "Sanções",
+      "Prêmio Nobel da Paz",
+      "Justiça"
+    ]
+  },
+  {
+    "id": "ebc-1704925",
+    "title": "Brasil não será governado por sócios do Banco Master, diz Lula em ato",
+    "summary": "O presidente da República e candidato à reeleição Luiz Inácio Lula da Silva (PT) voltou a defender a Proposta de Emenda à Constituição (PEC) que acaba com a jornada de trabalho de seis dia para um dia de folga (6x1), em discussão no Senado Federal. “Essa é a passeata que quer...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/brasil-nao-sera-governado-por-socios-do-banco-master-diz-lula-em-ato",
+    "publishedAt": "09/10/2026 às 12:46",
     "category": "Eleições",
-    "author": "Redação Sociedade Ativa / Cobertura Especial",
-    "tags": ["TSE", "Eleições 2026", "Segundo Turno", "Apuração", "Presidência"]
+    "author": "Paula Laboissière – Repórter da Agência Brasil",
+    "tags": [
+      "Política",
+      "eleições 2026",
+      "Segundo Turno",
+      "Lula",
+      "fim da escala 6x1"
+    ]
+  },
+  {
+    "id": "ebc-1704923",
+    "title": "AGU cria força-tarefa para atuar em caso de incêndio na UFPE",
+    "summary": "A Advocacia-Geral da União (AGU) anunciou nesta sexta-feira (9) a criação de uma força-tarefa para dar suporte jurídico à Universidade Federal de Pernambuco (UFPE), após um incêndio de grandes proporções ter destruído um dos edifícios da instituição, na noite da última...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/agu-cria-forca-tarefa-para-atuar-em-caso-de-incendio-na-ufpe",
+    "publishedAt": "09/10/2026 às 12:43",
+    "category": "Justiça",
+    "author": "Felipe Pontes – Repórter da Agência Brasil",
+    "tags": [
+      "Justiça",
+      "AGU",
+      "UFPE",
+      "Incêndio"
+    ]
+  },
+  {
+    "id": "ebc-1704917",
+    "title": "Programa Marielle Franco abre edital para apoiar mulheres negras",
+    "summary": "O Programa Marielle Franco, uma iniciativa do Fundo Baobá, abriu as inscrições para a segunda edição do edital que visa apoiar organizações, grupos e movimentos de mulheres negras. Serão selecionados dez grupos, que receberão R$ 300 mil cada ao longo de 20 meses. O Edital de...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/direitos-humanos/noticia/2026-10/programa-marielle-franco-abre-edital-para-apoiar-mulheres-negras",
+    "publishedAt": "09/10/2026 às 12:14",
+    "category": "Política",
+    "author": "Matheus Crobelatti* - Agência Brasil",
+    "tags": [
+      "Direitos Humanos",
+      "Programa Marielle Franco",
+      "edital",
+      "Mulher",
+      "Fundo Baobá"
+    ]
+  },
+  {
+    "id": "ebc-1704915",
+    "title": "Começa nesta sexta a propaganda eleitoral gratuita no rádio e na TV",
+    "summary": "A propaganda eleitoral gratuita no rádio e na televisão para o segundo turno das Eleições 2026 começa nesta sexta-feira (9) e vai até 23 de outubro. Além dos candidatos à Presidência da República, terão espaço candidatos ao governo de cinco unidades da Federação e do Distrito...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/comeca-nesta-sexta-propaganda-eleitoral-gratuita-no-radio-e-na-tv",
+    "publishedAt": "09/10/2026 às 12:04",
+    "category": "Eleições",
+    "author": "Fabíola Sinimbú – Repórter da Agência Brasil",
+    "tags": [
+      "Política",
+      "TSE",
+      "Propaganda Eleitoral",
+      "eleições 2026",
+      "Horário Eleitoral"
+    ]
+  },
+  {
+    "id": "ebc-1704911",
+    "title": "Cine Sesi: Maré recebe mostra de curtas feitos por jovens com celular",
+    "summary": "Jovens do Complexo da Maré, na zona norte do Rio, apresentam neste sábado (10) produções de curtas-metragens filmados com o celular na mostra Cine Sesi + Curta Periferias . Esta edição da mostra contou com a participação de duas turmas, atendendo 40 jovens da comunidade, para...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/cultura/noticia/2026-10/cine-sesi-mare-recebe-mostra-de-curtas-feitos-por-jovens-com-celular",
+    "publishedAt": "09/10/2026 às 11:47",
+    "category": "Política",
+    "author": "Ana Cristina Campos – Repórter da Agência Brasil",
+    "tags": [
+      "Cultura",
+      "Complexo da Maré",
+      "Curta Periferias",
+      "Audiovisual",
+      "Rio de Janeiro"
+    ]
+  },
+  {
+    "id": "camara-1310518-governo-edita-9-medida-proviso",
+    "title": "Governo edita 9ª medida provisória para conter efeito da guerra no preço dos combustíveis",
+    "summary": "Texto já está em vigor, mas precisa ser aprovado pela Câmara e pelo Senado para virar lei",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1310518-governo-edita-9a-medida-provisoria-para-conter-efeito-da-guerra-no-preco-dos-combustiveis",
+    "publishedAt": "09/10/2026 às 11:37",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "camara-1310450-quatro-medidas-provisorias-per",
+    "title": "Quatro medidas provisórias perdem a validade sem aprovação do Congresso",
+    "summary": "No caso das MPs de crédito extraordinário, a perda de validade não exige a devolução dos recursos já utilizados",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1310450-quatro-medidas-provisorias-perdem-a-validade-sem-aprovacao-do-congresso",
+    "publishedAt": "09/10/2026 às 11:37",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "camara-1310205-camara-tera-seis-deputados-com",
+    "title": "Câmara terá seis deputados com deficiência em 2027",
+    "summary": "Deficiência auditiva ou física foram declarados por dois candidatos cada; um se declarou com deficiência visual e outro com transtorno do espectro autista",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1310205-camara-tera-seis-deputados-com-deficiencia-em-2027",
+    "publishedAt": "09/10/2026 às 11:35",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "camara-1310470-consultorias-da-camara-e-do-se",
+    "title": "Consultorias da Câmara e do Senado indicam necessidade de ajustes no projeto do Orçamento para 2027",
+    "summary": "Nota técnica aponta divergências entre projeções do governo e do mercado financeiro",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1310470-consultorias-da-camara-e-do-senado-indicam-necessidade-de-ajustes-no-projeto-do-orcamento-para-2027",
+    "publishedAt": "09/10/2026 às 11:31",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "ebc-1704907",
+    "title": "TSE determina que Lula e Janja removam vídeos contra Flávio",
+    "summary": "Os ministros Nunes Marques e André Mendonça, respectivamente presidente e vice-presidente do Tribunal Superior Eleitoral (STF), determinaram a remoção de vídeos na internet que alertam para um possível corte radical em programas sociais caso o senador Flávio Bolsonaro (PL-RJ)...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/tse-ministros-ordenam-que-lula-e-janja-removam-videos-contra-flavio",
+    "publishedAt": "09/10/2026 às 11:04",
+    "category": "Justiça",
+    "author": "Felipe Pontes – repórter da Agência Brasil",
+    "tags": [
+      "Justiça",
+      "eleições 2026",
+      "Flávio Bolsonaro",
+      "Janja Lula da Silva",
+      "Janja"
+    ]
+  },
+  {
+    "id": "ebc-1704906",
+    "title": "Dino expõe relatório com ameaça de assassinato contra ministros do STF",
+    "summary": "O ministro Flávio Dino, do Supremo Tribunal Federal (STF), expôs nesta sexta-feira (9) um relatório de segurança contendo milhares de mensagens publicadas na internet com ameaças de agressões físicas e assassinato contra ministros da Corte . As imagens das mensagens...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/dino-expoe-relatorio-com-ameaca-de-assassinato-contra-ministros-do-stf",
+    "publishedAt": "09/10/2026 às 10:50",
+    "category": "Justiça",
+    "author": "Felipe Pontes - Repórter da Agência Brasil",
+    "tags": [
+      "Justiça",
+      "stf",
+      "ministro Flávio Dino",
+      "perfil",
+      "Instagram"
+    ]
+  },
+  {
+    "id": "ebc-1704904",
+    "title": "INPC, inflação que corrige salários, acumula 4,29% em 12 meses",
+    "summary": "O Índice Nacional de Preços ao Consumidor (INPC) fechou o mês de setembro em 0,82%. Com isso, o acumulado de 12 meses chega a 4,29%. Em agosto, a inflação de um ano estava em 3,98%. Os dados foram divulgados nesta sexta-feira (9) pelo Instituto Brasileiro de Geografia e...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/inpc-inflacao-que-corrige-salarios-acumula-429-em-12-meses",
+    "publishedAt": "09/10/2026 às 10:48",
+    "category": "Economia",
+    "author": "Bruno de Freitas Moura - Repórter da Agência Brasil",
+    "tags": [
+      "Economia",
+      "Inflação",
+      "INPC",
+      "Salários",
+      "Reajuste"
+    ]
+  },
+  {
+    "id": "camara-1310054-projeto-cria-classificacao-eta",
+    "title": "Projeto cria classificação etária detalhada para desenhos animados",
+    "summary": "Texto está em análise na Câmara dos Deputados",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1310054-projeto-cria-classificacao-etaria-detalhada-para-desenhos-animados",
+    "publishedAt": "09/10/2026 às 10:45",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "ebc-1704903",
+    "title": "Mendonça determina remoção de vídeo de deputados contrários a Flávio",
+    "summary": "O vice-presidente do Tribunal Superior Eleitoral (TSE), ministro André Mendonça, determinou, na noite dessa quinta-feira (8), a remoção de um vídeo publicado pelos deputados André Janones (Rede-MG) e Lindbergh Farias (PT-RJ) nas redes sociais sobre supostas medidas que seriam...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/mendonca-determina-remocao-de-video-de-deputados-contrarios-flavio",
+    "publishedAt": "09/10/2026 às 10:23",
+    "category": "Justiça",
+    "author": "Felipe Pontes - Repórter da Agência Brasil",
+    "tags": [
+      "Justiça",
+      "eleições 2026",
+      "TSE",
+      "Vídeo",
+      "Retirada"
+    ]
+  },
+  {
+    "id": "ebc-1704900",
+    "title": "Inflação oficial de setembro fica em 0,82%, mostra IBGE",
+    "summary": "A inflação oficial de setembro, apurada pelo Índice Nacional de Preços ao Consumidor Amplo (IPCA), fechou o mês de setembro em 0,82%. É o maior patamar desde março de 2026 (0,88%). O resultado no mês passado foi pressionado pelo fim do Bônus de Itaipu, um desconto que os...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/inflacao-oficial-de-setembro-fica-em-082-mostra-ibge",
+    "publishedAt": "09/10/2026 às 10:06",
+    "category": "Economia",
+    "author": "Bruno de Freitas Moura - Repórter da Agência Brasil",
+    "tags": [
+      "Economia",
+      "Inflação",
+      "IBGE",
+      "IPCA",
+      "Habitação"
+    ]
+  },
+  {
+    "id": "ebc-1704898",
+    "title": "Crédito extraordinário de R$ 7,5 bi reforça subsídios a combustíveis",
+    "summary": "O governo federal abriu crédito extraordinário de R$ 7,52 bilhões em favor do Ministério de Minas e Energia para financiar programas de subsídio à produção e à importação de combustíveis. De acordo com a Medida Provisória nº 1.395 , publicada nesta sexta-feira (9), do total...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/credito-extraordinario-de-r-75-bi-reforca-subsidios-combustiveis",
+    "publishedAt": "09/10/2026 às 09:53",
+    "category": "Economia",
+    "author": "Agência Brasil",
+    "tags": [
+      "Economia",
+      "crédito extraordinário",
+      "Diário Oficial da União",
+      "petróleo",
+      "diesel"
+    ]
+  },
+  {
+    "id": "camara-1310254-propaganda-eleitoral-gratuita-",
+    "title": "Propaganda eleitoral gratuita no rádio e na TV recomeça nesta sexta-feira",
+    "summary": "As campanhas de segundo turno para presidente da República e governador já estão nas ruas e nas redes sociais desde segunda-feira (5)",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1310254-propaganda-eleitoral-gratuita-no-radio-e-na-tv-recomeca-nesta-sexta-feira",
+    "publishedAt": "09/10/2026 às 09:53",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "camara-1305309-projeto-inclui-a-motivacao-pol",
+    "title": "Projeto inclui a motivação política como causa de aumento de pena",
+    "summary": "A Câmara dos Deputados analisa a proposta",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1305309-projeto-inclui-a-motivacao-politica-como-causa-de-aumento-de-pena",
+    "publishedAt": "09/10/2026 às 09:46",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "ibge-48246",
+    "title": "IPCA fica em 0,82% em setembro",
+    "summary": "O Índice Nacional de Preços ao Consumidor Amplo (IPCA) de setembro foi de 0,82%, 1,14 ponto percentual (p.p.) acima do -0,32% registrado em agosto. No ano, o IPCA acumula alta de 3,95% e, nos últimos 12 meses, o índice ficou em 4,58%, acima dos 4,22% dos...",
+    "source": "IBGE",
+    "sourceUrl": "https://agenciadenoticias.ibge.gov.br",
+    "articleUrl": "https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/48246-ipca-fica-em-0-82-em-setembro.html",
+    "publishedAt": "09/10/2026 às 09:00",
+    "category": "Economia",
+    "author": "Agência IBGE Notícias",
+    "tags": [
+      "economicas",
+      "Release",
+      "Economia",
+      "Estatísticas",
+      "Inflação"
+    ]
+  },
+  {
+    "id": "ibge-48251",
+    "title": "Índice Nacional da Construção Civil apresenta variação de 0,30% em setembro",
+    "summary": "O Índice Nacional da Construção Civil (Sinapi) apresentou variação de 0,30% em setembro, percentagem que representou a segunda menor no ano. A taxa ficou 0,14 ponto percentual abaixo daquela apresentada em agosto (0,44%). O acumulado dos últimos doze...",
+    "source": "IBGE",
+    "sourceUrl": "https://agenciadenoticias.ibge.gov.br",
+    "articleUrl": "https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/48251-indice-nacional-da-construcao-civil-apresenta-variacao-de-0-30-em-setembro.html",
+    "publishedAt": "09/10/2026 às 09:00",
+    "category": "Economia",
+    "author": "Agência IBGE Notícias",
+    "tags": [
+      "economicas",
+      "Release",
+      "Economia",
+      "Estatísticas"
+    ]
+  },
+  {
+    "id": "ebc-1704817",
+    "title": "Indústria aponta juros altos como principal barreira ao crédito",
+    "summary": "Os juros altos são o principal obstáculo para a indústria brasileira acessar crédito, segundo pesquisa divulgada nesta sexta-feira (9) pela Confederação Nacional da Indústria (CNI). Entre as empresas que tiveram dificuldades para obter financiamento de curto ou médio prazo...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/industria-aponta-juros-altos-como-principal-barreira-ao-credito",
+    "publishedAt": "09/10/2026 às 08:01",
+    "category": "Economia",
+    "author": "Wellton Máximo - Repórter da Agência Brasil",
+    "tags": [
+      "Economia",
+      "indústria",
+      "Taxa de juros",
+      "crédito"
+    ]
+  },
+  {
+    "id": "ebc-1704882",
+    "title": "Confira a agenda dos presidenciáveis nesta sexta-feira (9)",
+    "summary": "Os candidatos à presidência da República que disputam o segundo turno das eleições gerais cumprem agenda em Brasília e no Rio de Janeiro, nesta sexta-feira (9). Luiz Inácio Lula da Silva (PT) Às 8h, participa de caminhada com Leandro Grass, candidato a governo do Distrito...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/confira-agenda-dos-presidenciaveis-nesta-sexta-feira-9",
+    "publishedAt": "09/10/2026 às 07:54",
+    "category": "Eleições",
+    "author": "Agência Brasil",
+    "tags": [
+      "Política",
+      "eleições 2026",
+      "Eleições"
+    ]
+  },
+  {
+    "id": "ebc-1704879",
+    "title": "Paes desiste de candidatura no Rio, após Zanin negar recurso ao STF",
+    "summary": "O candidato ao governo do Rio Eduardo Paes (PSD) desistiu de sua candidatura, após decisão do ministro do Supremo Tribunal Federal (STF) Cristiano Zanin na noite dessa quinta-feira (8). O magistrado negou pedido para invalidar decisão do Tribunal Superior Eleitoral (TSE) que...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/paes-desiste-de-candidatura-no-rio-apos-zanin-negar-recurso-ao-stf",
+    "publishedAt": "09/10/2026 às 07:27",
+    "category": "Eleições",
+    "author": "Douglas Corrêa - Repórter da Agência Brasil",
+    "tags": [
+      "Política",
+      "TSE",
+      "stf",
+      "Anthony Garotinho",
+      "eduardo paes"
+    ]
+  },
+  {
+    "id": "ebc-1704811",
+    "title": "Conheça as propostas de Flávio e Lula para a segurança pública",
+    "summary": "Os dois candidatos à Presidência da República que disputarão o segundo turno da eleição deste ano dedicam parte considerável de seus planos de governo para apresentar propostas para a segurança pública. Com formas diferentes de atuação, temas como o combate ao crime...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/conheca-propostas-de-flavio-e-lula-para-seguranca-publica",
+    "publishedAt": "09/10/2026 às 07:10",
+    "category": "Eleições",
+    "author": "Agência Brasil",
+    "tags": [
+      "Política",
+      "eleições 2026",
+      "Segurança Pública",
+      "flavio bolsonaro",
+      "Lula"
+    ]
+  },
+  {
+    "id": "ebc-1704872",
+    "title": "Fux pede acesso a processos contra Jair Bolsonaro no STF",
+    "summary": "O ministro Luiz Fux, do Supremo Tribunal Federal (STF), determinou nesta quinta-feira (8) que a secretaria do tribunal envie ao seu gabinete os processos sigilosos que estão em tramitação contra o ex-presidente Jair Bolsonaro. Conforme a decisão, a secretária judiciária...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/fux-pede-acesso-processos-contra-jair-bolsonaro-no-stf",
+    "publishedAt": "08/10/2026 às 21:24",
+    "category": "Justiça",
+    "author": "André Richter - Repórter da Agência Brasil",
+    "tags": [
+      "Justiça",
+      "stf",
+      "operação Tempus Veritatis",
+      "Jair Bolsonaro",
+      "Luiz Fux"
+    ]
+  },
+  {
+    "id": "ebc-1704870",
+    "title": "TRE-RJ suspende propaganda eleitoral gratuita no RJ até domingo",
+    "summary": "O presidente do Tribunal Regional Eleitoral do Rio de Janeiro (TRE-RJ), desembargador Cláudio de Mello Tavares, determinou nesta quinta-feira (8) a suspensão até o próximo domingo (11) da propaganda eleitoral no rádio e na televisão. A decisão vale até que seja definido...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/tre-rj-suspende-propaganda-eleitoral-gratuita-no-rj-ate-domingo",
+    "publishedAt": "08/10/2026 às 21:13",
+    "category": "Justiça",
+    "author": "Douglas Corrêa - Repórter da Agência Brasil",
+    "tags": [
+      "Justiça",
+      "eleições 2026",
+      "Rio de Janeiro",
+      "TSE",
+      "TRE-RJ"
+    ]
+  },
+  {
+    "id": "ebc-1704868",
+    "title": "Flávio Bolsonaro recebe apoio de governadores eleitos e Cury",
+    "summary": "O candidato Flávio Bolsonaro (PL) reuniu, em Brasília, um grupo de 14 governadores eleitos em primeiro turno das eleições. Governadores de partidos como PL, Republicanos, PP e MDB mostraram apoio à candidatura de Bolsonaro à presidência da República. Entre esses governadores...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/flavio-bolsonaro-recebe-apoios-de-governadores-eleitos-e-cury",
+    "publishedAt": "08/10/2026 às 21:10",
+    "category": "Eleições",
+    "author": "Marcelo Brandão – Repórter da Agência Brasil",
+    "tags": [
+      "Política",
+      "eleições 2026",
+      "Flávio Bolsonaro",
+      "Eleições"
+    ]
+  },
+  {
+    "id": "ebc-1704869",
+    "title": "Lula celebra avanço do fim da 6x1 e defende investimento público",
+    "summary": "O candidato Luiz Inácio Lula da Silva (PT) passou o dia reunido com a coordenação de campanha, em Brasília. No fim da tarde, fez um pronunciamento à imprensa. Ele falou com otimismo da possibilidade de votação do fim da escala 6x1 no Senado. Confira a agenda dos...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/lula-celebra-avanco-do-fim-da-6x1-e-defende-investimento-publico",
+    "publishedAt": "08/10/2026 às 21:10",
+    "category": "Eleições",
+    "author": "Marcelo Brandão – Repórter da Agência Brasil",
+    "tags": [
+      "Política",
+      "eleições 2026",
+      "Lula",
+      "Eleições"
+    ]
+  },
+  {
+    "id": "ebc-1704867",
+    "title": "Zanin nega pedido feito por Paes de determinar segundo turno no Rio",
+    "summary": "O ministro Cristiano Zanin, do Supremo Tribunal Federal (STF), negou nesta quinta-feira (8) pedido para anular a decisão do Tribunal Superior Eleitoral (TSE) que abriu caminho para a eleição do candidato Douglas Ruas (PL) no primeiro turno das eleições para governador do Rio...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/zanin-nega-pedido-feito-por-paes-de-determinar-segundo-turno-no-rio",
+    "publishedAt": "08/10/2026 às 20:41",
+    "category": "Justiça",
+    "author": "André Richter - Repórter da Agência Brasil",
+    "tags": [
+      "Justiça",
+      "Cristiano Zanin",
+      "stf",
+      "TSE",
+      "Rio de Janeiro"
+    ]
+  },
+  {
+    "id": "ebc-1704864",
+    "title": "Moraes envia à PGR imagens da Operação Contenção",
+    "summary": "O ministro Alexandre de Moraes, do Supremo Tribunal Federal (STF), decidiu nesta quinta-feira (8) enviar à Procuradoria-Geral da República (PGR) os laudos das imagens captadas pelas câmeras corporais dos policiais que participaram da Operação Contenção . A ação foi deflagrada...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/moraes-envia-pgr-imagens-da-operacao-contencao",
+    "publishedAt": "08/10/2026 às 20:38",
+    "category": "Justiça",
+    "author": "André Richter - Repórter da Agência Brasil",
+    "tags": [
+      "Justiça",
+      "stf",
+      "Alexandre de Moraes",
+      "PGR",
+      "Operação Contenção"
+    ]
+  },
+  {
+    "id": "ebc-1704862",
+    "title": "Site oferece criptomoedas por posts de apoio a Flávio Bolsonaro",
+    "summary": "Começou a circular esta semana um site que vende criptomoedas e promove distribuição de tokens (ativos digitais) para os usuários que compartilharem mensagens favoráveis ao candidato Flávio Bolsonaro (PL), que concorre à presidência da República. O texto publicado neste site...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/site-oferece-criptomoedas-por-posts-de-apoio-flavio-bolsonaro",
+    "publishedAt": "08/10/2026 às 20:06",
+    "category": "Eleições",
+    "author": "Agência Brasil*",
+    "tags": [
+      "Política",
+      "eleições 2026",
+      "Flávio Bolsonaro",
+      "criptomoedas",
+      "Eleições"
+    ]
+  },
+  {
+    "id": "ebc-1704843",
+    "title": "Durigan prevê envio de MP do Imposto Seletivo após eleições",
+    "summary": "O ministro da Fazenda, Dario Durigan, afirmou que o governo federal pretende enviar ao Congresso Nacional, após o segundo turno das eleições, a medida provisória (MP) que estabelecerá as alíquotas do Imposto Seletivo. Segundo ele, o acordo com os setores econômicos afetados...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/durigan-preve-envio-de-mp-do-imposto-seletivo-apos-eleicoes",
+    "publishedAt": "08/10/2026 às 20:05",
+    "category": "Economia",
+    "author": "Wellton Máximo - Repórter da Agência Brasil",
+    "tags": [
+      "Economia",
+      "Ministério da Fazenda",
+      "Dario Durigan",
+      "Imposto Seletivo",
+      "Reforma Tributária"
+    ]
+  },
+  {
+    "id": "ebc-1704861",
+    "title": "Defesa quer que Mendonça analise soltura de Daniel Vorcaro",
+    "summary": "A defesa do ex-banqueiro Daniel Vorcaro enviou nesta quinta-feira (8) um documento ao Supremo Tribunal Federal (STF) para solicitar o julgamento de um pedido de soltura formalizado na Corte. A petição foi encaminhada ao presidente do Supremo, ministro Edson Fachin, que será...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/defesa-quer-que-mendonca-analise-soltura-de-daniel-vorcaro",
+    "publishedAt": "08/10/2026 às 20:02",
+    "category": "Justiça",
+    "author": "André Richter - Repórter da Agência Brasil",
+    "tags": [
+      "Justiça",
+      "Operação Compliance Zero",
+      "Banco Master",
+      "Daniel Vorcaro",
+      "stf"
+    ]
+  },
+  {
+    "id": "ebc-1704844",
+    "title": "Douglas Ruas critica judicialização da eleição e se declara governador",
+    "summary": "O candidato ao governo do Rio de Janeiro Douglas Ruas (PL) criticou nesta quinta-feira (8) o recurso apresentado pelo adversário Eduardo Paes (PSD) ao Supremo Tribunal Federal (STF) para garantir a disputa entre os dois no segundo turno das eleições. Mais cedo, o Tribunal...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/douglas-ruas-critica-judicializacao-da-eleicao-e-se-declara-governador",
+    "publishedAt": "08/10/2026 às 19:45",
+    "category": "Eleições",
+    "author": "Rafael Cardoso - Repórter da Agência Brasil",
+    "tags": [
+      "Política",
+      "Douglas Ruas",
+      "Rio de Janeiro",
+      "eleições RJ",
+      "eleições 2026"
+    ]
+  },
+  {
+    "id": "ebc-1704841",
+    "title": "Zanin relata pedido de Paes para suspender eleição de Ruas em 1º turno",
+    "summary": "O ministro Cristiano Zanin, do Supremo Tribunal Federal (STF), foi sorteado para relatar o pedido da campanha do candidato ao governo do estado do Rio de Janeiro Eduardo Paes (PSD) para suspender a decisão da Justiça Eleitoral que abriu caminho para que o candidato Douglas...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/zanin-relata-pedido-de-paes-para-suspender-eleicao-de-ruas-em-1o-turno",
+    "publishedAt": "08/10/2026 às 19:20",
+    "category": "Justiça",
+    "author": "André Richter - Repórter da Agência Brasil",
+    "tags": [
+      "Justiça",
+      "stf",
+      "eleições 2026",
+      "Eleições",
+      "Rio de Janeiro"
+    ]
+  },
+  {
+    "id": "ebc-1704839",
+    "title": "Com alta da violência política no Brasil, mulheres são maiores vítimas",
+    "summary": "As ameaças de morte e de violência sexual denunciadas, nesta quinta (8), pela deputada federal eleita Ana Elisa (PT-MG) ilustram o cenário de violência política pelo qual passa o Brasil durante a campanha eleitoral de 2026. Segundo levantamento divulgado pelas organizações de...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/com-alta-da-violencia-politica-no-brasil-mulheres-sao-maiores-vitimas",
+    "publishedAt": "08/10/2026 às 18:59",
+    "category": "Eleições",
+    "author": "Luiz Cláudio Ferreira - Repórter da Agência Brasil",
+    "tags": [
+      "Política",
+      "Violência política",
+      "eleições 2026",
+      "eleições",
+      "Terra de Direitos"
+    ]
+  },
+  {
+    "id": "camara-1306713-projeto-define-regras-para-com",
+    "title": "Projeto define regras para combater a exploração sexual infantil no turismo",
+    "summary": "Texto está em análise na Câmara",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1306713-projeto-define-regras-para-combater-a-exploracao-sexual-infantil-no-turismo",
+    "publishedAt": "08/10/2026 às 18:00",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "camara-1310314-projeto-torna-crime-disseminar",
+    "title": "Projeto torna crime disseminar notícias falsas sobre saúde em meios de comunicação",
+    "summary": "Texto está em análise na Câmara",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1310314-projeto-torna-crime-disseminar-noticias-falsas-sobre-saude-em-meios-de-comunicacao",
+    "publishedAt": "08/10/2026 às 17:34",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "camara-1306351-projeto-permite-que-santas-cas",
+    "title": "Projeto permite que Santas Casas usem licitações do governo para comprar insumos mais baratos",
+    "summary": "Texto está em análise na Câmara",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1306351-projeto-permite-que-santas-casas-usem-licitacoes-do-governo-para-comprar-insumos-mais-baratos",
+    "publishedAt": "08/10/2026 às 16:40",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "ebc-1704818",
+    "title": "AliExpress e Correios firmam acordo para acelerar entregas no Brasil",
+    "summary": "Os Correios e a plataforma de comércio eletrônico AliExpress renovaram a parceria para garantir a entrega dos pedidos feitos por consumidores brasileiros. As empresas também assinaram um memorando de entendimentos que prevê ações para acelerar as entregas no Brasil durante os...",
+    "source": "Agência Brasil",
+    "sourceUrl": "https://agenciabrasil.ebc.com.br",
+    "articleUrl": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/aliexpress-e-correios-firmam-acordo-para-acelerar-entregas-no-brasil",
+    "publishedAt": "08/10/2026 às 16:27",
+    "category": "Economia",
+    "author": "Agência Brasil",
+    "tags": [
+      "Economia",
+      "Correios",
+      "compras internacionais",
+      "AliExpress",
+      "China"
+    ]
+  },
+  {
+    "id": "camara-1310349-tres-mulheres-trans-sao-eleita",
+    "title": "Três mulheres trans são eleitas deputadas federais",
+    "summary": "Dos 513 eleitos, três se declaram bissexuais, dois se declaram gays e duas se declaram lésbicas",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1310349-tres-mulheres-trans-sao-eleitas-deputadas-federais",
+    "publishedAt": "08/10/2026 às 15:56",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "camara-1310300-concurso-da-camara-sorteio-def",
+    "title": "Concurso da Câmara: sorteio define cargos com vagas para indígenas e quilombolas",
+    "summary": "Inicialmente, áreas de Jornalismo e Divulgação Institucional receberão as cotas reservadas",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1310300-concurso-da-camara-sorteio-define-cargos-com-vagas-para-indigenas-e-quilombolas",
+    "publishedAt": "08/10/2026 às 15:25",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "camara-1310253-outubro-rosa-deputada-flavia-m",
+    "title": "Outubro Rosa: deputada Flávia Morais fala sobre a importância do diagnóstico precoce",
+    "summary": "Entre os avanços na legislação, a deputada citou os prazos de 30 dias para a realização de exames após a consulta inicial e de 60 dias para o início do tratamento do câncer",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1310253-outubro-rosa-deputada-flavia-morais-fala-sobre-a-importancia-do-diagnostico-precoce",
+    "publishedAt": "08/10/2026 às 14:57",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "camara-1305837-projeto-proibe-anuncios-em-pla",
+    "title": "Projeto proíbe anúncios em planos pagos de streaming contratados sem publicidade",
+    "summary": "A inclusão de comerciais em planos originalmente sem anúncios passará a ser considerada prática abusiva",
+    "source": "Agência Câmara",
+    "sourceUrl": "https://www.camara.leg.br",
+    "articleUrl": "https://www.camara.leg.br/noticias/1305837-projeto-proibe-anuncios-em-planos-pagos-de-streaming-contratados-sem-publicidade",
+    "publishedAt": "08/10/2026 às 13:29",
+    "category": "Congresso",
+    "author": "Agência Câmara de Notícias",
+    "tags": [
+      "Congresso",
+      "Brasil",
+      "Notícias"
+    ]
+  },
+  {
+    "id": "ibge-48242",
+    "title": "Em agosto, indústria recua em dez dos 15 locais pesquisados",
+    "summary": "Em agosto de 2026, a produção industrial nacional recuou -0,6% frente ao mês anterior, na série com ajuste sazonal, com dez dos quinze locais pesquisados apresentando resultados negativos. As reduções mais acentuadas ocorreram no Pará (-7,3%), Amazonas...",
+    "source": "IBGE",
+    "sourceUrl": "https://agenciadenoticias.ibge.gov.br",
+    "articleUrl": "https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/48242-em-agosto-industria-recua-em-dez-dos-15-locais-pesquisados.html",
+    "publishedAt": "08/10/2026 às 09:00",
+    "category": "Economia",
+    "author": "Agência IBGE Notícias",
+    "tags": [
+      "economicas",
+      "Release",
+      "Economia",
+      "Estatísticas"
+    ]
+  },
+  {
+    "id": "bcb-21280-bc-passa-a-divulgar-mensalment",
+    "title": "BC passa a divulgar mensalmente indicadores de reajustes salariais negociados",
+    "summary": "Dados mostram forte relação entre reajustes pactuados e inflação passada. Estudo mostra que ganhos reais são mais frequentes em períodos de baixa taxa de desocupação.",
+    "source": "Banco Central",
+    "sourceUrl": "https://www.bcb.gov.br",
+    "articleUrl": "https://www.bcb.gov.br/detalhenoticia/21280/nota",
+    "publishedAt": "06/10/2026 às 07:34",
+    "category": "Economia",
+    "author": "Banco Central do Brasil",
+    "tags": [
+      "Banco Central",
+      "Economia",
+      "Política Monetária"
+    ]
   },
   {
     "id": "eleicoes-2026-mapa-regional-votacao",
     "title": "Raio-X dos estados: Flávio lidera Sul, Sudeste e Centro-Oeste; Lula vence no Nordeste",
     "summary": "Mapa eleitoral aponta consolidação regional: candidato do PL vence em 14 estados mais o Distrito Federal, enquanto o PT lidera em 13 unidades da federação.",
     "source": "Redação Sociedade Ativa",
-    "sourceUrl": "https://welligtonbrave.github.io/",
-    "articleUrl": "https://welligtonbrave.github.io/",
+    "sourceUrl": "https://sociedadeativa.github.io/",
+    "articleUrl": "https://sociedadeativa.github.io/",
     "publishedAt": "05/10/2026 às 11:15",
-    "updatedAt": "05/10/2026 às 11:15",
     "category": "Eleições",
+    "updatedAt": "05/10/2026 às 11:15",
     "author": "Análise de Dados / Sociedade Ativa",
-    "tags": ["Mapa Eleitoral", "São Paulo", "Nordeste", "Geopolítica", "Regiões"]
+    "tags": [
+      "Mapa Eleitoral",
+      "São Paulo",
+      "Nordeste",
+      "Geopolítica",
+      "Regiões"
+    ]
   },
   {
-    "id": "tse-regras-propaganda-segundo-turno",
-    "title": "TSE divulga regras e cronograma da propaganda eleitoral para o 2º turno",
-    "summary": "Resolução do Tribunal Superior Eleitoral estabelece divisão igualitária do horário gratuito no rádio e na televisão e disciplina diretrizes sobre impulsionamento digital.",
-    "source": "TSE Notícias",
-    "sourceUrl": "https://www.tse.jus.br",
-    "articleUrl": "https://www.tse.jus.br/comunicacao/noticias",
-    "publishedAt": "06/10/2026 às 09:40",
-    "updatedAt": "06/10/2026 às 10:00",
-    "category": "Justiça",
-    "author": "Assessoria de Comunicação TSE",
-    "tags": ["TSE", "Segundo Turno", "Horário Eleitoral", "Justiça Eleitoral"]
-  },
-  {
-    "id": "congresso-bancadas-eleitas-camara-senado",
-    "title": "Congresso Nacional renova quadros e define correlação de forças partidárias",
-    "summary": "Eleições para a Câmara dos Deputados e um terço do Senado Federal desenham perfil das bancadas parlamentares que tomarão posse na próxima legislatura.",
-    "source": "Agência Câmara de Notícias",
-    "sourceUrl": "https://www.camara.leg.br/noticias",
-    "articleUrl": "https://www.camara.leg.br/noticias",
-    "publishedAt": "06/10/2026 às 14:20",
-    "updatedAt": "06/10/2026 às 15:30",
-    "category": "Congresso",
-    "author": "Agência Câmara",
-    "tags": ["Câmara dos Deputados", "Senado", "Bancadas", "Legislativo"]
-  },
-  {
-    "id": "politica-articulacao-partidos-apoios",
-    "title": "Partidos de centro iniciam reuniões para definir posicionamentos no segundo turno",
-    "summary": "Executivas nacionais de legendas avaliam alianças, liberação de diretórios estaduais e plataformas programáticas para a reta decisiva da eleição presidencial.",
-    "source": "Agência Brasil",
-    "sourceUrl": "https://agenciabrasil.ebc.com.br",
-    "articleUrl": "https://agenciabrasil.ebc.com.br/politica",
-    "publishedAt": "06/10/2026 às 16:50",
-    "updatedAt": "06/10/2026 às 17:10",
-    "category": "Política",
-    "author": "Agência Brasil / EBC",
-    "tags": ["Política", "Alianças", "Partidos", "Eleições 2026"]
-  },
-  {
-    "id": "governo-orcamento-execucao-meta-fiscal",
-    "title": "Governo Federal publica relatório de avaliação orçamentária do último bimestre",
-    "summary": "Ministérios do Planejamento e da Fazenda divulgam parâmetros macroeconômicos e acompanhamento das despesas públicas frente às metas da Lei de Diretrizes Orçamentárias.",
-    "source": "Agência Brasil",
-    "sourceUrl": "https://agenciabrasil.ebc.com.br",
-    "articleUrl": "https://agenciabrasil.ebc.com.br/economia",
-    "publishedAt": "07/10/2026 às 10:15",
-    "updatedAt": "07/10/2026 às 11:00",
-    "category": "Governo",
-    "author": "Agência Brasil / Economia",
-    "tags": ["Governo Federal", "Orçamento", "Meta Fiscal", "Fazenda"]
-  },
-  {
-    "id": "economia-mercado-reacao-eleicoes-bolsa",
-    "title": "Mercado financeiro e taxa de câmbio operam com cautela após primeiro turno",
-    "summary": "Índice Ibovespa e cotação do dólar comercial refletem expectativas de agentes econômicos em relação às diretrizes fiscais e monetárias dos planos de governo.",
-    "source": "Agência Brasil",
-    "sourceUrl": "https://agenciabrasil.ebc.com.br",
-    "articleUrl": "https://agenciabrasil.ebc.com.br/economia",
-    "publishedAt": "07/10/2026 às 13:05",
-    "updatedAt": "07/10/2026 às 13:45",
+    "id": "bcb-21279-bc-moderniza-apresentacao-de-d",
+    "title": "BC moderniza apresentação de dados sobre atuação no mercado de câmbio",
+    "summary": "Iniciativa traz histórico de estoque e cronograma de vencimentos de Swap Cambial e Linha com Recompra sem mudar formato de leilões de câmbio.",
+    "source": "Banco Central",
+    "sourceUrl": "https://www.bcb.gov.br",
+    "articleUrl": "https://www.bcb.gov.br/detalhenoticia/21279/nota",
+    "publishedAt": "05/10/2026 às 08:30",
     "category": "Economia",
-    "author": "Agência Brasil / Finanças",
-    "tags": ["Economia", "Ibovespa", "Dólar", "Mercados"]
+    "author": "Banco Central do Brasil",
+    "tags": [
+      "Banco Central",
+      "Economia",
+      "Política Monetária",
+      "Câmbio"
+    ]
   },
   {
-    "id": "justica-stf-pauta-julgamentos-eleitoral",
-    "title": "STF mantém segurança jurídica de resoluções de combate à desinformação eleitoral",
-    "summary": "Plenário da Suprema Corte reafirma precedentes sobre a competência da Justiça Eleitoral na moderação célere de conteúdos falsos e uso irregular de inteligência artificial.",
-    "source": "STF Notícias",
-    "sourceUrl": "https://portal.stf.jus.br",
-    "articleUrl": "https://portal.stf.jus.br/noticias",
-    "publishedAt": "07/10/2026 às 15:30",
-    "updatedAt": "07/10/2026 às 16:00",
-    "category": "Justiça",
-    "author": "Secretaria de Comunicação Social do STF",
-    "tags": ["STF", "Justiça", "Desinformação", "Inteligência Artificial"]
+    "id": "bcb-21278-pix-amplia-funcionalidades-e-r",
+    "title": "Pix amplia funcionalidades e reforça segurança com nova rodada de aperfeiçoamentos regulatórios",
+    "summary": "Pix Automático poderá ser usado em contas-salário a partir de julho de 2027. Cobrança híbrida passa a ter regras específicas para evitar pagamento em duplicidade.",
+    "source": "Banco Central",
+    "sourceUrl": "https://www.bcb.gov.br",
+    "articleUrl": "https://www.bcb.gov.br/detalhenoticia/21278/nota",
+    "publishedAt": "05/10/2026 às 08:30",
+    "category": "Economia",
+    "author": "Banco Central do Brasil",
+    "tags": [
+      "Banco Central",
+      "Economia",
+      "Política Monetária"
+    ]
   },
   {
-    "id": "brasil-ibge-censo-demografia-eleitorado",
-    "title": "Perfil do eleitorado: dados do IBGE e TSE mostram expansão de eleitores 60+",
-    "summary": "Cruzamento estatístico entre o Censo Demográfico e o Cadastro Eleitoral evidencia envelhecimento populacional e relevância crescente das faixas etárias seniores nas urnas.",
-    "source": "IBGE Notícias",
-    "sourceUrl": "https://agenciadenoticias.ibge.gov.br",
-    "articleUrl": "https://agenciadenoticias.ibge.gov.br",
-    "publishedAt": "08/10/2026 às 09:10",
-    "updatedAt": "08/10/2026 às 09:30",
-    "category": "Brasil",
-    "author": "Agência IBGE Notícias",
-    "tags": ["Brasil", "IBGE", "Demografia", "Eleitorado"]
-  },
-  {
-    "id": "mundo-observadores-internacionais-eleicoes",
-    "title": "Missões de observação internacional destacam transparência das eleições no Brasil",
-    "summary": "Representantes da OEA e de redes globais de autoridades eleitorais elogiam agilidade da apuração brasileira e eficiência das urnas eletrônicas auditáveis.",
-    "source": "Agência Brasil",
-    "sourceUrl": "https://agenciabrasil.ebc.com.br",
-    "articleUrl": "https://agenciabrasil.ebc.com.br/internacional",
-    "publishedAt": "08/10/2026 às 11:45",
-    "updatedAt": "08/10/2026 às 12:00",
-    "category": "Mundo",
-    "author": "Agência Brasil / Internacional",
-    "tags": ["Mundo", "Observadores", "OEA", "Transparência"]
-  },
-  {
-    "id": "congresso-senado-comissoes-trabalhos",
-    "title": "Senado retoma deliberações em comissões temáticas após primeiro turno",
-    "summary": "Comissão de Assuntos Econômicos (CAE) e Comissão de Constituição e Justiça (CCJ) pautam projetos pendentes e sabatinas de autoridades reguladoras.",
-    "source": "Agência Senado",
-    "sourceUrl": "https://www12.senado.leg.br/noticias",
-    "articleUrl": "https://www12.senado.leg.br/noticias",
-    "publishedAt": "08/10/2026 às 14:00",
-    "updatedAt": "08/10/2026 às 14:30",
-    "category": "Congresso",
-    "author": "Agência Senado",
-    "tags": ["Senado", "CAE", "CCJ", "Projetos de Lei"]
-  },
-  {
-    "id": "tse-auditoria-boletins-urna-transparencia",
-    "title": "Auditoria pública dos Boletins de Urna confirma integridade em todas as seções",
-    "summary": "Relatórios de 33 entidades fiscalizadoras confirmam coincidência exata entre registros impressos nas seções e dados totalizados nos sistemas centrais.",
-    "source": "TSE Notícias",
-    "sourceUrl": "https://www.tse.jus.br",
-    "articleUrl": "https://www.tse.jus.br/comunicacao/noticias",
-    "publishedAt": "08/10/2026 às 16:30",
-    "updatedAt": "08/10/2026 às 17:00",
-    "category": "Justiça",
-    "author": "Secretaria de Tecnologia da Informação TSE",
-    "tags": ["TSE", "Auditoria", "Urnas Eletrônicas", "Boletim de Urna"]
+    "id": "eleicoes-2026-tse-apuracao-primeiro-turno",
+    "title": "TSE conclui 100% da totalização: Flávio Bolsonaro e Lula disputarão o 2º turno",
+    "summary": "Com 125,2 milhões de votos válidos nominais, Tribunal Superior Eleitoral confirma votação e convoca eleitores para o segundo turno no último domingo de outubro.",
+    "source": "Redação Sociedade Ativa",
+    "sourceUrl": "https://sociedadeativa.github.io/",
+    "articleUrl": "https://sociedadeativa.github.io/",
+    "publishedAt": "05/10/2026 às 08:30",
+    "category": "Eleições",
+    "updatedAt": "05/10/2026 às 10:15",
+    "author": "Redação Sociedade Ativa / Cobertura Especial",
+    "tags": [
+      "TSE",
+      "Eleições 2026",
+      "Segundo Turno",
+      "Apuração",
+      "Presidência"
+    ]
   }
 ]

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://welligtonbrave.github.io/sitemap.xml
+Sitemap: https://sociedadeativa.github.io/sitemap.xml

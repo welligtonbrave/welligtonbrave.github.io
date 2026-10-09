@@ -1,0 +1,64 @@
+name: Update Official Economic Data
+
+on:
+  schedule:
+    # Executa todos os dias às 10:00 UTC (07:00 horário oficial de Brasília)
+    - cron: '0 10 * * *'
+    # Executa todos os dias às 13:00 UTC (10:00 horário oficial de Brasília)
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "economic-data-update"
+  cancel-in-progress: false
+
+jobs:
+  update-economic-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Fetch and Validate Official Economic Indicators
+        run: node scripts/update-economic-data.mjs
+
+      - name: Validate Generated Datasets
+        run: |
+          if [ ! -s "public/data/economyData.json" ]; then
+            echo "ERRO CRÍTICO: public/data/economyData.json está ausente ou vazio!"
+            exit 1
+          fi
+          if [ ! -s "public/data/economicData.json" ]; then
+            echo "ERRO CRÍTICO: public/data/economicData.json está ausente ou vazio!"
+            exit 1
+          fi
+          echo "Validação dos arquivos JSON de economia concluída com sucesso."
+
+      - name: Commit and Push if Changes Exist
+        run: |
+          git config user.name "Sociedade Ativa DataBot"
+          git config user.email "bot@sociedadeativa.org"
+
+          git add public/data/economyData.json public/data/economicData.json
+
+          if git diff --staged --quiet; then
+            echo "Nenhuma alteração nos indicadores econômicos oficiais. Nenhuma ação necessária."
+          else
+            echo "Alterações detectadas nas séries oficiais. Efetuando commit..."
+            git commit -m "data(economia): atualização automática dos indicadores oficiais [skip ci]"
+            git push
+          fi

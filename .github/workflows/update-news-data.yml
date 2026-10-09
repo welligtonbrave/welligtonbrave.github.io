@@ -1,0 +1,86 @@
+name: Update Official News Data
+
+on:
+  schedule:
+    # 08:00 BRT = 11:00 UTC
+    - cron: '0 11 * * *'
+    # 13:30 BRT = 16:30 UTC
+    - cron: '30 16 * * *'
+    # 19:00 BRT = 22:00 UTC
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "news-data-update"
+  cancel-in-progress: false
+
+jobs:
+  update-news-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Ingest and Validate Official Brazilian Public News
+        run: node scripts/update-news-data.mjs
+
+      - name: Validate Generated News Dataset
+        run: |
+          if [ ! -s "public/data/newsData.json" ]; then
+            echo "ERRO CRÍTICO: public/data/newsData.json está ausente ou vazio!"
+            exit 1
+          fi
+          node -e '
+            const fs = require("fs");
+            const data = JSON.parse(fs.readFileSync("public/data/newsData.json", "utf8"));
+            if (!Array.isArray(data) || data.length < 10) {
+              console.error("Validação falhou: dataset insuficiente (< 10 artigos)");
+              process.exit(1);
+            }
+            for (const item of data) {
+              if (!item.id || !item.title || !item.summary || !item.source || !item.articleUrl || !item.publishedAt || !item.category) {
+                console.error("Validação falhou: campos obrigatórios ausentes:", item);
+                process.exit(1);
+              }
+              if (!item.articleUrl.startsWith("https://")) {
+                console.error("Validação falhou: URL não é HTTPS:", item.articleUrl);
+                process.exit(1);
+              }
+            }
+            console.log("Validação de integridade do newsData.json aprovada com " + data.length + " artigos.");
+          '
+
+      - name: Type Check and Lint
+        run: npm run lint
+
+      - name: Production Build Verification
+        run: npm run build
+
+      - name: Commit and Push if Changes Exist
+        run: |
+          git config user.name "Sociedade Ativa DataBot"
+          git config user.email "bot@sociedadeativa.org"
+
+          git add public/data/newsData.json
+
+          if git diff --staged --quiet; then
+            echo "Nenhuma alteração nas notícias oficiais. Nenhuma ação necessária."
+          else
+            echo "Alterações detectadas nas notícias oficiais. Efetuando commit..."
+            git commit -m "data(noticias): atualização automática das notícias oficiais [skip ci]"
+            git push
+          fi

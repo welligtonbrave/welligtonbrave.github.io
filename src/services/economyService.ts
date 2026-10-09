@@ -128,11 +128,19 @@ export async function fetchEconomicIndicators(): Promise<EconomicIndicator[]> {
     const base = import.meta.env.BASE_URL || "/";
     const cleanBase = base.endsWith("/") ? base : `${base}/`;
     const targetUrl = `${cleanBase}data/economyData.json`;
+    const fallbackTargetUrl = `${cleanBase}data/economicData.json`;
 
-    const res = await fetch(targetUrl, {
+    let res = await fetch(targetUrl, {
       headers: { Accept: "application/json" },
       cache: "default",
     });
+
+    if (!res.ok) {
+      res = await fetch(fallbackTargetUrl, {
+        headers: { Accept: "application/json" },
+        cache: "default",
+      });
+    }
 
     if (!res.ok) {
       throw new Error(`Falha HTTP ao carregar indicadores: status ${res.status}`);

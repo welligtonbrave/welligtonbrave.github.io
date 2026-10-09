@@ -42,5 +42,5 @@
 
   <!-- Footer info -->
   <text x="80" y="530" font-family="sans-serif" font-size="18" fill="#cbd5e1">Total de Votos Válidos: 125.272.513 · Comparecimento: 83,89% · 2º Turno Convocado</text>
-  <text x="80" y="565" font-family="monospace" font-size="16" fill="#64748b">https://welligtonbrave.github.io/ · Sociedade Ativa · Fonte: TSE 04/10/2026</text>
+  <text x="80" y="565" font-family="monospace" font-size="16" fill="#64748b">https://sociedadeativa.github.io/ · Sociedade Ativa · Fonte: TSE 04/10/2026</text>
 </svg>

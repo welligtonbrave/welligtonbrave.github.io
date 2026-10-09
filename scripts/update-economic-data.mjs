@@ -1,0 +1,545 @@
+#!/usr/bin/env node
+
+/**
+ * Script de Atualização e Validação dos Indicadores Econômicos Oficiais
+ * Sociedade Ativa — Política, eleições, notícias e dados do Brasil.
+ *
+ * Fontes Oficiais Estruturadas:
+ * - IBGE (Sistema SIDRA API v3)
+ * - Banco Central do Brasil (SGS API Pública)
+ *
+ * Diretrizes de Engenharia e Integridade:
+ * 1. Consulta apenas endpoints oficiais verificados (sem scraping, sem URLs hipotéticas).
+ * 2. Valida tipos, limites numéricos plausíveis e presença de dados reais.
+ * 3. Se a consulta ou validação falhar (ex: rede offline, erro transitório), preserva
+ *    integralmente o valor estático pré-existente e reporta o fallback no log.
+ * 4. Atualiza public/data/economyData.json e sincroniza public/data/economicData.json.
+ * 5. Garante que o build de produção e a renderização do app permaneçam 100% autônomos
+ *    e independentes de conectividade no navegador do usuário.
+ */
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
+
+const PRIMARY_DATA_PATH = path.join(rootDir, 'public', 'data', 'economyData.json');
+const COMPAT_DATA_PATH = path.join(rootDir, 'public', 'data', 'economicData.json');
+
+const FETCH_TIMEOUT_MS = 10000;
+
+/**
+ * Utilitário seguro para fetch com timeout e headers de identificação
+ */
+async function fetchWithTimeout(url, options = {}) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, {
+      ...options,
+      signal: controller.signal,
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'SociedadeAtiva-Bot/1.0 (+https://sociedadeativa.github.io/)',
+        ...(options.headers || {})
+      }
+    });
+    clearTimeout(id);
+    return res;
+  } catch (err) {
+    clearTimeout(id);
+    throw err;
+  }
+}
+
+/**
+ * Formatação de taxa percentual em padrão brasileiro (+0,44% ou -0,32%)
+ */
+function formatPercentage(num) {
+  if (typeof num !== 'number' || isNaN(num)) return 'Dados indisponíveis no momento.';
+  const sign = num > 0 ? '+' : '';
+  return `${sign}${num.toFixed(2).replace('.', ',')}%`;
+}
+
+/**
+ * ============================================================================
+ * PROVEDORES OFICIAIS VERIFICADOS
+ * ============================================================================
+ */
+
+// 1. IPCA — IBGE SIDRA Tabela 7060 (Variável 63: Variação mensal)
+async function fetchIbgeIpca() {
+  const url = 'https://apisidra.ibge.gov.br/values/t/7060/v/63/p/last%202/c315/7169/n1/all';
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`IBGE IPCA HTTP status ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data) || data.length < 2) throw new Error('IBGE IPCA: retorno insuficiente');
+
+  const records = data.slice(1);
+  const latest = records[records.length - 1];
+  const prev = records.length > 1 ? records[records.length - 2] : null;
+
+  const value = parseFloat(String(latest.V).replace(',', '.'));
+  if (isNaN(value) || value < -15 || value > 30) {
+    throw new Error(`IBGE IPCA: taxa mensal fora do limite plausível (${value})`);
+  }
+
+  const prevValue = prev ? parseFloat(String(prev.V).replace(',', '.')) : null;
+  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(2)) : null;
+
+  return {
+    value,
+    formattedValue: formatPercentage(value),
+    previousValue: prevValue,
+    formattedPreviousValue: prevValue !== null ? formatPercentage(prevValue) : undefined,
+    variation,
+    variationPeriod: prevValue !== null ? `vs. mês anterior (${formatPercentage(prevValue)})` : undefined,
+    referencePeriod: latest.D2N || 'Mês oficial de divulgação',
+    updatedAt: new Date().toLocaleDateString('pt-BR'),
+  };
+}
+
+// 2. INPC — Banco Central do Brasil SGS Série 188 (Variação mensal do INPC apurado pelo IBGE)
+async function fetchBcbInpc() {
+  const url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.188/dados/ultimos/2?formato=json';
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`BCB INPC HTTP status ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data) || data.length === 0) throw new Error('BCB INPC: retorno vazio');
+
+  const latest = data[data.length - 1];
+  const prev = data.length > 1 ? data[data.length - 2] : null;
+
+  const value = parseFloat(String(latest.valor).replace(',', '.'));
+  if (isNaN(value) || value < -15 || value > 30) {
+    throw new Error(`BCB INPC: valor fora do limite plausível (${value})`);
+  }
+
+  const prevValue = prev ? parseFloat(String(prev.valor).replace(',', '.')) : null;
+  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(2)) : null;
+
+  return {
+    value,
+    formattedValue: formatPercentage(value),
+    previousValue: prevValue,
+    formattedPreviousValue: prevValue !== null ? formatPercentage(prevValue) : undefined,
+    variation,
+    variationPeriod: prevValue !== null ? `vs. mês anterior (${formatPercentage(prevValue)})` : undefined,
+    referencePeriod: `Posição ${latest.data}`,
+    updatedAt: new Date().toLocaleDateString('pt-BR'),
+  };
+}
+
+// 3. IPCA-15 — Banco Central do Brasil SGS Série 7478 (Variação mensal do IPCA-15 apurado pelo IBGE)
+async function fetchBcbIpca15() {
+  const url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.7478/dados/ultimos/2?formato=json';
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`BCB IPCA-15 HTTP status ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data) || data.length === 0) throw new Error('BCB IPCA-15: retorno vazio');
+
+  const latest = data[data.length - 1];
+  const prev = data.length > 1 ? data[data.length - 2] : null;
+
+  const value = parseFloat(String(latest.valor).replace(',', '.'));
+  if (isNaN(value) || value < -15 || value > 30) {
+    throw new Error(`BCB IPCA-15: valor fora do limite plausível (${value})`);
+  }
+
+  const prevValue = prev ? parseFloat(String(prev.valor).replace(',', '.')) : null;
+  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(2)) : null;
+
+  return {
+    value,
+    formattedValue: formatPercentage(value),
+    previousValue: prevValue,
+    formattedPreviousValue: prevValue !== null ? formatPercentage(prevValue) : undefined,
+    variation,
+    variationPeriod: prevValue !== null ? `vs. mês anterior (${formatPercentage(prevValue)})` : undefined,
+    referencePeriod: `Posição ${latest.data}`,
+    updatedAt: new Date().toLocaleDateString('pt-BR'),
+  };
+}
+
+// 4. PIB — IBGE SIDRA Tabela 5932 (Variável 6564: Taxa tri contra tri imediatamente anterior com ajuste)
+async function fetchIbgePib() {
+  const url = 'https://apisidra.ibge.gov.br/values/t/5932/v/6564/p/last%202/c11255/90707/n1/all';
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`IBGE PIB HTTP status ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data) || data.length < 2) throw new Error('IBGE PIB: retorno insuficiente');
+
+  const records = data.slice(1);
+  const latest = records[records.length - 1];
+  const prev = records.length > 1 ? records[records.length - 2] : null;
+
+  const value = parseFloat(String(latest.V).replace(',', '.'));
+  if (isNaN(value) || value < -20 || value > 25) {
+    throw new Error(`IBGE PIB: valor fora do limite plausível (${value})`);
+  }
+
+  const prevValue = prev ? parseFloat(String(prev.V).replace(',', '.')) : null;
+  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(2)) : null;
+
+  return {
+    value,
+    formattedValue: formatPercentage(value),
+    previousValue: prevValue,
+    formattedPreviousValue: prevValue !== null ? formatPercentage(prevValue) : undefined,
+    variation,
+    variationPeriod: prevValue !== null ? `vs. tri anterior (${formatPercentage(prevValue)})` : undefined,
+    referencePeriod: latest.D2N || 'Trimestre oficial SCNT',
+    updatedAt: new Date().toLocaleDateString('pt-BR'),
+  };
+}
+
+// 5. Desemprego — IBGE SIDRA Tabela 4099 (PNADC Taxa de desocupação oficial)
+async function fetchIbgeDesemprego() {
+  const url = 'https://apisidra.ibge.gov.br/values/t/4099/v/4099/p/last%202/n1/all';
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`IBGE Desemprego HTTP status ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data) || data.length < 2) throw new Error('IBGE Desemprego: retorno insuficiente');
+
+  const records = data.slice(1);
+  const latest = records[records.length - 1];
+  const prev = records.length > 1 ? records[records.length - 2] : null;
+
+  const value = parseFloat(String(latest.V).replace(',', '.'));
+  if (isNaN(value) || value < 1.0 || value > 35.0) {
+    throw new Error(`IBGE Desemprego: taxa fora do limite plausível (${value})`);
+  }
+
+  const prevValue = prev ? parseFloat(String(prev.V).replace(',', '.')) : null;
+  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(2)) : null;
+
+  return {
+    value,
+    formattedValue: `${value.toFixed(1).replace('.', ',')}%`,
+    previousValue: prevValue,
+    formattedPreviousValue: prevValue !== null ? `${prevValue.toFixed(1).replace('.', ',')}%` : undefined,
+    variation,
+    variationPeriod: prevValue !== null ? `vs. período anterior (${prevValue.toFixed(1).replace('.', ',')}%)` : undefined,
+    referencePeriod: latest.D2N || 'Período PNADC Oficial',
+    updatedAt: new Date().toLocaleDateString('pt-BR'),
+  };
+}
+
+// 6. Taxa Selic — Banco Central do Brasil SGS Série 432 (Taxa de juros - Selic fixada pelo Copom % a.a.)
+async function fetchBcbSelic() {
+  const url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados/ultimos/5?formato=json';
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`BCB Selic HTTP status ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data) || data.length === 0) throw new Error('BCB Selic: retorno vazio');
+
+  const latest = data[data.length - 1];
+  const prev = data.length > 1 ? data[data.length - 2] : null;
+
+  const value = parseFloat(String(latest.valor).replace(',', '.'));
+  if (isNaN(value) || value < 0.5 || value > 45) {
+    throw new Error(`BCB Selic: valor fora do limite plausível (${value})`);
+  }
+
+  const prevValue = prev ? parseFloat(String(prev.valor).replace(',', '.')) : null;
+  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(2)) : null;
+
+  return {
+    value,
+    formattedValue: `${value.toFixed(2).replace('.', ',')}% a.a.`,
+    previousValue: prevValue,
+    formattedPreviousValue: prevValue !== null ? `${prevValue.toFixed(2).replace('.', ',')}% a.a.` : undefined,
+    variation,
+    variationPeriod: prevValue !== null ? `vs. valor anterior (${prevValue.toFixed(2).replace('.', ',')}%)` : undefined,
+    referencePeriod: `Posição ${latest.data}`,
+    updatedAt: new Date().toLocaleDateString('pt-BR'),
+  };
+}
+
+// 7. Dólar Comercial — Banco Central do Brasil SGS Série 1 (Cotação PTAX Venda Fechamento Diário)
+async function fetchBcbDolar() {
+  const url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados/ultimos/5?formato=json';
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`BCB Dólar HTTP status ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data) || data.length === 0) throw new Error('BCB Dólar: retorno vazio');
+
+  const latest = data[data.length - 1];
+  const prev = data.length > 1 ? data[data.length - 2] : null;
+
+  const value = parseFloat(String(latest.valor).replace(',', '.'));
+  if (isNaN(value) || value < 1.0 || value > 25.0) {
+    throw new Error(`BCB Dólar: cotação fora do limite plausível (${value})`);
+  }
+
+  const prevValue = prev ? parseFloat(String(prev.valor).replace(',', '.')) : null;
+  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(4)) : null;
+
+  return {
+    value,
+    formattedValue: `R$ ${value.toFixed(2).replace('.', ',')}`,
+    previousValue: prevValue,
+    formattedPreviousValue: prevValue !== null ? `R$ ${prevValue.toFixed(2).replace('.', ',')}` : undefined,
+    variation,
+    variationPeriod: prevValue !== null ? `vs. cotação anterior (R$ ${prevValue.toFixed(2).replace('.', ',')})` : undefined,
+    referencePeriod: `Fechamento PTAX ${latest.data}`,
+    updatedAt: new Date().toLocaleDateString('pt-BR'),
+  };
+}
+
+// 8. Produção Industrial — IBGE SIDRA Tabela 8888 (PIM-PF Variável 11601: Variação M/M-1 com ajuste)
+async function fetchIbgeProducaoIndustrial() {
+  const url = 'https://apisidra.ibge.gov.br/values/t/8888/v/11601/p/last%202/c544/129314/n1/all';
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`IBGE Produção Industrial HTTP status ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data) || data.length < 2) throw new Error('IBGE Produção Industrial: retorno insuficiente');
+
+  const records = data.slice(1);
+  const latest = records[records.length - 1];
+  const prev = records.length > 1 ? records[records.length - 2] : null;
+
+  const value = parseFloat(String(latest.V).replace(',', '.'));
+  if (isNaN(value) || value < -30 || value > 30) {
+    throw new Error(`IBGE Produção Industrial: taxa fora do limite plausível (${value})`);
+  }
+
+  const prevValue = prev ? parseFloat(String(prev.V).replace(',', '.')) : null;
+  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(2)) : null;
+
+  return {
+    value,
+    formattedValue: formatPercentage(value),
+    previousValue: prevValue,
+    formattedPreviousValue: prevValue !== null ? formatPercentage(prevValue) : undefined,
+    variation,
+    variationPeriod: prevValue !== null ? `vs. mês anterior (${formatPercentage(prevValue)})` : undefined,
+    referencePeriod: latest.D2N || 'Mês de referência PIM-PF',
+    updatedAt: new Date().toLocaleDateString('pt-BR'),
+  };
+}
+
+// 9. Comércio Varejista — IBGE SIDRA Tabela 8880 (PMC Variável 11708: Variação M/M-1 com ajuste)
+async function fetchIbgeComercio() {
+  const url = 'https://apisidra.ibge.gov.br/values/t/8880/v/11708/p/last%202/c11046/56734/n1/all';
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`IBGE Comércio HTTP status ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data) || data.length < 2) throw new Error('IBGE Comércio: retorno insuficiente');
+
+  const records = data.slice(1);
+  const latest = records[records.length - 1];
+  const prev = records.length > 1 ? records[records.length - 2] : null;
+
+  const value = parseFloat(String(latest.V).replace(',', '.'));
+  if (isNaN(value) || value < -30 || value > 30) {
+    throw new Error(`IBGE Comércio: taxa fora do limite plausível (${value})`);
+  }
+
+  const prevValue = prev ? parseFloat(String(prev.V).replace(',', '.')) : null;
+  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(2)) : null;
+
+  return {
+    value,
+    formattedValue: formatPercentage(value),
+    previousValue: prevValue,
+    formattedPreviousValue: prevValue !== null ? formatPercentage(prevValue) : undefined,
+    variation,
+    variationPeriod: prevValue !== null ? `vs. mês anterior (${formatPercentage(prevValue)})` : undefined,
+    referencePeriod: latest.D2N || 'Mês de referência PMC',
+    updatedAt: new Date().toLocaleDateString('pt-BR'),
+  };
+}
+
+// 10. Volume de Serviços — IBGE SIDRA Tabela 5906 (PMS Variável 11623: Variação M/M-1 com ajuste)
+async function fetchIbgeServicos() {
+  const url = 'https://apisidra.ibge.gov.br/values/t/5906/v/11623/p/last%202/c11046/56726/n1/all';
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`IBGE Serviços HTTP status ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data) || data.length < 2) throw new Error('IBGE Serviços: retorno insuficiente');
+
+  const records = data.slice(1);
+  const latest = records[records.length - 1];
+  const prev = records.length > 1 ? records[records.length - 2] : null;
+
+  const value = parseFloat(String(latest.V).replace(',', '.'));
+  if (isNaN(value) || value < -30 || value > 30) {
+    throw new Error(`IBGE Serviços: taxa fora do limite plausível (${value})`);
+  }
+
+  const prevValue = prev ? parseFloat(String(prev.V).replace(',', '.')) : null;
+  const variation = prevValue !== null ? parseFloat((value - prevValue).toFixed(2)) : null;
+
+  return {
+    value,
+    formattedValue: formatPercentage(value),
+    previousValue: prevValue,
+    formattedPreviousValue: prevValue !== null ? formatPercentage(prevValue) : undefined,
+    variation,
+    variationPeriod: prevValue !== null ? `vs. mês anterior (${formatPercentage(prevValue)})` : undefined,
+    referencePeriod: latest.D2N || 'Mês de referência PMS',
+    updatedAt: new Date().toLocaleDateString('pt-BR'),
+  };
+}
+
+// Mapeamento dos 10 indicadores para provedores oficiais verificados
+const OFFICIAL_PROVIDERS = {
+  ipca: { name: 'IBGE (SIDRA 7060 / V63)', fn: fetchIbgeIpca },
+  inpc: { name: 'Banco Central do Brasil / IBGE (SGS 188)', fn: fetchBcbInpc },
+  'ipca-15': { name: 'Banco Central do Brasil / IBGE (SGS 7478)', fn: fetchBcbIpca15 },
+  pib: { name: 'IBGE (SIDRA 5932 / V6564 SCNT)', fn: fetchIbgePib },
+  desemprego: { name: 'IBGE (SIDRA 4099 / PNADC)', fn: fetchIbgeDesemprego },
+  selic: { name: 'Banco Central do Brasil (SGS 432 Meta Copom)', fn: fetchBcbSelic },
+  dolar: { name: 'Banco Central do Brasil (SGS 1 PTAX Fechamento)', fn: fetchBcbDolar },
+  'producao-industrial': { name: 'IBGE (SIDRA 8888 / V11601 PIM-PF)', fn: fetchIbgeProducaoIndustrial },
+  comercio: { name: 'IBGE (SIDRA 8880 / V11708 PMC)', fn: fetchIbgeComercio },
+  servicos: { name: 'IBGE (SIDRA 5906 / V11623 PMS)', fn: fetchIbgeServicos },
+};
+
+/**
+ * Execução Principal do Pipeline de Atualização
+ */
+async function main() {
+  console.log('='.repeat(70));
+  console.log('SOCIEDADE ATIVA — ATUALIZAÇÃO OFICIAL DE DADOS ECONÔMICOS');
+  console.log('Estratégia: Resiliente, Oficial e Auditável (Fase 1 Completa)');
+  console.log('='.repeat(70));
+
+  // 1. Carrega base estática prévia
+  if (!fs.existsSync(PRIMARY_DATA_PATH)) {
+    console.error(`ERRO CRÍTICO: Arquivo base não encontrado em ${PRIMARY_DATA_PATH}`);
+    process.exit(1);
+  }
+
+  const rawExisting = fs.readFileSync(PRIMARY_DATA_PATH, 'utf8');
+  let currentIndicators = [];
+  try {
+    currentIndicators = JSON.parse(rawExisting);
+  } catch (err) {
+    console.error('ERRO: Não foi possível realizar parse do JSON atual:', err.message);
+    process.exit(1);
+  }
+
+  if (!Array.isArray(currentIndicators) || currentIndicators.length === 0) {
+    console.error('ERRO: A lista atual de indicadores está vazia ou corrompida.');
+    process.exit(1);
+  }
+
+  console.log(`\nBase local carregada com sucesso: ${currentIndicators.length} indicadores cadastrados.`);
+
+  const report = {
+    total: currentIndicators.length,
+    updated: 0,
+    preserved: 0,
+    errors: [],
+    details: [],
+  };
+
+  const updatedIndicators = [...currentIndicators];
+
+  for (let i = 0; i < updatedIndicators.length; i++) {
+    const indicator = updatedIndicators[i];
+    const provider = OFFICIAL_PROVIDERS[indicator.id];
+
+    if (!provider) {
+      report.preserved++;
+      report.details.push({
+        id: indicator.id,
+        name: indicator.shortName,
+        status: 'PRESERVADO (Base Consolidada)',
+        source: indicator.source,
+        reason: 'Sem provedor oficial associado',
+      });
+      continue;
+    }
+
+    try {
+      console.log(`\nConsultando fonte oficial para [${indicator.shortName}] via ${provider.name}...`);
+      const newData = await provider.fn();
+
+      const valueChanged = newData.value !== indicator.value;
+      const refChanged = newData.referencePeriod !== indicator.referencePeriod;
+
+      updatedIndicators[i] = {
+        ...indicator,
+        value: newData.value,
+        formattedValue: newData.formattedValue || indicator.formattedValue,
+        previousValue: newData.previousValue ?? indicator.previousValue,
+        formattedPreviousValue: newData.formattedPreviousValue ?? indicator.formattedPreviousValue,
+        variation: newData.variation ?? indicator.variation,
+        variationPeriod: newData.variationPeriod ?? indicator.variationPeriod,
+        referencePeriod: newData.referencePeriod || indicator.referencePeriod,
+        updatedAt: newData.updatedAt || indicator.updatedAt,
+      };
+
+      report.updated++;
+      report.details.push({
+        id: indicator.id,
+        name: indicator.shortName,
+        status: valueChanged || refChanged ? 'ATUALIZADO COM SUCESSO' : 'CONFIRMADO VÁLIDO (SEM ALTERAÇÃO)',
+        source: indicator.source,
+        value: updatedIndicators[i].formattedValue,
+        ref: updatedIndicators[i].referencePeriod,
+      });
+      console.log(`✓ [${indicator.shortName}] validado com sucesso: ${updatedIndicators[i].formattedValue} (${updatedIndicators[i].referencePeriod})`);
+    } catch (err) {
+      report.preserved++;
+      report.errors.push({ id: indicator.id, error: err.message });
+      report.details.push({
+        id: indicator.id,
+        name: indicator.shortName,
+        status: 'PRESERVADO COM SEGURANÇA (Fallback Ativo)',
+        source: indicator.source,
+        reason: err.message,
+      });
+      console.warn(`! [${indicator.shortName}] Consulta falhou (${err.message}). Base anterior preservada.`);
+    }
+  }
+
+  // 2. Valida integridade do dataset final antes de gravar
+  if (updatedIndicators.length !== currentIndicators.length) {
+    console.error('ERRO DE INTEGRIDADE: Contagem de indicadores divergente. Abortando gravação.');
+    process.exit(1);
+  }
+
+  for (const item of updatedIndicators) {
+    if (!item.id || !item.name || !item.shortName) {
+      console.error(`ERRO DE INTEGRIDADE: Indicador inválido detectado (${JSON.stringify(item)})`);
+      process.exit(1);
+    }
+  }
+
+  // 3. Gravação com formato JSON limpo e identado em ambos os caminhos
+  const serialized = JSON.stringify(updatedIndicators, null, 2) + '\n';
+  fs.writeFileSync(PRIMARY_DATA_PATH, serialized, 'utf8');
+  fs.writeFileSync(COMPAT_DATA_PATH, serialized, 'utf8');
+
+  console.log('\n' + '='.repeat(70));
+  console.log('RELATÓRIO CONSOLIDADO DE EXECUÇÃO');
+  console.log('='.repeat(70));
+  console.log(`Total de indicadores avaliados: ${report.total}`);
+  console.log(`Indicadores atualizados/confirmados via API oficial: ${report.updated}`);
+  console.log(`Indicadores preservados com fallback seguro: ${report.preserved}`);
+  if (report.errors.length > 0) {
+    console.log(`Falhas de conexão ou timeouts contornados com segurança: ${report.errors.length}`);
+  }
+
+  console.log('\nDetalhamento por indicador:');
+  for (const d of report.details) {
+    console.log(`  - ${d.name.padEnd(22)}: [${d.status}] ${d.value ? `Valor: ${d.value} (${d.ref})` : ''} ${d.reason ? `(${d.reason})` : ''}`);
+  }
+
+  console.log('\nArquivos sincronizados com sucesso:');
+  console.log(`  1. ${path.relative(rootDir, PRIMARY_DATA_PATH)}`);
+  console.log(`  2. ${path.relative(rootDir, COMPAT_DATA_PATH)}`);
+  console.log('='.repeat(70));
+}
+
+main().catch((err) => {
+  console.error('ERRO FATAL DURANTE A EXECUÇÃO:', err);
+  process.exit(1);
+});
