@@ -145,12 +145,50 @@ export const EconomyCard: React.FC<EconomyCardProps> = ({
           >
             {indicator.source === "Banco Central do Brasil" ? (
               <Landmark className="w-3 h-3 text-blue-600 shrink-0" />
+            ) : indicator.source === "B3" ? (
+              <TrendingUp className="w-3 h-3 text-emerald-600 shrink-0" />
             ) : (
               <Building2 className="w-3 h-3 text-blue-600 shrink-0" />
             )}
-            <span>{indicator.source === "Banco Central do Brasil" ? "BCB" : "IBGE"}</span>
+            <span>
+              {indicator.source === "Banco Central do Brasil"
+                ? "BCB"
+                : indicator.source === "B3"
+                ? "B3"
+                : "IBGE"}
+            </span>
           </span>
         </div>
+
+        {/* Status de Pregão e Defasagem Regulatória para cotações de mercado */}
+        {indicator.marketStatus && (
+          <div className="flex flex-wrap items-center gap-1.5 mb-2.5">
+            <span
+              className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-md border ${
+                indicator.marketStatus === "aberto"
+                  ? "bg-emerald-50 text-emerald-700 border-emerald-200/80"
+                  : "bg-slate-100 text-slate-700 border-slate-200"
+              }`}
+            >
+              <span
+                className={`w-1.5 h-1.5 rounded-full ${
+                  indicator.marketStatus === "aberto" ? "bg-emerald-500 animate-pulse" : "bg-slate-400"
+                }`}
+                aria-hidden="true"
+              />
+              <span>{indicator.marketStatus === "aberto" ? "Pregão Aberto" : "Mercado Fechado"}</span>
+            </span>
+
+            {indicator.isDelayed && (
+              <span
+                className="text-[10px] text-amber-800 bg-amber-50 border border-amber-200/60 px-1.5 py-0.5 rounded font-medium"
+                title="Cotações públicas da B3 possuem defasagem regulatória mínima de 15 minutos"
+              >
+                15m defasagem
+              </span>
+            )}
+          </div>
+        )}
 
         {/* Sigla e Nome Completo */}
         <div className="mb-3">
@@ -168,28 +206,54 @@ export const EconomyCard: React.FC<EconomyCardProps> = ({
         {/* Valor Principal em Destaque */}
         <div className="bg-slate-50/70 rounded-xl p-3 border border-slate-100 mb-3">
           <div className="flex items-baseline justify-between gap-2">
-            <div>
+            <div className="w-full">
               <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
-                Valor Atual ({indicator.unit})
+                {indicator.marketStatus === "fechado" ? "Último Fechamento" : "Valor Atual"} ({indicator.unit})
               </span>
-              <div className="text-2xl sm:text-3xl font-black font-heading text-slate-900 tracking-tight mt-0.5">
-                {indicator.formattedValue}
-              </div>
+              {isAvailable ? (
+                <div className="text-2xl sm:text-3xl font-black font-heading text-slate-900 tracking-tight mt-0.5">
+                  {indicator.formattedValue}
+                </div>
+              ) : (
+                <div className="mt-1">
+                  <div className="text-sm font-bold text-slate-700">
+                    Dados indisponíveis no momento.
+                  </div>
+                  <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
+                    Não foi possível carregar a cotação em tempo real. Consulte a B3 diretamente.
+                  </p>
+                  {indicator.quotationUrl && (
+                    <a
+                      href={indicator.quotationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-blue-700 hover:text-blue-900 underline"
+                    >
+                      <span>Acessar Cotações na B3</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
             {isAvailable && getVariationBadge()}
           </div>
 
-          {/* Período de Referência e Anterior */}
+          {/* Período de Referência, Anterior e Timestamp */}
           <div className="mt-2 pt-2 border-t border-slate-200/60 flex flex-wrap items-center justify-between gap-x-2 gap-y-1 text-[11px] text-slate-500 font-medium">
             <span className="flex items-center gap-1">
               <Calendar className="w-3 h-3 text-slate-400" />
               <span>Ref: {indicator.referencePeriod}</span>
             </span>
-            {indicator.formattedPreviousValue && (
+            {indicator.quoteTimestamp ? (
+              <span className="text-slate-500 font-mono text-[10px]" title="Data e hora da cotação">
+                {indicator.quoteTimestamp}
+              </span>
+            ) : indicator.formattedPreviousValue ? (
               <span className="text-slate-400">
                 Anterior: {indicator.formattedPreviousValue}
               </span>
-            )}
+            ) : null}
           </div>
         </div>
 
@@ -202,7 +266,7 @@ export const EconomyCard: React.FC<EconomyCardProps> = ({
       {/* Rodapé do card com ações */}
       <div className="px-4 sm:px-5 py-3 bg-slate-50/90 border-t border-slate-100 flex items-center justify-between gap-2">
         <a
-          href={indicator.sourceUrl}
+          href={indicator.quotationUrl || indicator.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500 hover:text-blue-700 transition-colors group/link"

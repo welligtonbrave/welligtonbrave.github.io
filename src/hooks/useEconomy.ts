@@ -60,7 +60,8 @@ export function useEconomy(options?: UseEconomyOptions) {
     const total = indicators.length;
     const ibgeCount = indicators.filter((i) => i.source === "IBGE").length;
     const bcbCount = indicators.filter((i) => i.source === "Banco Central do Brasil").length;
-    return { total, ibgeCount, bcbCount };
+    const b3Count = indicators.filter((i) => i.source === "B3").length;
+    return { total, ibgeCount, bcbCount, b3Count };
   }, [indicators]);
 
   return {

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Database, FileText, Search, Menu, X, TrendingUp, ChevronRight } from "lucide-react";
+import { Database, FileText, Search, Menu, X, TrendingUp, ChevronRight, ExternalLink } from "lucide-react";
 import { ElectionDataSet } from "../data/electionData";
 import { PortalRoute, ROUTE_CONFIGS } from "../utils/router";
 import { PortalLink } from "./PortalLink";
 import { EconomicIndicator } from "../types/economy";
+import { getB3MarketStatus, formatDailyVariation } from "../utils/marketHours";
 
 interface HeaderProps {
   dataset: ElectionDataSet;
@@ -28,6 +29,7 @@ export const Header: React.FC<HeaderProps> = ({
   const ipcaIndicator = indicators.find((i) => i.id === "ipca");
   const selicIndicator = indicators.find((i) => i.id === "selic");
   const dolarIndicator = indicators.find((i) => i.id === "dolar");
+  const ibovIndicator = indicators.find((i) => i.id === "ibovespa" || i.id === "ibov");
 
   const ipcaVal = ipcaIndicator?.formattedValue || "+0,82%";
   const ipcaRef = ipcaIndicator?.referencePeriod || "setembro 2026";
@@ -35,6 +37,16 @@ export const Header: React.FC<HeaderProps> = ({
   const selicRef = selicIndicator?.referencePeriod || "Vigência a partir de 06/08/2026 (Copom)";
   const dolarVal = dolarIndicator?.formattedValue || "R$ 4,99";
   const dolarRef = dolarIndicator?.referencePeriod || "PTAX 09/10/2026";
+
+  const b3MarketInfo = getB3MarketStatus();
+  const hasIbovValue = ibovIndicator?.value !== null && ibovIndicator?.value !== undefined;
+  const ibovVal = hasIbovValue
+    ? ibovIndicator.formattedValue
+    : "Dados indisponíveis no momento.";
+  const ibovVariationInfo = formatDailyVariation(ibovIndicator?.variation ?? null);
+  const ibovTimestamp = ibovIndicator?.quoteTimestamp || "09/10/2026 18:00";
+  const ibovStatus = ibovIndicator?.marketStatus || b3MarketInfo.status;
+  const isIbovOpen = ibovStatus === "aberto";
 
   const navLinks: { route: PortalRoute; label: string; colorClass: string; activeClass: string }[] = [
     {
@@ -125,6 +137,50 @@ export const Header: React.FC<HeaderProps> = ({
                 <span>{dolarVal}</span>
                 <span className="text-[10px] text-slate-400 font-sans ml-0.5">[{dolarRef.replace("Fechamento PTAX ", "")} · BCB]</span>
               </PortalLink>
+
+              <span className="text-slate-600" aria-hidden="true">·</span>
+
+              {/* Ibovespa (IBOV) B3 */}
+              <div className="flex items-center gap-1 shrink-0">
+                <PortalLink
+                  route="economia"
+                  className="text-slate-200 hover:text-white transition-colors flex items-center gap-1.5"
+                  title={`Ibovespa (IBOV): ${ibovVal} (${ibovVariationInfo.formatted}). ${
+                    isIbovOpen
+                      ? "Pregão Aberto (cotações públicas com defasagem regulatória mínima de 15 min)."
+                      : "Mercado Fechado (último fechamento consolidado)."
+                  } Cotação: ${ibovTimestamp}. Fonte oficial: B3.`}
+                >
+                  <strong className="text-emerald-400 font-sans font-bold text-[11px]">Ibovespa (IBOV):</strong>
+                  <span>{ibovVal}</span>
+                  {hasIbovValue && ibovVariationInfo.type !== "unavailable" && (
+                    <span
+                      className={`text-[10px] px-1 py-0.2 rounded font-bold transition-colors ${
+                        ibovVariationInfo.type === "positive"
+                          ? "text-emerald-300 bg-emerald-950/80 border border-emerald-500/30"
+                          : ibovVariationInfo.type === "negative"
+                          ? "text-rose-300 bg-rose-950/80 border border-rose-500/30"
+                          : "text-slate-300 bg-slate-800 border border-slate-700"
+                      }`}
+                    >
+                      {ibovVariationInfo.formatted}
+                    </span>
+                  )}
+                  <span className="text-[10px] text-slate-400 font-sans ml-0.5">
+                    [{isIbovOpen ? "Aberto · 15m" : "Fechado"} · {ibovTimestamp.split(" ")[0].slice(0, 5)} · B3]
+                  </span>
+                </PortalLink>
+                <a
+                  href="https://b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/market-data/cotacoes/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-400 hover:text-emerald-400 transition-colors p-0.5 inline-flex items-center"
+                  title="Abrir cotação oficial diretamente no portal da B3 (defasagem de 15 min)"
+                  aria-label="Abrir cotação oficial do Ibovespa no portal da B3"
+                >
+                  <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+              </div>
 
               <span className="text-slate-600" aria-hidden="true">·</span>
 

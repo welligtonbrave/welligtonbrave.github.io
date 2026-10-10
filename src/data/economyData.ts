@@ -580,5 +580,83 @@ export const OFFICIAL_ECONOMIC_INDICATORS: EconomicIndicator[] = [
         "formattedValue": "+1,2%"
       }
     ]
+  },
+  {
+    "id": "ibovespa",
+    "name": "Índice Bovespa (Principal indicador de ações da B3)",
+    "shortName": "Ibovespa (IBOV)",
+    "value": 209067,
+    "formattedValue": "209.067 pts",
+    "unit": "pontos",
+    "variation": 1.38,
+    "variationPeriod": "vs. pregão anterior (+1,38%)",
+    "previousValue": 206220,
+    "formattedPreviousValue": "206.220 pts",
+    "referencePeriod": "09/10/2026 (Fechamento)",
+    "source": "B3",
+    "sourceAgency": "B3 - Brasil, Bolsa, Balcão",
+    "sourceUrl": "https://b3.com.br/pt_br/market-data-e-indices/indices/indices-amplos/ibovespa-b3.htm",
+    "quotationUrl": "https://b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/market-data/cotacoes/",
+    "officialSeriesCode": "IBOV (Código B3)",
+    "updatedAt": "09/10/2026 18:00",
+    "frequency": "Pregão Diário",
+    "category": "Juros & Câmbio",
+    "description": "Principal índice acionário da América Latina e termômetro do mercado de capitais brasileiro. Composto pelas ações e units das empresas de maior negociabilidade e representatividade na B3.",
+    "methodologySummary": "Índice de retorno total ponderado pelo valor de mercado das ações em circulação (free float). Rebalanceado a cada quatro meses pela B3. Cotações públicas possuem defasagem regulatória mínima de 15 minutos durante o pregão.",
+    "marketStatus": "fechado",
+    "marketStatusText": "Mercado Fechado (Último Fechamento)",
+    "isDelayed": true,
+    "delayNotice": "Cotações públicas com defasagem regulatória mínima de 15 minutos (B3). Fora do horário de negociação, exibe o último fechamento oficial verificado.",
+    "quoteTimestamp": "09/10/2026 18:00",
+    "historicalData": [
+      {
+        "period": "30/09/2026",
+        "value": 186340,
+        "formattedValue": "186.340 pts",
+        "variation": -0.46
+      },
+      {
+        "period": "01/10/2026",
+        "value": 187198,
+        "formattedValue": "187.198 pts",
+        "variation": 0.46
+      },
+      {
+        "period": "02/10/2026",
+        "value": 192115,
+        "formattedValue": "192.115 pts",
+        "variation": 2.63
+      },
+      {
+        "period": "05/10/2026",
+        "value": 206912,
+        "formattedValue": "206.912 pts",
+        "variation": 7.70
+      },
+      {
+        "period": "06/10/2026",
+        "value": 205835,
+        "formattedValue": "205.835 pts",
+        "variation": -0.52
+      },
+      {
+        "period": "07/10/2026",
+        "value": 204302,
+        "formattedValue": "204.302 pts",
+        "variation": -0.74
+      },
+      {
+        "period": "08/10/2026",
+        "value": 206220,
+        "formattedValue": "206.220 pts",
+        "variation": 0.94
+      },
+      {
+        "period": "09/10/2026",
+        "value": 209067,
+        "formattedValue": "209.067 pts",
+        "variation": 1.38
+      }
+    ]
   }
 ];

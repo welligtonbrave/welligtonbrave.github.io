@@ -4,6 +4,7 @@ import {
   EconomyFilterOptions,
 } from "../types/economy";
 import { OFFICIAL_ECONOMIC_INDICATORS } from "../data/economyData";
+import { getB3MarketStatus } from "../utils/marketHours";
 
 /**
  * Normaliza e valida um indicador econômico, garantindo integridade de tipos
@@ -31,6 +32,8 @@ export function normalizeEconomicIndicator(raw: any): EconomicIndicator {
         formattedValue = `${value >= 0 ? "+" : ""}${value.toFixed(2).replace(".", ",")}%`;
       } else if (unit.includes("R$")) {
         formattedValue = `R$ ${value.toFixed(2).replace(".", ",")}`;
+      } else if (unit.includes("pontos") || unit.includes("pts")) {
+        formattedValue = `${Math.round(value).toLocaleString("pt-BR")} pts`;
       } else {
         formattedValue = `${value.toLocaleString("pt-BR")} ${unit}`.trim();
       }
@@ -50,24 +53,40 @@ export function normalizeEconomicIndicator(raw: any): EconomicIndicator {
       : null;
 
   const referencePeriod = String(raw.referencePeriod || "Período corrente").trim();
-  const source =
+  const source: OfficialAgency =
     raw.source === "Banco Central do Brasil"
       ? "Banco Central do Brasil"
+      : raw.source === "B3"
+      ? "B3"
       : "IBGE";
 
   const sourceAgency = String(
     raw.sourceAgency ||
-      (source === "IBGE" ? "Instituto Brasileiro de Geografia e Estatística (IBGE)" : "Banco Central do Brasil (BCB)")
+      (source === "IBGE"
+        ? "Instituto Brasileiro de Geografia e Estatística (IBGE)"
+        : source === "Banco Central do Brasil"
+        ? "Banco Central do Brasil (BCB)"
+        : "B3 - Brasil, Bolsa, Balcão")
   ).trim();
 
   const sourceUrl = String(
     raw.sourceUrl ||
-      (source === "IBGE" ? "https://www.ibge.gov.br" : "https://www.bcb.gov.br")
+      (source === "IBGE"
+        ? "https://www.ibge.gov.br"
+        : source === "Banco Central do Brasil"
+        ? "https://www.bcb.gov.br"
+        : "https://b3.com.br/pt_br/market-data-e-indices/indices/indices-amplos/ibovespa-b3.htm")
   ).trim();
+
+  const quotationUrl = raw.quotationUrl
+    ? String(raw.quotationUrl).trim()
+    : source === "B3"
+    ? "https://b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/market-data/cotacoes/"
+    : undefined;
 
   const updatedAt = String(raw.updatedAt || new Date().toLocaleDateString("pt-BR")).trim();
 
-  const frequency = ["Mensal", "Trimestral", "Diária", "Reunião Copom"].includes(raw.frequency)
+  const frequency = ["Mensal", "Trimestral", "Diária", "Reunião Copom", "Pregão Diário"].includes(raw.frequency)
     ? raw.frequency
     : "Mensal";
 
@@ -83,8 +102,23 @@ export function normalizeEconomicIndicator(raw: any): EconomicIndicator {
 
   const description = String(raw.description || "Indicador oficial da economia brasileira.").trim();
   const methodologySummary = String(
-    raw.methodologySummary || "Metodologia oficial apurada pelos órgãos estatísticos do Brasil."
+    raw.methodologySummary || "Metodologia oficial apurada pelos órgãos estatísticos e bolsas do Brasil."
   ).trim();
+
+  const b3MarketInfo = source === "B3" ? getB3MarketStatus() : null;
+  const marketStatus = raw.marketStatus === "aberto" || raw.marketStatus === "fechado"
+    ? raw.marketStatus
+    : b3MarketInfo?.status;
+  const marketStatusText = raw.marketStatusText
+    ? String(raw.marketStatusText).trim()
+    : b3MarketInfo?.statusDetailedText;
+  const isDelayed = typeof raw.isDelayed === "boolean" ? raw.isDelayed : source === "B3";
+  const delayNotice = raw.delayNotice
+    ? String(raw.delayNotice).trim()
+    : b3MarketInfo?.delayNotice || (source === "B3"
+        ? "Cotações públicas com defasagem regulatória mínima de 15 minutos (B3). Valores de fechamento não constituem cotação em tempo real."
+        : undefined);
+  const quoteTimestamp = raw.quoteTimestamp ? String(raw.quoteTimestamp).trim() : undefined;
 
   const historicalData = Array.isArray(raw.historicalData)
     ? raw.historicalData.map((pt: any) => ({
@@ -110,12 +144,18 @@ export function normalizeEconomicIndicator(raw: any): EconomicIndicator {
     source,
     sourceAgency,
     sourceUrl,
+    quotationUrl,
     officialSeriesCode: raw.officialSeriesCode ? String(raw.officialSeriesCode).trim() : undefined,
     updatedAt,
     frequency,
     category,
     description,
     methodologySummary,
+    marketStatus,
+    marketStatusText,
+    isDelayed,
+    delayNotice,
+    quoteTimestamp,
     historicalData,
   };
 }

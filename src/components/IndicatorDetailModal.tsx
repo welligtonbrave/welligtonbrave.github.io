@@ -94,11 +94,33 @@ export const IndicatorDetailModal: React.FC<IndicatorDetailModalProps> = ({
               <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
                 {indicator.source === "Banco Central do Brasil" ? (
                   <Landmark className="w-3.5 h-3.5 text-blue-600" />
+                ) : indicator.source === "B3" ? (
+                  <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
                 ) : (
                   <Building2 className="w-3.5 h-3.5 text-blue-600" />
                 )}
                 <span>{indicator.source}</span>
               </span>
+              {indicator.marketStatus && (
+                <span
+                  className={`inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${
+                    indicator.marketStatus === "aberto"
+                      ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                      : "bg-slate-100 text-slate-700 border-slate-200"
+                  }`}
+                >
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      indicator.marketStatus === "aberto" ? "bg-emerald-500 animate-pulse" : "bg-slate-400"
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <span>
+                    {indicator.marketStatusText ||
+                      (indicator.marketStatus === "aberto" ? "Pregão Aberto" : "Mercado Fechado")}
+                  </span>
+                </span>
+              )}
               {indicator.officialSeriesCode && (
                 <span className="text-[11px] font-mono font-medium text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-200/80">
                   {indicator.officialSeriesCode}
@@ -125,12 +147,31 @@ export const IndicatorDetailModal: React.FC<IndicatorDetailModalProps> = ({
 
         {/* Conteúdo do Modal */}
         <div className="p-5 sm:p-6 space-y-6">
+          {/* Alerta de Defasagem Regulatória e Status para B3 */}
+          {(indicator.delayNotice || indicator.marketStatus) && (
+            <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 text-xs text-amber-900 space-y-1">
+              <div className="font-bold flex items-center gap-1.5 text-amber-950">
+                <Info className="w-4 h-4 text-amber-600" />
+                <span>Condição da Cotação e Defasagem de Mercado (B3)</span>
+              </div>
+              <p className="leading-relaxed">
+                {indicator.delayNotice ||
+                  "Cotações públicas da B3 possuem defasagem regulatória mínima de 15 minutos durante o pregão. Fora do horário de negociação, exibe o último fechamento consolidado verificado."}
+              </p>
+              {indicator.quoteTimestamp && (
+                <p className="font-mono text-[11px] text-amber-800 pt-0.5">
+                  Horário registrado da cotação: <strong>{indicator.quoteTimestamp}</strong>
+                </p>
+              )}
+            </div>
+          )}
+
           {/* Card de Valor Atual */}
           <div className="bg-slate-900 text-white rounded-2xl p-5 sm:p-6 shadow-md">
             <div className="flex flex-wrap items-baseline justify-between gap-4">
               <div>
                 <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
-                  Valor Registrado ({indicator.unit})
+                  {indicator.marketStatus === "fechado" ? "Último Fechamento" : "Valor Registrado"} ({indicator.unit})
                 </span>
                 <div className="text-3xl sm:text-4xl font-black font-heading tracking-tight mt-1 text-white">
                   {indicator.formattedValue}
@@ -140,7 +181,7 @@ export const IndicatorDetailModal: React.FC<IndicatorDetailModalProps> = ({
               {indicator.variation !== null && (
                 <div className="bg-slate-800/90 border border-slate-700 px-3.5 py-2 rounded-xl text-right">
                   <span className="text-[10px] uppercase font-bold text-slate-400 block">
-                    Variação
+                    Variação Diária
                   </span>
                   <div className="text-sm font-bold mt-0.5 flex items-center gap-1 justify-end text-emerald-400">
                     {indicator.variation > 0 ? (
@@ -153,6 +194,7 @@ export const IndicatorDetailModal: React.FC<IndicatorDetailModalProps> = ({
                     <span>
                       {indicator.variation > 0 ? "+" : ""}
                       {indicator.variation.toFixed(2).replace(".", ",")}
+                      {indicator.unit.includes("%") ? "%" : "%"}
                     </span>
                   </div>
                 </div>
@@ -165,7 +207,7 @@ export const IndicatorDetailModal: React.FC<IndicatorDetailModalProps> = ({
                 <span>Período de Referência: <strong>{indicator.referencePeriod}</strong></span>
               </span>
               <span>Periodicidade: <strong>{indicator.frequency}</strong></span>
-              <span>Última atualização: <strong>{indicator.updatedAt}</strong></span>
+              <span>Última atualização: <strong>{indicator.quoteTimestamp || indicator.updatedAt}</strong></span>
             </div>
           </div>
 

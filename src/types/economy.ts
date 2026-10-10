@@ -18,7 +18,7 @@ export interface HistoricalDataPoint {
   variation?: number | null;
 }
 
-export type OfficialAgency = "IBGE" | "Banco Central do Brasil";
+export type OfficialAgency = "IBGE" | "Banco Central do Brasil" | "B3";
 
 export interface EconomicIndicator {
   id: string;
@@ -35,12 +35,18 @@ export interface EconomicIndicator {
   source: OfficialAgency;
   sourceAgency: string;
   sourceUrl: string;
+  quotationUrl?: string;
   officialSeriesCode?: string;
   updatedAt: string;
-  frequency: "Mensal" | "Trimestral" | "Diária" | "Reunião Copom";
+  frequency: "Mensal" | "Trimestral" | "Diária" | "Reunião Copom" | "Pregão Diário";
   category: EconomyCategory;
   description: string;
   methodologySummary: string;
+  marketStatus?: "aberto" | "fechado";
+  marketStatusText?: string;
+  isDelayed?: boolean;
+  delayNotice?: string;
+  quoteTimestamp?: string;
   historicalData: HistoricalDataPoint[];
 }
 
