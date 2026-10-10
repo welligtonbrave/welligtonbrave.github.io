@@ -2,6 +2,7 @@ import React from "react";
 import { ElectionDataSet } from "../data/electionData";
 import { NewsItem } from "../types/news";
 import { NationalBanner } from "../components/NationalBanner";
+import { CandidateResultsView } from "../components/CandidateResultsView";
 import { RegionalCharts } from "../components/RegionalCharts";
 import { EDITORIAL_IMAGES } from "../assets/editorialImages";
 import { NewsCard } from "../components/NewsCard";
@@ -80,7 +81,16 @@ export const EleicoesPage: React.FC<EleicoesPageProps> = ({
           />
         </div>
 
-        {/* 2. Banner Editorial com Fotografia e Regras do 2º Turno */}
+        {/* 2. Quadro Individual de Candidatos à Presidência (Fotografias Oficiais e Busca/Filtros) */}
+        <div className="mb-12">
+          <CandidateResultsView
+            dataset={dataset}
+            onSelectCandidate={onSelectCandidateFilter}
+            selectedCandidateId={selectedCandidateFilter}
+          />
+        </div>
+
+        {/* 3. Banner Editorial com Fotografia e Regras do 2º Turno */}
         <div className="mb-12 bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 p-6 sm:p-8 items-center">
             <div className="lg:col-span-6">
@@ -114,7 +124,7 @@ export const EleicoesPage: React.FC<EleicoesPageProps> = ({
                   Conforme o <strong className="text-slate-900">&sect; 2º do Artigo 77 da Carta Magna</strong>, se nenhum candidato alcançar mais da metade dos votos válidos nominais no primeiro turno (excluídos brancos e nulos), convoca-se uma nova votação entre os dois concorrentes mais votados.
                 </p>
                 <p>
-                  No pleito de 2026, com 125,2 milhões de votos válidos nominais, <strong className="text-slate-900">Flávio Bolsonaro (47,03%)</strong> e <strong className="text-slate-900">Luiz Inácio Lula da Silva (45,16%)</strong> avançaram para o segundo turno no último domingo de outubro.
+                  No pleito de 2026, com 119,3 milhões de votos válidos nominais (119.297.583 votos apurados), <strong className="text-slate-900">Flávio Bolsonaro (47,03%)</strong> e <strong className="text-slate-900">Luiz Inácio Lula da Silva (45,16%)</strong> avançaram para o segundo turno no último domingo de outubro.
                 </p>
               </div>
 

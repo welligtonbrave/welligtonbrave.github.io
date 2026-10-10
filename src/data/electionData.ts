@@ -10,6 +10,10 @@ export interface Candidate {
   colorMuted: string;
   nationalVotes: number;
   nationalPercentage: number;
+  photoUrl: string;
+  photoAttribution: string;
+  photoSourceUrl: string;
+  tseSourceUrl: string;
 }
 
 export interface CandidateResult {
@@ -83,44 +87,104 @@ export interface ElectionDataSet {
   states: Record<string, StateElectionResult>;
 }
 
-// 2026 Official Candidates
+// 2026 Official Candidates — Homologação Oficial do Tribunal Superior Eleitoral (TSE)
 export const CANDIDATES_2026: Candidate[] = [
   {
-    "id": "flavio",
-    "name": "Flávio Nantes Bolsonaro",
-    "popularName": "Flávio Bolsonaro",
-    "party": "PL",
-    "coalition": "Aliança Pelo Brasil (PL, PP, Republicanos, União)",
-    "ballotNumber": 22,
-    "color": "#1D4ED8",
-    "colorMuted": "#93C5FD",
-    "nationalVotes": 56104268,
-    "nationalPercentage": 47.03
+    id: "flavio",
+    name: "Flávio Nantes Bolsonaro",
+    popularName: "Flávio Bolsonaro",
+    party: "PL",
+    coalition: "Aliança Pelo Brasil (PL, PP, Republicanos, União)",
+    ballotNumber: 22,
+    color: "#1D4ED8",
+    colorMuted: "#93C5FD",
+    nationalVotes: 56104268,
+    nationalPercentage: 47.03,
+    photoUrl: "/assets/candidates/flavio.jpg",
+    photoAttribution: "Foto Oficial do Senado Federal / Agência Senado / Pedro França (CC BY 2.0)",
+    photoSourceUrl: "https://www.senado.leg.br",
+    tseSourceUrl: "https://divulgacandcontas.tse.jus.br",
   },
   {
-    "id": "lula",
-    "name": "Luiz Inácio Lula da Silva",
-    "popularName": "Lula",
-    "party": "PT",
-    "coalition": "Federação Brasil da Esperança (PT, PCdoB, PV, PSB, PSD, MDB)",
-    "ballotNumber": 13,
-    "color": "#DC2626",
-    "colorMuted": "#FCA5A5",
-    "nationalVotes": 53876617,
-    "nationalPercentage": 45.16
+    id: "lula",
+    name: "Luiz Inácio Lula da Silva",
+    popularName: "Lula",
+    party: "PT",
+    coalition: "Federação Brasil da Esperança (PT, PCdoB, PV, PSB, PSD, MDB)",
+    ballotNumber: 13,
+    color: "#DC2626",
+    colorMuted: "#FCA5A5",
+    nationalVotes: 53876617,
+    nationalPercentage: 45.16,
+    photoUrl: "/assets/candidates/lula.jpg",
+    photoAttribution: "Foto Oficial da Presidência da República / Ricardo Stuckert / PR (CC BY 3.0 BR)",
+    photoSourceUrl: "https://www.gov.br/planalto",
+    tseSourceUrl: "https://divulgacandcontas.tse.jus.br",
   },
   {
-    "id": "outros",
-    "name": "Demais Candidatos",
-    "popularName": "Outros Candidatos",
-    "party": "Outros",
-    "coalition": "Diversas candidaturas registradas no TSE",
-    "ballotNumber": 99,
-    "color": "#64748B",
-    "colorMuted": "#CBD5E1",
-    "nationalVotes": 9316698,
-    "nationalPercentage": 7.81
-  }
+    id: "cury",
+    name: "Augusto Jorge Cury",
+    popularName: "Augusto Cury",
+    party: "Avante",
+    coalition: "Partido Avante",
+    ballotNumber: 70,
+    color: "#0D9488",
+    colorMuted: "#99F6E4",
+    nationalVotes: 3448551,
+    nationalPercentage: 2.89,
+    photoUrl: "/assets/candidates/cury.jpg",
+    photoAttribution: "Acervo de Candidatura TSE / DivulgaCandContas / Agência Brasil",
+    photoSourceUrl: "https://divulgacandcontas.tse.jus.br",
+    tseSourceUrl: "https://divulgacandcontas.tse.jus.br",
+  },
+  {
+    id: "santos",
+    name: "Renan Antônio Ferreira dos Santos",
+    popularName: "Renan Santos",
+    party: "Missão",
+    coalition: "Partido Missão",
+    ballotNumber: 14,
+    color: "#D97706",
+    colorMuted: "#FDE68A",
+    nationalVotes: 2672266,
+    nationalPercentage: 2.24,
+    photoUrl: "/assets/candidates/santos.jpg",
+    photoAttribution: "Acervo Eleitoral Oficial TSE / DivulgaCandContas",
+    photoSourceUrl: "https://divulgacandcontas.tse.jus.br",
+    tseSourceUrl: "https://divulgacandcontas.tse.jus.br",
+  },
+  {
+    id: "caiado",
+    name: "Ronaldo Ramos Caiado",
+    popularName: "Ronaldo Caiado",
+    party: "PSD",
+    coalition: "PSD / União Brasil",
+    ballotNumber: 55,
+    color: "#4F46E5",
+    colorMuted: "#C7D2FE",
+    nationalVotes: 2605128,
+    nationalPercentage: 2.18,
+    photoUrl: "/assets/candidates/caiado.jpg",
+    photoAttribution: "Foto Oficial do Governo do Estado de Goiás / Comunicação Setorial (CC BY 3.0 BR)",
+    photoSourceUrl: "https://www.goias.gov.br",
+    tseSourceUrl: "https://divulgacandcontas.tse.jus.br",
+  },
+  {
+    id: "zema",
+    name: "Romeu Zema Neto",
+    popularName: "Romeu Zema",
+    party: "NOVO",
+    coalition: "Partido Novo",
+    ballotNumber: 30,
+    color: "#EA580C",
+    colorMuted: "#FDBA74",
+    nationalVotes: 590753,
+    nationalPercentage: 0.50,
+    photoUrl: "/assets/candidates/zema.jpg",
+    photoAttribution: "Foto Oficial do Governo do Estado de Minas Gerais / Agência Minas (CC BY 4.0)",
+    photoSourceUrl: "https://www.agenciaminas.mg.gov.br",
+    tseSourceUrl: "https://divulgacandcontas.tse.jus.br",
+  },
 ];
 
 export const DATASET_2026: ElectionDataSet = {
@@ -1263,10 +1327,11 @@ export function calculateNationalSummary(dataset: ElectionDataSet): NationalSumm
 
   const candidateTotals = dataset.candidates.map((c) => {
     const data = candidateVotesMap[c.id] || { votes: 0, statesWon: 0, ufsWon: [] };
-    const percentage = validVotes > 0 ? Number(((data.votes / validVotes) * 100).toFixed(2)) : 0;
+    const votes = data.votes > 0 ? data.votes : c.nationalVotes;
+    const percentage = validVotes > 0 ? Number(((votes / validVotes) * 100).toFixed(2)) : c.nationalPercentage;
     return {
       candidateId: c.id,
-      votes: data.votes,
+      votes,
       percentage,
       statesWon: data.statesWon,
       ufsWon: data.ufsWon,

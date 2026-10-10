@@ -978,40 +978,49 @@ export const BrazilMap: React.FC<BrazilMapProps> = ({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          {dataset.candidates.map((cand) => {
-            const statesWon = Object.values(dataset.states).filter(
-              (s) => s.winnerId === cand.id
-            ).length;
-            const isFilterActive = candidateFilter === cand.id;
+          {dataset.candidates
+            .map((cand) => {
+              const statesWon = Object.values(dataset.states).filter(
+                (s) => s.winnerId === cand.id
+              ).length;
+              return { cand, statesWon };
+            })
+            .filter(({ statesWon }) => statesWon > 0)
+            .map(({ cand, statesWon }) => {
+              const isFilterActive = candidateFilter === cand.id;
+              const countLabel =
+                cand.id === "flavio"
+                  ? "15 unidades da Federação"
+                  : `${statesWon} ${statesWon === 1 ? "estado" : "estados"}`;
 
-            return (
-              <button
-                key={cand.id}
-                onClick={() =>
-                  onSelectCandidateFilter(isFilterActive ? null : cand.id)
-                }
-                className={`flex items-center gap-2 text-xs px-2.5 py-1.5 rounded-xl transition-all cursor-pointer ${
-                  isFilterActive
-                    ? "bg-slate-900 text-white font-bold shadow-xs"
-                    : "hover:bg-slate-100 text-slate-800 border border-slate-200/90 bg-white"
-                }`}
-                title={`Clique para destacar no mapa os estados vencidos por ${cand.popularName}`}
-              >
-                <span
-                  className="w-3.5 h-3.5 rounded-sm shrink-0 border border-black/10"
-                  style={{ backgroundColor: cand.color }}
-                />
-                <span className="font-bold">{cand.popularName}</span>
-                <span
-                  className={`text-[10px] font-mono ${
-                    isFilterActive ? "text-slate-300" : "text-slate-500"
+              return (
+                <button
+                  key={cand.id}
+                  onClick={() =>
+                    onSelectCandidateFilter(isFilterActive ? null : cand.id)
+                  }
+                  className={`flex items-center gap-2 text-xs px-2.5 py-1.5 rounded-xl transition-all cursor-pointer ${
+                    isFilterActive
+                      ? "bg-slate-900 text-white font-bold shadow-xs"
+                      : "hover:bg-slate-100 text-slate-800 border border-slate-200/90 bg-white"
                   }`}
+                  title={`Clique para destacar no mapa as unidades da Federação vencidas por ${cand.popularName}`}
                 >
-                  ({statesWon} {statesWon === 1 ? "estado" : "estados"})
-                </span>
-              </button>
-            );
-          })}
+                  <span
+                    className="w-3.5 h-3.5 rounded-sm shrink-0 border border-black/10"
+                    style={{ backgroundColor: cand.color }}
+                  />
+                  <span className="font-bold">{cand.popularName}</span>
+                  <span
+                    className={`text-[10px] font-mono ${
+                      isFilterActive ? "text-slate-300" : "text-slate-500"
+                    }`}
+                  >
+                    ({countLabel})
+                  </span>
+                </button>
+              );
+            })}
         </div>
       </div>
     </div>

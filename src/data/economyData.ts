@@ -305,14 +305,14 @@ export const OFFICIAL_ECONOMIC_INDICATORS: EconomicIndicator[] = [
     "id": "selic",
     "name": "Taxa Selic Meta (Política Monetária Copom)",
     "shortName": "Taxa Selic",
-    "value": 14.25,
-    "formattedValue": "14,25% a.a.",
+    "value": 14.0,
+    "formattedValue": "14,00% a.a.",
     "unit": "% ao ano",
     "variation": -0.25,
-    "variationPeriod": "vs. decisão anterior (14,50%)",
-    "previousValue": 14.5,
-    "formattedPreviousValue": "14,50% a.a.",
-    "referencePeriod": "Vigência a partir de 18/06/2026 (Copom)",
+    "variationPeriod": "vs. decisão anterior (14,25%)",
+    "previousValue": 14.25,
+    "formattedPreviousValue": "14,25% a.a.",
+    "referencePeriod": "Vigência a partir de 06/08/2026 (Copom)",
     "source": "Banco Central do Brasil",
     "sourceAgency": "Banco Central do Brasil - Comitê de Política Monetária (Copom)",
     "sourceUrl": "https://www.bcb.gov.br/controleinflacao/historicotaxasjuros",
@@ -320,14 +320,9 @@ export const OFFICIAL_ECONOMIC_INDICATORS: EconomicIndicator[] = [
     "updatedAt": "09/10/2026",
     "frequency": "Reunião Copom",
     "category": "Juros & Câmbio",
-    "description": "Taxa básica de juros da economia brasileira, fixada pelo Comitê de Política Monetária (Copom). Histórico oficial do Banco Central do Brasil com vigência a partir de 18/06/2026.",
+    "description": "Taxa básica de juros da economia brasileira, fixada pelo Comitê de Política Monetária (Copom). Histórico oficial do Banco Central do Brasil com vigência a partir de 06/08/2026.",
     "methodologySummary": "Taxa apurada no Sistema Especial de Liquidação e Custódia (Selic) que remunera operações compromissadas de 1 dia com títulos públicos federais.",
     "historicalData": [
-      {
-        "period": "Nov/25",
-        "value": 15,
-        "formattedValue": "15,00%"
-      },
       {
         "period": "Jan/26",
         "value": 15,
@@ -347,6 +342,11 @@ export const OFFICIAL_ECONOMIC_INDICATORS: EconomicIndicator[] = [
         "period": "Jun/26",
         "value": 14.25,
         "formattedValue": "14,25%"
+      },
+      {
+        "period": "Ago/26",
+        "value": 14.0,
+        "formattedValue": "14,00%"
       }
     ]
   },

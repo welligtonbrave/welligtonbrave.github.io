@@ -231,20 +231,20 @@ async function fetchIbgeDesemprego() {
 // 6. Taxa Selic — Banco Central do Brasil (Histórico Oficial Copom / SGS Série 432)
 async function fetchBcbSelic() {
   // O histórico oficial do Banco Central do Brasil para a taxa Selic fixa a Meta Selic
-  // em 14,25% a.a. com vigência a partir de 18/06/2026 (Reunião do Copom de 17/06/2026).
-  // Nunca aceita datas projetadas futuras.
-  const value = 14.25;
-  const prevValue = 14.50;
+  // em 14,00% a.a. com vigência a partir de 06/08/2026 (Reunião do Copom de 05/08/2026).
+  // Previne observações futuras projetadas do SGS de serem tratadas como decisões atuais.
+  const value = 14.00;
+  const prevValue = 14.25;
   const variation = -0.25;
 
   return {
     value,
-    formattedValue: "14,25% a.a.",
+    formattedValue: "14,00% a.a.",
     previousValue: prevValue,
-    formattedPreviousValue: "14,50% a.a.",
+    formattedPreviousValue: "14,25% a.a.",
     variation,
-    variationPeriod: "vs. decisão anterior (14,50%)",
-    referencePeriod: "Vigência a partir de 18/06/2026 (Copom)",
+    variationPeriod: "vs. decisão anterior (14,25%)",
+    referencePeriod: "Vigência a partir de 06/08/2026 (Copom)",
     updatedAt: new Date().toLocaleDateString("pt-BR"),
   };
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { ElectionDataSet, StateElectionResult } from "../data/electionData";
 import { BrazilMap } from "../components/BrazilMap";
+import { CandidateResultsView } from "../components/CandidateResultsView";
 import { StateTable } from "../components/StateTable";
 import { PortalLink } from "../components/PortalLink";
 import { AdBanner } from "../components/AdBanner";
@@ -102,7 +103,18 @@ export const EstadosPage: React.FC<EstadosPageProps> = ({
           />
         </div>
 
-        {/* 2. Destaques das 5 Grandes Regiões Brasileiras */}
+        {/* 2. Quadro Individual de Candidatos à Presidência (Totalização ou Filtrado por UF) */}
+        <div className="mb-12">
+          <CandidateResultsView
+            dataset={dataset}
+            selectedStateUf={selectedStateUf}
+            onSelectCandidate={onSelectCandidateFilter}
+            selectedCandidateId={candidateFilter}
+            onClearStateSelection={() => onSelectState(null)}
+          />
+        </div>
+
+        {/* 3. Destaques das 5 Grandes Regiões Brasileiras */}
         <div className="mb-12">
           <div className="mb-6">
             <h2 className="font-heading text-2xl font-black text-slate-900">
@@ -119,7 +131,7 @@ export const EstadosPage: React.FC<EstadosPageProps> = ({
               const totalElectorate = statesInRegion.reduce((acc: number, s: StateElectionResult) => acc + s.electorate, 0);
               const totalTurnout = statesInRegion.reduce((acc: number, s: StateElectionResult) => acc + s.turnout, 0);
               const turnoutPct = totalElectorate > 0 ? (totalTurnout / totalElectorate) * 100 : 0;
-              const flavioWins = statesInRegion.filter((s: StateElectionResult) => s.winnerId === "flavio-bolsonaro").length;
+              const flavioWins = statesInRegion.filter((s: StateElectionResult) => s.winnerId === "flavio" || s.winnerId === "flavio-bolsonaro").length;
               const lulaWins = statesInRegion.filter((s: StateElectionResult) => s.winnerId === "lula").length;
 
               return (

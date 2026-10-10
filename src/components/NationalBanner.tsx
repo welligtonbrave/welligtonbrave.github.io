@@ -5,6 +5,7 @@ import {
   formatVotesBR,
   formatPercentBR,
 } from "../data/electionData";
+import { CandidateImage } from "./CandidateImage";
 import {
   CheckCircle2,
   Calendar,
@@ -35,11 +36,16 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
 
   const flavio = candidatesMap["flavio"];
   const lula = candidatesMap["lula"];
-  const outros = candidatesMap["outros"];
 
   const flavioTotal = summary.candidateTotals.find((c) => c.candidateId === "flavio");
   const lulaTotal = summary.candidateTotals.find((c) => c.candidateId === "lula");
-  const outrosTotal = summary.candidateTotals.find((c) => c.candidateId === "outros");
+  const otherCandidatesTotals = summary.candidateTotals.filter(
+    (c) => c.candidateId !== "flavio" && c.candidateId !== "lula"
+  );
+  const otherVotesSum = otherCandidatesTotals.reduce((acc, c) => acc + c.votes, 0);
+  const otherPctSum = summary.validVotes > 0
+    ? Number(((otherVotesSum / summary.validVotes) * 100).toFixed(2))
+    : 7.81;
 
   // Diferença em votos nominais entre os dois primeiros
   const voteDiff = (flavioTotal?.votes || 0) - (lulaTotal?.votes || 0);
@@ -214,11 +220,11 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
                   style={{ width: `${lulaTotal?.percentage || 45.16}%` }}
                   title={`Lula: ${formatPercentBR(lulaTotal?.percentage || 45.16)}`}
                 />
-                {/* Segmento Outros */}
+                {/* Segmento Demais Candidatos */}
                 <div
                   className="h-full bg-slate-500 transition-all duration-300"
-                  style={{ width: `${outrosTotal?.percentage || 7.81}%` }}
-                  title={`Outros Candidatos: ${formatPercentBR(outrosTotal?.percentage || 7.81)}`}
+                  style={{ width: `${otherPctSum}%` }}
+                  title={`Demais Candidatos: ${formatPercentBR(otherPctSum)}`}
                 />
 
                 {/* Marcador Constitucional de 50% */}
@@ -251,10 +257,10 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
               Total de Votos Válidos
             </span>
             <span className="font-mono text-3xl font-black text-slate-950 block tracking-tight">
-              125.272.513
+              {formatVotesBR(summary.validVotes)}
             </span>
             <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
-              <span className="font-medium">Base de cálculo oficial</span>
+              <span className="font-medium">Base constitucional (Art. 77)</span>
               <span className="font-mono font-bold text-slate-800">100,00%</span>
             </div>
           </div>
@@ -283,16 +289,16 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
             </div>
             <div className="flex items-baseline justify-between">
               <span className="font-mono text-3xl font-black text-blue-950 block tracking-tight">
-                47,03%
+                {formatPercentBR(flavioTotal?.percentage || 47.03)}
               </span>
               <span className="font-mono text-xs font-bold text-slate-600">
-                56.104.268 votos
+                {formatVotesBR(flavioTotal?.votes || 56104268)} votos
               </span>
             </div>
             <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
               <span className="flex items-center gap-1 font-bold text-blue-900">
                 <Award className="w-3.5 h-3.5 text-blue-700" />
-                Venceu em {flavioTotal?.statesWon || 14} estados + DF
+                Venceu em 15 unidades da Federação (14 estados + DF)
               </span>
               <span className="text-[11px] text-blue-700 font-semibold group-hover:underline">
                 {selectedCandidateFilter === "flavio" ? "Limpar" : "Filtrar mapa →"}
@@ -324,16 +330,16 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
             </div>
             <div className="flex items-baseline justify-between">
               <span className="font-mono text-3xl font-black text-red-950 block tracking-tight">
-                45,16%
+                {formatPercentBR(lulaTotal?.percentage || 45.16)}
               </span>
               <span className="font-mono text-xs font-bold text-slate-600">
-                53.876.617 votos
+                {formatVotesBR(lulaTotal?.votes || 53876617)} votos
               </span>
             </div>
             <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
               <span className="flex items-center gap-1 font-bold text-red-900">
                 <Award className="w-3.5 h-3.5 text-red-700" />
-                Venceu em {lulaTotal?.statesWon || 13} estados
+                Venceu em {lulaTotal?.statesWon || 12} estados
               </span>
               <span className="text-[11px] text-red-700 font-semibold group-hover:underline">
                 {selectedCandidateFilter === "lula" ? "Limpar" : "Filtrar mapa →"}
@@ -357,26 +363,103 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-slate-500" />
             <div className="flex items-center justify-between mb-1">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-600 block">
-                Outros Candidatos
+                Demais Candidatos
               </span>
               <span className="text-[10px] font-bold font-mono text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">
-                Demais
+                {otherCandidatesTotals.length} concorrentes
               </span>
             </div>
             <div className="flex items-baseline justify-between">
               <span className="font-mono text-3xl font-black text-slate-900 block tracking-tight">
-                7,81%
+                {formatPercentBR(otherPctSum)}
               </span>
               <span className="font-mono text-xs font-bold text-slate-600">
-                15.291.628 votos
+                {formatVotesBR(otherVotesSum)} votos
               </span>
             </div>
             <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
               <span className="font-medium text-slate-700">Demais agremiações somadas</span>
               <span className="text-[11px] text-slate-500 group-hover:underline">
-                {selectedCandidateFilter === "outros" ? "Limpar" : "Ver →"}
+                {otherCandidatesTotals.length} candidatos ↓
               </span>
             </div>
+          </div>
+        </div>
+
+        {/* Discriminação Nominal dos Demais Candidatos Homologados pelo TSE */}
+        <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                Demais Candidaturas Registradas no TSE (Discriminação Nominal)
+              </span>
+              <span className="text-[10px] font-mono text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-200">
+                Total: {formatVotesBR(otherVotesSum)} votos ({formatPercentBR(otherPctSum)})
+              </span>
+            </div>
+            <span className="text-[11px] text-slate-500 font-medium">
+              Fotografias e dados homologados pelo TSE
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {otherCandidatesTotals.map((item) => {
+              const cand = candidatesMap[item.candidateId];
+              if (!cand) return null;
+              const isSelected = selectedCandidateFilter === cand.id;
+
+              return (
+                <div
+                  key={cand.id}
+                  onClick={() =>
+                    onSelectCandidateFilter(isSelected ? null : cand.id)
+                  }
+                  className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center gap-3 relative overflow-hidden group ${
+                    isSelected
+                      ? "bg-white border-blue-600 ring-2 ring-blue-600/20 shadow-sm"
+                      : "bg-white border-slate-200 hover:border-slate-300 shadow-2xs"
+                  }`}
+                  title={`Clique para selecionar ${cand.popularName} (${cand.party})`}
+                >
+                  <div
+                    className="absolute top-0 left-0 bottom-0 w-1"
+                    style={{ backgroundColor: cand.color }}
+                  />
+                  <div className="w-10 h-12 shrink-0 rounded-lg overflow-hidden ml-1">
+                    <CandidateImage
+                      src={cand.photoUrl}
+                      alt={`Fotografia oficial de ${cand.popularName}`}
+                      candidateName={cand.popularName}
+                      ballotNumber={cand.ballotNumber}
+                      partyColor={cand.color}
+                      aspectRatio="portrait"
+                      size="sm"
+                      className="rounded-lg"
+                    />
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5">
+                      <span
+                        className="px-1 py-0.2 rounded text-white text-[9px] font-mono font-bold"
+                        style={{ backgroundColor: cand.color }}
+                      >
+                        {cand.ballotNumber}
+                      </span>
+                      <span className="font-bold text-slate-900 text-xs truncate block">
+                        {cand.popularName}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-slate-500 font-mono block">
+                      {cand.party} · {formatVotesBR(item.votes)} votos
+                    </span>
+                    <span className="font-mono font-bold text-xs text-slate-900 block mt-0.5">
+                      {formatPercentBR(item.percentage)}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -389,10 +472,10 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
             </span>
             <div className="flex items-baseline justify-between mt-1">
               <span className="font-mono text-2xl font-black text-slate-900">
-                2.300.781
+                {formatVotesBR(summary.blankVotes)}
               </span>
               <span className="font-mono text-sm font-bold text-slate-700 bg-white px-2 py-0.5 rounded border border-slate-200">
-                1,84%
+                {formatPercentBR(summary.blankVotesPercentage)}
               </span>
             </div>
             <span className="text-[11px] text-slate-500 block mt-1">
@@ -407,10 +490,10 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
             </span>
             <div className="flex items-baseline justify-between mt-1">
               <span className="font-mono text-2xl font-black text-slate-900">
-                3.674.149
+                {formatVotesBR(summary.nullVotes)}
               </span>
               <span className="font-mono text-sm font-bold text-slate-700 bg-white px-2 py-0.5 rounded border border-slate-200">
-                2,93%
+                {formatPercentBR(summary.nullVotesPercentage)}
               </span>
             </div>
             <span className="text-[11px] text-slate-500 block mt-1">
@@ -425,14 +508,14 @@ export const NationalBanner: React.FC<NationalBannerProps> = ({
             </span>
             <div className="flex items-baseline justify-between mt-1">
               <span className="font-mono text-2xl font-black text-slate-900">
-                25.206.568
+                {formatVotesBR(summary.abstention)}
               </span>
               <span className="font-mono text-sm font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-                16,11%
+                {formatPercentBR(summary.abstentionPercentage)}
               </span>
             </div>
             <span className="text-[11px] text-slate-500 block mt-1">
-              Comparecimento total: 131.247.443 (83,89%)
+              Comparecimento total: {formatVotesBR(summary.turnout)} ({formatPercentBR(summary.turnoutPercentage)})
             </span>
           </div>
         </div>
